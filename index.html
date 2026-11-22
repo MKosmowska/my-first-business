@@ -707,6 +707,18 @@ a { color: var(--accent); text-underline-offset: 2px; }
 .coffee-big { font-size: 15px; padding: 12px 20px; gap: 8px; display: inline-flex; align-items: center; white-space: nowrap; }
 @media (max-width: 640px) { .coffee-card { grid-template-columns: auto 1fr; } .coffee-big { grid-column: 1 / -1; justify-content: center; } }
 
+
+/* v11.1: okno potwierdzenia na środku ekranu (telefon: od dołu) */
+.modal-bg { position: fixed; inset: 0; z-index: 45; background: rgba(11,17,27,.45); display: flex; align-items: center; justify-content: center; padding: 20px; }
+.confirm.modal { width: 100%; max-width: 520px; border: 0; border-radius: 18px; padding: 22px; box-shadow: 0 20px 50px rgba(0,0,0,.25); flex-direction: column; align-items: stretch; gap: 16px; }
+.confirm.modal p { font-size: 16px; line-height: 1.5; }
+.confirm.modal .btns { justify-content: flex-end; }
+@media (max-width: 640px) {
+  .modal-bg { align-items: flex-end; padding: 0; }
+  .confirm.modal { max-width: none; border-radius: 18px 18px 0 0; padding: 20px 16px calc(20px + env(safe-area-inset-bottom, 0px)); }
+  .confirm.modal .btns { flex-direction: column-reverse; align-items: stretch; }
+  .confirm.modal .btns .btn { min-height: 50px; justify-content: center; }
+}
 /* ===== v11: układ inspirowany wersją na telefon (pasek postępu, werdykt, menu na telefonie, strona startowa) ===== */
 :root { --amber: #C98A1E; --vd-bg: #14284B; --vd-fg: #FFFFFF; --vd-muted: #B4C2DA; --vd-track: rgba(255,255,255,.16); }
 :root[data-theme="dark"] { --amber: #E3B45C; --vd-bg: #172744; }
@@ -850,6 +862,118 @@ a { color: var(--accent); text-underline-offset: 2px; }
   .intro-cards { display: none; }
 }
 @media print { .sheet-bg, .pager { display: none !important; } }
+
+/* ===== v12 „1,5”: premium – jasne tło, białe karty bez ramek, duże zaokrąglenia, okrągłe przyciski, duże liczby ===== */
+:root { --bg: #F5F5F7; --surface-2: #F2F3F6; --line: #E6E8EC; --r-xl: 24px; --r-card: 22px; --r-tile: 20px; --r-in: 12px; --muted: #5E6573; }
+:root[data-theme="dark"] { --r-xl: 24px; }
+body { background: var(--bg); }
+
+/* Nagłówek i narzędzia */
+.brand-k { border-left: 0; padding-left: 2px; }
+.toolbar { border: 0; padding: 0; gap: 6px; margin: 0; }
+.tb { background: var(--surface); border-radius: 999px; padding: 9px 15px; font-size: 14px; }
+.tb:hover:not(:disabled) { background: var(--surface); box-shadow: 0 0 0 1.5px var(--line-2) inset; }
+.tb.on { background: var(--accent); color: var(--accent-ink); }
+.tb.danger { background: none; color: var(--bad); }
+.top-actions .theme, .lang { border: 0 !important; background: var(--surface); border-radius: 999px; }
+.lang { padding: 3px; }
+.lang button { border-radius: 999px !important; }
+.top-actions .theme { width: 42px; height: 42px; display: inline-flex; align-items: center; justify-content: center; }
+.menu-btn { border: 0; border-radius: 999px; }
+
+/* Nagłówki etapów */
+.stage-head h2 { font-size: clamp(28px, 3.6vw, 38px); font-weight: 700; letter-spacing: -.03em; }
+.stage-head .lede { color: var(--muted); }
+
+/* Karty */
+.card, .receipt, .mcoll, .intro-card, .faq-item, .coffee-card { border: 0 !important; border-radius: var(--r-card); box-shadow: none; }
+.card { padding: 26px 28px; }
+.card-h h3, .card > h3 { font-size: 20px; font-weight: 700; letter-spacing: -.02em; }
+.sec { border-radius: 8px; }
+.notice, .linkbar, .exnote { border-radius: 16px; }
+.calcline { border-radius: 14px; }
+.faq-item summary { padding: 15px 44px 15px 18px; }
+.faq-item p { padding: 0 18px 16px; }
+
+/* Pola formularza i przełączniki */
+.field input, .row-edit input, textarea, .inwrap input, select { border-radius: var(--r-in); border-color: transparent; background: var(--surface-2); }
+.field input:hover, .row-edit input:hover, .inwrap input:hover, select:hover { border-color: var(--line-2); }
+.seg button, .seg label, button.ex, .chip { border-radius: 16px; border-color: transparent; background: var(--surface-2); }
+.seg button.on { background: var(--accent-soft); border-color: var(--accent); box-shadow: none; }
+button.ex { background: var(--surface); }
+button.ex.active, button.ex[aria-pressed="true"] { box-shadow: 0 0 0 2px var(--accent) inset; }
+
+/* Przyciski: kształt pigułki */
+.btn { border-radius: 999px; min-height: 44px; padding: 0 20px; }
+.btn-ghost { background: var(--surface); border-color: transparent; }
+.btn-ghost:hover { border-color: var(--line-2); }
+.btn-x { border: 0; background: var(--surface-2); }
+.pager { border-top: 0; padding-top: 4px; }
+.pager .btn { min-height: 50px; padding: 0 24px; border-radius: 999px; font-size: 15.5px; }
+
+/* Kafelki: opis zdaniem, duża liczba, bez ramek */
+.tile, .tile.good, .tile.bad, .tile.warn { border: 0; border-radius: var(--r-tile); box-shadow: none; background: var(--surface); padding: 18px 20px; gap: 3px; }
+.tile.good, .tile.bad, .tile.warn { box-shadow: none !important; }
+.tile-l { text-transform: none; letter-spacing: -.005em; font-size: 14px; font-weight: 500; color: var(--muted); }
+.tile-v { font-size: 26px; font-weight: 700; letter-spacing: -.03em; }
+.tile.good .tile-v { color: var(--good); } .tile.bad .tile-v { color: var(--bad); } .tile.warn .tile-v { color: var(--warn); }
+.tiles { gap: 12px; }
+.tiles.tiles-key .tile { padding: 22px 24px; }
+.tiles.tiles-key .tile-v { font-size: 34px; }
+.tiles-sm .tile-v { font-size: 22px; }
+
+/* Werdykt: duża kwota, na komputerze w dwóch kolumnach */
+.verdict { border-radius: 28px; padding: 30px 34px; box-shadow: none; }
+.vd-v { font-size: clamp(48px, 6.4vw, 78px); letter-spacing: -.05em; line-height: .98; }
+.vd-mark { width: 3px; border-radius: 2px; }
+@media (min-width: 900px) {
+  .verdict:not(.compact) { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); column-gap: 40px; row-gap: 14px; align-items: end; }
+  .verdict:not(.compact) .vd-top { grid-column: 1 / -1; justify-content: flex-start; gap: 14px; }
+  .verdict:not(.compact) .vd-cap { padding-bottom: 6px; }
+}
+.verdict.compact { border-radius: 24px; padding: 20px; }
+.verdict.compact .vd-v { font-size: 36px; }
+.mini { border-radius: 24px; border: 0; }
+
+/* Rachunek wyników jako czysta karta */
+.receipt { padding: 26px 28px; }
+
+/* Strona startowa */
+.intro-card { padding: 22px 24px; }
+.btn-lg { min-height: 54px; padding: 0 28px; }
+
+/* O projekcie: spokojniejsza, czytelniejsza kolumna */
+.stage.about .card { padding: 30px 34px; }
+.stage.about .card h3 { font-size: 21px; font-weight: 700; letter-spacing: -.02em; }
+.stage.about .card p { line-height: 1.65; font-size: 15.5px; }
+.dict-tagline { border-bottom: 0; font-size: clamp(26px, 3.2vw, 36px); font-weight: 700; letter-spacing: -.035em; }
+.dict-w { letter-spacing: -.04em; }
+.method div { border-radius: 14px; }
+
+/* Ciemny motyw: karty odróżnione od tła */
+:root[data-theme="dark"] .card, :root[data-theme="dark"] .tile, :root[data-theme="dark"] .receipt, :root[data-theme="dark"] .mcoll, :root[data-theme="dark"] .faq-item { box-shadow: 0 0 0 1px var(--line) inset; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .card, :root:not([data-theme="light"]) .tile, :root:not([data-theme="light"]) .receipt, :root:not([data-theme="light"]) .mcoll, :root:not([data-theme="light"]) .faq-item { box-shadow: 0 0 0 1px var(--line) inset; } }
+
+/* Telefon: kafelki kluczowe jako „bento” – duża liczba, opis pod spodem */
+@media (max-width: 640px) {
+  .card { padding: 20px 18px; }
+  .tiles { gap: 10px; }
+  .tiles.tiles-key .tile { min-height: 108px; justify-content: flex-end; padding: 16px; }
+  .tiles.tiles-key .tile-v { order: -1; font-size: 28px; }
+  .tiles.tiles-key .tile-l { font-size: 13px; }
+  .tiles.tiles-key .tile-s { display: none; }
+  .tile-v { font-size: 21px; }
+  .verdict { border-radius: 26px; padding: 22px 20px; }
+  .vd-v { font-size: 50px; }
+  .mcoll { border-radius: 26px; }
+  .mcoll > summary { min-height: 54px; padding: 0 20px; }
+  .tb { padding: 8px 12px; }
+  .next-row { display: none; }
+  .top-actions .theme { display: none !important; }
+  .stage.about .card { padding: 22px 20px; }
+}
+/* Komputer: na etapie 1 przycisk „Dalej” jest w formularzu, więc dolny pasek byłby powtórzeniem */
+@media (min-width: 641px) { .pager.pager-s0 { display: none; } }
 </style>
 </head><body>
 <div id="root"><main style="max-width:880px;margin:40px auto;padding:0 20px;font-family:system-ui,sans-serif;color:#0F1B22;line-height:1.55">
@@ -2355,7 +2479,7 @@ function AreaPicker(p) {
           return html`<li key=${a[0]} role="option" aria-selected=${i === idx} className=${i === idx ? 'on' : ''} onMouseDown=${function (e) { e.preventDefault(); pick(a); }}>${areaLabel(a)}</li>`; })}</ul>` : null}
         ${open && q.trim().length >= 2 && !res.length ? html`<p className="hint">${L('Nie znaleziono. Sprawdź pisownię.', 'Not found. Check the spelling.')}</p>` : null}
       </div>`}
-    <p className="hint">${L('Prawdziwa gęstość zaludnienia trafi do szacunku rynku w etapie 2, a płace w powiecie podpowiedzą koszt pracownika w etapie 3. Źródło: ', 'The real population density goes into the market estimate in step 2, and county pay suggests the employee cost in step 3. Source: ') + L(GMINY_SRC.pl, GMINY_SRC.en)}.</p>
+    <p className="hint">${(p.market ? L('Źródło: ', 'Source: ') : L('Prawdziwa gęstość zaludnienia trafi do szacunku rynku w etapie 2, a płace w powiecie podpowiedzą koszt pracownika w etapie 3. Źródło: ', 'The real population density goes into the market estimate in step 2, and county pay suggests the employee cost in step 3. Source: ')) + L(GMINY_SRC.pl, GMINY_SRC.en)}.</p>
   </div>`;
 }
 
@@ -2371,7 +2495,7 @@ function StageIdea(p) {
   var st = p.st, set = p.set, i = st.idea, local = i.model === 'lokalny';
   return html`<section className="stage">
     <header className="stage-head"><p className="eyebrow">${eyebrow(1)}</p><h2>${L('Pomysł na biznes', 'Your business idea')}</h2>
-      <p className="lede">${L('Czy Twój pomysł powinien być firmą? Opisz, co sprzedajesz i gdzie, albo zacznij od gotowego przykładu i zmieniaj jego liczby.', 'Should your idea be a business? Describe what you sell and where, or start from a ready-made example and change its numbers.')}</p></header>
+      <p className="lede">${L('Czy Twój pomysł nadaje się na firmę? Opisz, co sprzedajesz i gdzie, albo zacznij od gotowego przykładu i zmień jego liczby.', 'Could your idea work as a business? Describe what you sell and where, or start from a ready-made example and change its numbers.')}</p></header>
 
     <div className="card">
       <div className="grid2">
@@ -2549,7 +2673,7 @@ function StageMarket(p) {
         options=${[['manual', L('Wpisz dane ręcznie', 'Enter data manually'), L('Twoje własne ustalenia', 'your own findings')], ['demo', L('Przykład demonstracyjny', 'Demo example'), L('przykładowe dane do nauki', 'sample data for learning')]]} />
     </div>
 
-    ${local ? html`<div className="card area-card"><${AreaPicker} st=${st} onPick=${p.pickArea} onClear=${function () { set(['idea', 'area'], ''); }} />
+    ${local ? html`<div className="card area-card"><${AreaPicker} market=${true} st=${st} onPick=${p.pickArea} onClear=${function () { set(['idea', 'area'], ''); }} />
       <p className="small muted">${L('Od gminy lub dzielnicy zależą dane GUS w tym etapie: liczba mieszkańców, konkurencja i nasycenie rynku. Sama ulica jej nie zmienia, ale wyszukiwanie konkurencji niżej podpowie, jeśli adres leży w innej dzielnicy.', 'The municipality or district drives the GUS data in this step: residents, competition and market saturation. The street alone does not change it, but the competitor search below will tell you if the address lies in another district.')}</p></div>` : null}
     ${local && !demo ? html`<${OsmFinder} st=${st} apply=${p.apply} pickArea=${p.pickArea} />` : null}
     ${local && demo ? html`<p className="hint">${L('Żeby znaleźć prawdziwych konkurentów na mapie, wybierz „Wpisz dane ręcznie”.', 'To find real competitors on the map, choose “Enter data manually”.')}</p>` : null}
@@ -3339,7 +3463,7 @@ var SELF_CHECKS = [
   ['talked', ['Rozmowy z co najmniej 10 potencjalnymi klientami', 'Spoken to at least 10 potential customers'], ['Nie znajomi, tylko osoby, które naprawdę mogłyby kupić. Zapytaj, ile dziś płacą i czego im brakuje.', 'Not friends, but people who could really buy. Ask what they pay today and what is missing.']],
   ['first', ['Wiesz, skąd przyjdzie pierwszych 20 klientów', 'You know where your first 20 customers will come from'], ['Konkretny kanał: ogłoszenie w grupie osiedlowej, Instagram, współpraca z firmą obok, a nie „z polecenia”.', 'A specific channel: a local group, Instagram, a partner next door, not just “word of mouth”.']],
   ['edge', ['Umiesz w jednym zdaniu powiedzieć, czym wygrywasz z konkurencją', 'You can say in one sentence why customers pick you over competitors'], ['Cena, wygoda, jakość, specjalizacja, lokalizacja. Jedno, ale prawdziwe.', 'Price, convenience, quality, specialisation, location. One thing, but true.']],
-  ['tested', ['Sprawdzony popyt małym kosztem', 'Demand tested cheaply'], ['Przedsprzedaż, prosta strona z zapisami, ogłoszenie albo stoisko na jeden dzień, zanim wydasz pieniądze na start.', 'Pre-sales, a simple sign-up page, an ad or a one-day stall before you spend the start-up money.']],
+  ['tested', ['Sprawdzony popyt małym kosztem', 'Demand tested cheaply'], ['Przedsprzedaż, prosta strona z zapisami, ogłoszenie albo stoisko na jeden dzień, zanim wydasz pieniądze na start.', 'Pre-sales, a simple sign-up page, an ad or a one-day stall before you spend money on the launch.']],
   ['legal', ['Sprawdzone zezwolenia, sanepid i ubezpieczenie', 'Permits, health and safety and insurance checked'], ['Np. gastronomia i kosmetyka wymagają zgody sanepidu, a wynajem na doby zgłoszenia i zasad wspólnoty.', 'E.g. food and beauty need health-inspection approval; short-term rental has its own rules.']],
   ['planb', ['Wiesz, co zrobisz, jeśli przez 3 miesiące będzie o połowę mniej klientów', 'You know what you will do if customers halve for 3 months'], ['Które koszty możesz wtedy obciąć i skąd weźmiesz pieniądze na przetrwanie.', 'Which costs you can cut and where the money to survive will come from.']]
 ];
@@ -3579,11 +3703,11 @@ function StageFinance(p) {
   var inv = parseNum(st.goals.investment).v;
   return html`<section className="stage">
     <header className="stage-head"><p className="eyebrow">${eyebrow(4)}</p><h2>${L('Finansowanie i podatki', 'Financing and tax')}</h2>
-      <p className="lede">${L('Skąd weźmiesz pieniądze na start, ile zabiorą podatki i składki, i ile naprawdę zostanie Ci co miesiąc.', 'Where the start-up money comes from, how much tax and contributions take, and what is really left each month.')}</p></header>
+      <p className="lede">${L('Skąd weźmiesz pieniądze na start, ile zabiorą podatki i składki, i ile naprawdę zostanie Ci co miesiąc.', 'Where the money to start comes from, how much tax and contributions take, and what is really left each month.')}</p></header>
 
     <div className="card">
-      <div className="card-h"><h3><span className="sec">A</span> ${L('Finansowanie startu', 'Start-up financing')}</h3></div>
-      <p className="calcline">${L('Inwestycja na start: ', 'Start-up investment: ')}<b>${money(inv)}</b>${L(' (zmienisz ją w etapie 3)', ' (change it in step 3)')}</p>
+      <div className="card-h"><h3><span className="sec">A</span> ${L('Skąd pieniądze na start', 'Funding the launch')}</h3></div>
+      <p className="calcline">${L('Inwestycja na start: ', 'Investment to start: ')}<b>${money(inv)}</b>${L(' (zmienisz ją w etapie 3)', ' (change it in step 3)')}</p>
       <div className="grid3">
         <${NumField} st=${st} set=${set} path=${['fin', 'equity']} label=${L('Wkład własny', 'Your own money')} suffix=${Z} placeholder=${fin ? num(fin.equity) : ''} hint=${L('Puste pole: inwestycja minus kredyt.', 'Empty: the investment minus the loan.')} />
         <${NumField} st=${st} set=${set} path=${['fin', 'depr']} label=${L('Amortyzacja sprzętu', 'Depreciation period')} suffix=${L('lat', 'yrs')} hint=${L('Przez ile lat rozkładasz koszt inwestycji. Obniża podatek, ale nie zabiera gotówki.', 'Over how many years the investment is written off. Lowers tax, but costs no cash.')} />
@@ -3831,7 +3955,7 @@ function ComparePlans(p) {
     [L('Marża pokrycia', 'Contribution margin'), function (m) { return m.c.ok && m.c.price > 0 ? m.c.cm / m.c.price : null; }, 'pct', 1],
     [L('Klienci do progu', 'Customers to break even'), function (m) { return m.c.ok ? m.c.beClients : null; }, 'num', -1],
     [L('Wykorzystanie możliwości', 'Capacity used'), function (m) { return m.c.ok && m.c.util != null && isFinite(m.c.util) ? m.c.util : null; }, 'pct', 0],
-    [L('Inwestycja na start', 'Start-up investment'), function (m) { return m.c.ok ? m.c.inv : null; }, 'money', -1],
+    [L('Inwestycja na start', 'Investment to start'), function (m) { return m.c.ok ? m.c.inv : null; }, 'money', -1],
     [L('Zwrot wkładu (mies.)', 'Money back (months)'), function (m) { return m.fc ? (m.fc.payback == null ? 99 : m.fc.payback) : null; }, 'months', -1],
     [L('Zysk netto w 3. roku', 'Net profit in year 3'), function (m) { return m.fc ? m.fc.years[2].net : null; }, 'money', 1],
     [L('Wycena z Twoją pracą', 'Value incl. your work'), function (m) { return m.fc ? m.fc.withOwner.value : null; }, 'money', 1],
@@ -3971,7 +4095,7 @@ function PrintReport(p) {
       ${c.isService ? row(L('Obsługa klientów', 'Serving customers'), teamNom(c) + ', ' + num(c.days) + L(' dni × ', ' days × ') + num(c.hours, 1) + ' h') : null}
       ${row(L('Limit obsługi', 'Capacity'), c.capacity == null ? '—' : num(c.capacity) + ' ' + uLabel(c, c.capacity))}
       ${row(L('Cel dla właściciela', "Owner's target"), money(c.target))}
-      ${row(L('Inwestycja na start', 'Start-up investment'), money(c.inv))}
+      ${row(L('Inwestycja na start', 'Investment to start'), money(c.inv))}
       ${st.idea.area && AREA_BY_CODE[st.idea.area] ? row(L('Gmina lub dzielnica', 'Municipality or district'), AREA_BY_CODE[st.idea.area][1] + ', ' + num(AREA_BY_CODE[st.idea.area][3], 1) + L(' os./km², płace w powiecie ', ' people/km², county pay ') + num((areaPow(AREA_BY_CODE[st.idea.area]) || [0, 0, 0])[2], 1) + L('% średniej (GUS 2025)', '% of average (GUS 2025)')) : null}
       ${(function () { var rg = regonStats(st); return rg && rg.sec ? row(L('Konkurencja (REGON)', 'Competition (REGON)'), num(rg.n) + L(' firm z branży „' + PKD[rg.sec][0] + '”, ', ' businesses in “' + PKD[rg.sec][1] + '”, ') + num(rg.per10k, 1) + L(' na 10 tys. mieszk.; podobne gminy ', ' per 10k residents; similar municipalities ') + num(rg.grp10k, 1) + L(', Polska ', ', Poland ') + num(rg.pl10k, 1) + (rg.sat != null ? L('; wskaźnik nasycenia ', '; saturation index ') + satText(rg.sat) : '') + (rg.poolPerFirm ? L('; wydatki mieszkańców na firmę ', '; residents\' spending per business ') + money(Math.round(rg.poolPerFirm)) + L(' mies.', ' a month') : '')) : null; })()}
       ${ms && ms.ok ? row(L('Szacunek rynku (etap 2)', 'Market estimate (step 2)'), L('ok. ', 'about ') + num(ms.est) + ' ' + L('klientów', 'customers')) : null}
@@ -4087,6 +4211,7 @@ function App() {
   var stepS = useState(stepFromHash), step = stepS[0], setStep = stepS[1];
   var introS = useState(!!boot.fresh), intro = introS[0], setIntro = introS[1];
   var menuS = useState(false), menu = menuS[0], setMenu = menuS[1];
+  useEffect(function () { if (!pending) return; var f = function (e) { if (e.key === 'Escape') setPending(null); }; window.addEventListener('keydown', f); try { if (pending.kind === 'share' || pending.kind === 'plans') window.scrollTo({ top: 0, behavior: 'smooth' }); } catch (e) {} return function () { window.removeEventListener('keydown', f); }; }, [pending]);
   useEffect(function () { if (!menu) return; var f = function (e) { if (e.key === 'Escape') setMenu(false); }; window.addEventListener('keydown', f); return function () { window.removeEventListener('keydown', f); }; }, [menu]);
   var pend = useState(null), pending = pend[0], setPending = pend[1];
   useEffect(function () { saveState(st); }, [st]);
@@ -4201,13 +4326,13 @@ function App() {
 
     ${pending && pending.kind === 'share' ? html`<${SharePanel} st=${st} onImport=${importPlan} onClose=${function () { setPending(null); }} />` : null}
     ${pending && pending.kind === 'plans' ? html`<${PlansPanel} st=${st} onOpen=${function (s) { importPlan(upgradeState(s, mergeDeep(deepClone(BLANK), s))); setNotice('saved'); }} onClose=${function () { setPending(null); }} />` : null}
-    ${pending && pending.kind !== 'share' && pending.kind !== 'plans' ? html`<div className="confirm" role="dialog" aria-label=${L('Potwierdzenie', 'Confirmation')}>
+    ${pending && pending.kind !== 'share' && pending.kind !== 'plans' ? html`<div className="modal-bg" onClick=${function (e) { if (e.target === e.currentTarget) setPending(null); }}><div className="confirm modal" role="dialog" aria-modal="true" aria-label=${L('Potwierdzenie', 'Confirmation')}>
       ${pending.kind === 'pick' ? html`<p>${L('Wybierz przykład. Zastąpi on wszystkie Twoje obecne dane przykładowymi założeniami.', 'Choose an example. It will replace all your current data with sample assumptions.')}</p>
         <div className="btns">${EXAMPLES.map(function (e) { return html`<button key=${e.id} type="button" className="btn btn-ghost" onClick=${function () { setSt(exampleState(e.id)); setPending(null); }}>${exName(e)}</button>`; })}
         <button type="button" className="btn btn-text" onClick=${function () { setPending(null); }}>${L('Anuluj', 'Cancel')}</button></div>`
       : html`<p>${pending.kind === 'reset' ? L('Wyczyścić wszystkie pola i zacząć od pustego formularza? Tego nie da się cofnąć.', 'Clear every field and start with an empty form? This cannot be undone.') : L('Wczytać przykład „' + exName(pendEx) + '”? Zastąpi on wszystkie Twoje obecne dane.', 'Load the “' + exName(pendEx) + '” example? It will replace all your current data.')}</p>
         <div className="btns"><button type="button" className="btn btn-primary" onClick=${confirm}>${pending.kind === 'reset' ? L('Tak, wyczyść', 'Yes, clear') : L('Tak, wczytaj', 'Yes, load')}</button><button type="button" className="btn btn-text" onClick=${function () { setPending(null); }}>${L('Anuluj', 'Cancel')}</button></div>`}
-    </div>` : null}
+    </div></div>` : null}
 
 
     ${view === 'about' ? html`<${About} onBack=${function () { setView('app'); }} />` : intro ? html`<${Intro} st=${st} c=${c} fin=${fin} onStart=${function () { setSt(blankState()); setStep(0); setIntro(false); }} onExample=${function () { setStep(4); setIntro(false); }} />` : html`<${React.Fragment}>
@@ -4232,7 +4357,7 @@ function App() {
 
     <div className=${'layout' + (showMini ? ' with-mini' : '')}>
       <main>${stages[step]}
-        <div className="pager">
+        <div className=${'pager' + (step === 0 ? ' pager-s0' : '')}>
           ${step > 0 ? html`<button type="button" className="btn btn-ghost" aria-label=${L('Wstecz: ', 'Back: ') + stepName(STEPS[step - 1])} onClick=${function () { setStep(step - 1); }}><span aria-hidden="true">←</span><span className="pg-bl" aria-hidden="true">${stepName(STEPS[step - 1])}</span></button>` : html`<span></span>`}
           ${step < STEPS.length - 1 ? html`<button type="button" className="btn btn-primary" onClick=${function () { setStep(step + 1); }}>${L('Dalej: ', 'Next: ')}${stepName(STEPS[step + 1])} →</button>` : null}
         </div>

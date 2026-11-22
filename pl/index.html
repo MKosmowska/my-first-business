@@ -4393,7 +4393,7 @@ function App() {
     var fresh = false; try { fresh = !saved && !(location.hash || '').replace('#', ''); } catch (e) {}
     return { st: saved || exampleState('fryzjer'), notice: null, fresh: fresh };
   })[0];
-  var S = useState(boot.st), st = S[0], setSt = S[1];
+  var S = useState(function () { try { return relangState(boot.st, lang); } catch (e) { return boot.st; } }), st = S[0], setSt = S[1];
   var noteS = useState(boot.notice), notice = noteS[0], setNotice = noteS[1];
   var stepS = useState(stepFromHash), step = stepS[0], setStep = stepS[1];
   var introS = useState(!!boot.fresh), intro = introS[0], setIntro = introS[1];

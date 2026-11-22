@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kalkulator progu rentowności: wzór i przykład | Coasely</title>
+<meta name="description" content="Jak obliczyć próg rentowności? Wzór, przykład krok po kroku dla salonu fryzjerskiego i darmowy kalkulator: ilu klientów miesięcznie potrzebujesz, żeby firma wyszła na zero.">
+<link rel="canonical" href="https://coasely.com/kalkulator-progu-rentownosci/">
+<meta property="og:title" content="Kalkulator progu rentowności: ilu klientów potrzebujesz?">
+<meta property="og:description" content="Wzór, przykład i darmowy kalkulator progu rentowności dla pierwszej firmy.">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="pl_PL">
+<meta property="og:url" content="https://coasely.com/kalkulator-progu-rentownosci/">
+<meta property="og:image" content="https://coasely.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="author" content="Maja Kosmowska">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Kalkulator progu rentowności: wzór i przykład","inLanguage":"pl","author":{"@type":"Person","name":"Maja Kosmowska"},"publisher":{"@type":"Organization","name":"Coasely","logo":{"@type":"ImageObject","url":"https://coasely.com/apple-touch-icon.png"}},"image":"https://coasely.com/og.png","datePublished":"2026-11-22","dateModified":"2026-11-22","mainEntityOfPage":"https://coasely.com/kalkulator-progu-rentownosci/"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Coasely","item":"https://coasely.com/pl/"},{"@type":"ListItem","position":2,"name":"Kalkulator progu rentowności","item":"https://coasely.com/kalkulator-progu-rentownosci/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"pl","mainEntity":[
+{"@type":"Question","name":"Czy w kosztach stałych uwzględnić własną pensję?","acceptedAnswer":{"@type":"Answer","text":"Tak. Jeśli chcesz żyć z firmy, kwota, którą chcesz wypłacać sobie co miesiąc, jest kosztem stałym. Bez niej próg rentowności pokazuje tylko moment, w którym pracujesz za darmo."}},
+{"@type":"Question","name":"Czy próg rentowności liczy się przed podatkiem?","acceptedAnswer":{"@type":"Answer","text":"Podstawowy wzór liczy się przed podatkiem dochodowym. Składki ZUS warto doliczyć do kosztów stałych. Jeśli chcesz, żeby po podatku zostawała konkretna kwota, próg będzie wyższy; Coasely liczy to automatycznie dla skali, podatku liniowego i ryczałtu."}},
+{"@type":"Question","name":"Co zrobić, gdy próg rentowności jest za wysoki?","acceptedAnswer":{"@type":"Answer","text":"Masz trzy dźwignie: podnieść cenę, obniżyć koszt zmienny jednej sprzedaży albo obniżyć koszty stałe, np. mniejszy lokal na start. Sprawdź też, czy rynek w Twojej okolicy w ogóle da tylu klientów."}}
+]}</script>
+<style>
+:root{--bg:#F5F7F9;--surface:#fff;--ink:#0F1B22;--muted:#5A6670;--line:#DFE4E9;--accent:#1F5068;--accent-soft:#E7EFF3;--marker:#C98A1E;--warn-soft:#FBF0DC}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 Inter,system-ui,-apple-system,sans-serif}
+a{color:var(--accent)}
+header,main,footer{max-width:760px;margin:0 auto;padding:0 20px}
+header{display:flex;justify-content:space-between;align-items:center;padding-top:20px;padding-bottom:20px}
+.logo{font-weight:700;font-size:20px;text-decoration:none;color:var(--ink)}
+.logo span{color:var(--marker)}
+nav a{font-size:15px;margin-left:16px;text-decoration:none}
+.crumbs{font-size:14px;color:var(--muted)}
+h1{font-size:34px;line-height:1.2;margin:8px 0 12px}
+h2{font-size:24px;margin:40px 0 10px}
+h3{font-size:18px;margin:24px 0 6px}
+.lead{font-size:19px;color:var(--muted)}
+.formula{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--marker);border-radius:8px;padding:18px 22px;font-size:20px;font-weight:600;text-align:center;margin:20px 0}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:20px 22px;margin:20px 0}
+table{width:100%;border-collapse:collapse;font-size:16px}
+td{padding:7px 0;border-bottom:1px solid var(--line)}
+td:last-child{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+tr.sum td{font-weight:700;border-bottom:none}
+.cta{background:var(--accent);color:#fff;border-radius:12px;padding:26px;margin:36px 0;text-align:center}
+.cta p{margin:0 0 14px;font-size:18px}
+.btn{display:inline-block;background:var(--marker);color:#2B1D03;font-weight:700;text-decoration:none;padding:12px 24px;border-radius:8px}
+.note{background:var(--warn-soft);border-radius:8px;padding:14px 18px;font-size:15px}
+footer{color:var(--muted);font-size:14px;padding-top:30px;padding-bottom:40px;border-top:1px solid var(--line);margin-top:50px}
+@media (max-width:600px){h1{font-size:28px}.formula{font-size:17px}}
+</style>
+</head>
+<body>
+<header>
+  <a class="logo" href="/pl/">Coasely<span>.</span></a>
+  <nav><a href="/pl/">Kalkulator</a><a href="/" hreflang="en" lang="en">EN</a></nav>
+</header>
+<main>
+<p class="crumbs"><a href="/pl/">Coasely</a> › Próg rentowności</p>
+<h1>Kalkulator progu rentowności: ilu klientów potrzebujesz, żeby wyjść na zero?</h1>
+<p class="lead">Próg rentowności to pierwsza liczba, którą warto znać przed założeniem firmy. Mówi, ile musisz sprzedawać co miesiąc, żeby przychody pokryły wszystkie koszty. Poniżej wzór, przykład krok po kroku i najczęstsze błędy.</p>
+
+<h2>Co to jest próg rentowności?</h2>
+<p>Próg rentowności (ang. <i>break-even point</i>) to taka liczba sprzedaży, przy której firma nie zarabia ani nie traci. Każdy klient powyżej progu to już zysk, każdy poniżej to strata. Najczęściej liczy się go w sztukach, czyli w liczbie klientów, usług albo produktów w miesiącu, ale można też podać go w złotówkach przychodu.</p>
+
+<h2>Wzór na próg rentowności</h2>
+<div class="formula">Próg rentowności = koszty stałe ÷ (cena − koszt zmienny jednej sprzedaży)</div>
+<ul>
+  <li><b>Koszty stałe</b> płacisz co miesiąc bez względu na liczbę klientów: czynsz, składki ZUS, księgowość, abonamenty, rata kredytu i Twoja własna pensja.</li>
+  <li><b>Koszt zmienny</b> rośnie z każdą sprzedażą: materiały, opakowanie, prowizja płatnicza, dostawa.</li>
+  <li><b>Cena minus koszt zmienny</b> to marża na jednej sprzedaży. Tyle każdy klient „dokłada” do pokrycia kosztów stałych.</li>
+</ul>
+
+<h2>Przykład: salon fryzjerski</h2>
+<p>Ania chce otworzyć jednoosobowy salon. Liczby są przykładowe, ale typowe dla małego lokalu.</p>
+<div class="card">
+<table>
+  <tr><td>Czynsz za lokal</td><td>2 500 zł</td></tr>
+  <tr><td>Media, oprogramowanie do rezerwacji</td><td>600 zł</td></tr>
+  <tr><td>Księgowość</td><td>400 zł</td></tr>
+  <tr><td>Składki ZUS i inne opłaty stałe (założenie)</td><td>1 500 zł</td></tr>
+  <tr><td>Pensja, którą Ania chce sobie wypłacać</td><td>4 000 zł</td></tr>
+  <tr class="sum"><td>Koszty stałe razem</td><td>9 000 zł</td></tr>
+</table>
+</div>
+<p>Strzyżenie kosztuje 90 zł, a kosmetyki i jednorazowe materiały na jedną wizytę to około 15 zł. Marża na jednej wizycie wynosi więc 75 zł.</p>
+<div class="formula">9 000 zł ÷ 75 zł = 120 klientów miesięcznie</div>
+<p>To około 6 klientów dziennie przy 20 dniach pracy, czyli przychód 10 800 zł miesięcznie. Teraz trzeba zadać dwa pytania: czy Ania da radę obsłużyć tylu klientów i czy w jej okolicy jest tylu chętnych, skoro działają tam inne salony?</p>
+
+<div class="cta">
+  <p>Policz próg rentowności dla swojego pomysłu. Coasely sprawdzi też, czy rynek w Twojej gminie da tylu klientów.</p>
+  <a class="btn" href="/pl/#koszty">Otwórz darmowy kalkulator</a>
+</div>
+
+<h2>Najczęstsze błędy</h2>
+<h3>1. Pominięcie własnej pensji</h3>
+<p>Jeśli nie wliczysz swojego wynagrodzenia, „wyjście na zero” oznacza tak naprawdę pracę za darmo. Wpisz kwotę, za którą realnie chcesz żyć.</p>
+<h3>2. Zapomniane składki ZUS i podatek</h3>
+<p>Składki ZUS to koszt stały, który rośnie po okresie ulgi na start i preferencyjnych składek. Podatek dochodowy dodatkowo podnosi próg, jeśli chcesz mieć konkretną kwotę „na rękę”. <a href="/pl/#finanse">Coasely liczy to dla skali, podatku liniowego i ryczałtu</a>.</p>
+<h3>3. Próg wyższy niż rynek</h3>
+<p>Wynik 120 klientów nic nie znaczy, jeśli w okolicy jest tylko 80 potencjalnych klientów na Twoją usługę. Porównaj próg z wielkością rynku i konkurencją. <a href="/pl/#rynek">Sprawdź konkurencję w swojej gminie</a>.</p>
+<h3>4. Brak limitu obsługi</h3>
+<p>Jedna osoba ma ograniczoną liczbę godzin. Jeśli próg rentowności przekracza to, co fizycznie możesz zrobić, model trzeba zmienić: podnieść cenę albo zatrudnić kogoś.</p>
+
+<h2>Jak obniżyć próg rentowności?</h2>
+<ul>
+  <li><b>Podnieś cenę.</b> W przykładzie cena 100 zł zamiast 90 zł obniża próg z 120 do 106 klientów.</li>
+  <li><b>Obniż koszt zmienny.</b> Tańszy dostawca albo większe opakowania zwiększają marżę na każdej sprzedaży.</li>
+  <li><b>Zacznij taniej.</b> Mniejszy lokal, praca z domu albo wynajem stanowiska na start obniżają koszty stałe.</li>
+</ul>
+<p class="note">Wyniki są szacunkowe i nie stanowią porady podatkowej ani inwestycyjnej.</p>
+
+<h2>Najczęstsze pytania</h2>
+<h3>Czy w kosztach stałych uwzględnić własną pensję?</h3>
+<p>Tak. Jeśli chcesz żyć z firmy, kwota, którą chcesz wypłacać sobie co miesiąc, jest kosztem stałym. Bez niej próg rentowności pokazuje tylko moment, w którym pracujesz za darmo.</p>
+<h3>Czy próg rentowności liczy się przed podatkiem?</h3>
+<p>Podstawowy wzór liczy się przed podatkiem dochodowym. Składki ZUS warto doliczyć do kosztów stałych. Jeśli chcesz, żeby po podatku zostawała konkretna kwota, próg będzie wyższy; Coasely liczy to automatycznie dla skali, podatku liniowego i ryczałtu.</p>
+<h3>Co zrobić, gdy próg rentowności jest za wysoki?</h3>
+<p>Masz trzy dźwignie: podnieść cenę, obniżyć koszt zmienny jednej sprzedaży albo obniżyć koszty stałe, np. mniejszy lokal na start. Sprawdź też, czy rynek w Twojej okolicy w ogóle da tylu klientów.</p>
+
+<div class="cta">
+  <p>Gotowe liczby? Sprawdź swój pomysł w 7 krokach: rynek, koszty, podatki, prognoza i wycena.</p>
+  <a class="btn" href="/pl/">Zacznij w Coasely</a>
+</div>
+</main>
+<footer>Coasely · darmowy kalkulator pomysłu na biznes · autorka: Maja Kosmowska · <a href="/pl/">Strona główna</a></footer>
+</body>
+</html>

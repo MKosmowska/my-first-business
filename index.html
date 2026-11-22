@@ -5,6 +5,8 @@
 <meta property="og:title" content="Coasely · Run the numbers before you run the business">
 <meta property="og:description" content="Market data for every Polish municipality, a market saturation index, taxes and social security 2026, loans and leverage, a 3-year forecast and DCF valuation.">
 <meta property="og:type" content="website">
+<meta property="og:locale" content="en_GB">
+<meta property="og:locale:alternate" content="pl_PL">
 <meta property="og:url" content="https://coasely.com/">
 <meta property="og:image" content="https://coasely.com/og.png">
 <meta property="og:image:width" content="1200">
@@ -13,11 +15,14 @@
 <meta name="author" content="Maja Kosmowska">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is Coasely?", "acceptedAnswer": {"@type": "Answer", "text": "Coasely is a free calculator for a first business idea. It walks you through seven steps: market, prices and costs, taxes, financing, a three-year forecast, valuation and a stress test. It uses official data from Statistics Poland (GUS) for every Polish municipality."}}, {"@type": "Question", "name": "Is Coasely free? Do I need an account?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, it is completely free and needs no account. Your plan is saved only in your own browser, not on a server."}}, {"@type": "Question", "name": "How do I calculate the break-even point?", "acceptedAnswer": {"@type": "Answer", "text": "The break-even point is the number of sales at which revenue covers all costs. You get it by dividing fixed costs by the margin on one sale, that is the price minus the variable cost. Coasely shows the result as the number of customers you need each month."}}, {"@type": "Question", "name": "Tax scale, flat tax or lump-sum tax: which should a new sole trader in Poland choose?", "acceptedAnswer": {"@type": "Answer", "text": "It depends on your revenue, costs and industry. Coasely compares all three options under the 2026 Polish tax and social security (ZUS) rules and shows how much you keep under each. It is an estimate, not tax advice."}}, {"@type": "Question", "name": "How can I check the competition in my area?", "acceptedAnswer": {"@type": "Answer", "text": "Coasely counts businesses in your industry in your municipality using the REGON business register and compares that number with how many you would expect given the population, density, wages and tourism. The result shows whether the market is saturated, balanced or has a gap."}}, {"@type": "Question", "name": "What is a DCF valuation?", "acceptedAnswer": {"@type": "Answer", "text": "A discounted cash flow (DCF) valuation estimates what a business is worth today from the cash it will bring in the future, reduced for risk and time. Coasely uses a high 25% discount rate by default because new businesses are risky. You can change it."}}, {"@type": "Question", "name": "Where does the data come from?", "acceptedAnswer": {"@type": "Answer", "text": "From Statistics Poland (GUS): the REGON business register, the Local Data Bank (population, density, wages, tourist accommodation) and the household budget survey. Prices, costs and competitor lists in the examples are typical assumptions."}}, {"@type": "Question", "name": "Who made Coasely?", "acceptedAnswer": {"@type": "Answer", "text": "Maja Kosmowska, a high-school student interested in economics. The idea came up in class, after noticing there was no simple tool for testing business ideas."}}]}</script>
 <link rel="canonical" href="https://coasely.com/">
+<link rel="alternate" hreflang="en" href="https://coasely.com/">
+<link rel="alternate" hreflang="pl" href="https://coasely.com/pl/">
+<link rel="alternate" hreflang="x-default" href="https://coasely.com/">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Coasely","alternateName":"My First Business","url":"https://coasely.com/","applicationCategory":"FinanceApplication","operatingSystem":"Any","inLanguage":["en","pl"],"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"PLN"},"keywords":"business idea calculator, startup calculator, break-even calculator, first business, kalkulator biznesu, kalkulator progu rentowności, biznesplan, kalkulator JDG, nasycenie rynku, pomysł na biznes","featureList":["Break-even analysis","2026 Polish taxes and ZUS for sole proprietors","Loan and leverage","3-year forecast","DCF valuation","Market saturation index for every Polish municipality"],"description":"Free tool to test a business idea on real data: market saturation for every Polish municipality, break-even, 2026 taxes, a 3-year forecast and DCF valuation.","author":{"@type":"Person","name":"Maja Kosmowska","url":"https://github.com/mkosmowska"},"creator":{"@type":"Person","name":"Maja Kosmowska"}}</script>
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-<link rel="shortcut icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="shortcut icon" href="/favicon.ico">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='5' fill='%2318284A'/%3E%3Crect x='6' y='5' width='9' height='30' rx='.6' fill='%23fff'/%3E%3Crect x='6' y='5' width='28' height='9' rx='.6' fill='%23fff'/%3E%3Crect x='6' y='26' width='18' height='9' rx='.6' fill='%23fff'/%3E%3C/svg%3E">
 <meta name="theme-color" content="#18284A">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -701,6 +706,150 @@ a { color: var(--accent); text-underline-offset: 2px; }
 .coffee-ic { width: 54px; height: 54px; border-radius: 10px; display: grid; place-items: center; background: var(--logo-bg); color: #fff; }
 .coffee-big { font-size: 15px; padding: 12px 20px; gap: 8px; display: inline-flex; align-items: center; white-space: nowrap; }
 @media (max-width: 640px) { .coffee-card { grid-template-columns: auto 1fr; } .coffee-big { grid-column: 1 / -1; justify-content: center; } }
+
+/* ===== v11: układ inspirowany wersją na telefon (pasek postępu, werdykt, menu na telefonie, strona startowa) ===== */
+:root { --amber: #C98A1E; --vd-bg: #14284B; --vd-fg: #FFFFFF; --vd-muted: #B4C2DA; --vd-track: rgba(255,255,255,.16); }
+:root[data-theme="dark"] { --amber: #E3B45C; --vd-bg: #172744; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --amber: #E3B45C; --vd-bg: #172744; } }
+
+/* Pasek etapów: segmenty postępu z nazwami */
+.stepper { padding-block: 8px 10px; }
+.stepper ol { background: none; border: 0; box-shadow: none; padding: 0; gap: 6px; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); }
+.stepper li { min-width: 0; }
+.stepper button, .stepper button.cur, .stepper button.done { display: flex; flex-direction: column; align-items: stretch; justify-content: flex-start; gap: 7px; padding: 6px 0 4px; background: none; color: var(--muted); border-radius: 6px; font-weight: 500; text-align: left; white-space: nowrap; }
+.stepper button:hover { background: none; color: var(--ink); }
+.stepper button .st-bar { display: block; height: 5px; border-radius: 3px; background: var(--line); transition: background .15s; }
+.stepper button:hover .st-bar { background: var(--line-2); }
+.stepper button.done .st-bar { background: var(--accent); }
+.stepper button.cur .st-bar { background: var(--amber); }
+.stepper button.cur { color: var(--ink); font-weight: 700; }
+.stepper button.done { color: var(--ink); }
+.stepper .st-lab { display: flex; gap: 5px; font-size: 13px; overflow: hidden; text-overflow: ellipsis; }
+.stepper .st-n, .stepper button.cur .st-n, .stepper button.done .st-n { border: 0; background: none; color: inherit; width: auto; height: auto; padding: 0; font-size: 13px; }
+.stepper .st-t, .stepper button.cur .st-t { display: inline; overflow: hidden; text-overflow: ellipsis; }
+.st-head { display: none; }
+@media (max-width: 1100px) { .stepper ol { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); } .stepper li, .stepper li:has(.cur) { flex: none; } .stepper .st-t { display: inline; } }
+@media (max-width: 900px) { .stepper .st-t { display: none; } .stepper button.cur .st-t { display: inline; } }
+
+/* Menu narzędzi na telefonie */
+.menu-btn { display: none; }
+.sheet-bg { position: fixed; inset: 0; z-index: 40; background: rgba(11,17,27,.45); display: flex; align-items: flex-end; justify-content: center; }
+.sheet { width: 100%; max-width: 560px; background: var(--surface); color: var(--ink); border-radius: 18px 18px 0 0; padding: 10px 16px calc(20px + env(safe-area-inset-bottom, 0px)); display: flex; flex-direction: column; gap: 2px; max-height: 88vh; overflow-y: auto; box-shadow: 0 -10px 30px rgba(0,0,0,.2); }
+.sheet-grip { align-self: center; width: 40px; height: 5px; border-radius: 3px; background: var(--line-2); margin-bottom: 6px; }
+.sheet-h { display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px; }
+.sheet-h h2 { font-size: 19px; }
+.sheet-close { width: 44px; height: 44px; border-radius: 22px; border: 0; background: var(--surface-2); color: var(--ink); font-size: 20px; cursor: pointer; }
+.sheet-item { min-height: 52px; display: flex; align-items: center; gap: 12px; width: 100%; background: none; border: 0; border-radius: 10px; padding: 6px 8px; font: 600 16px var(--f-body); color: var(--ink); text-align: left; cursor: pointer; }
+.sheet-item:hover:not(:disabled), .sheet-item.on { background: var(--surface-2); }
+.sheet-item:disabled { opacity: .45; }
+.sheet-item.danger { color: var(--bad); }
+.sheet-sep { height: 1px; background: var(--line); margin: 6px 0; }
+.sheet-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 4px 8px; min-height: 52px; font-weight: 600; }
+.seg3 { display: flex; background: var(--surface-2); border-radius: 10px; padding: 3px; gap: 2px; }
+.seg3 button { min-height: 40px; padding: 0 12px; border: 0; border-radius: 8px; background: none; color: var(--muted); font: 500 14px var(--f-body); cursor: pointer; }
+.seg3 button.on { background: var(--surface); color: var(--ink); font-weight: 600; box-shadow: var(--shadow); }
+
+/* Werdykt */
+.verdict { background: var(--vd-bg); color: var(--vd-fg); border-radius: 16px; padding: 22px 24px; display: flex; flex-direction: column; gap: 16px; box-shadow: 0 10px 28px -18px rgba(20,40,75,.7); }
+.verdict.compact { padding: 18px; gap: 12px; }
+.vd-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.vd-badge { display: inline-flex; align-items: center; gap: 6px; border-radius: 14px; padding: 4px 11px; font-size: 13px; font-weight: 600; color: #FFFFFF; }
+.vd-badge.good { background: #16865E; } .vd-badge.warn { background: #A56A12; } .vd-badge.bad { background: #C2273D; }
+.vd-ctx { font-size: 13px; color: var(--vd-muted); }
+.vd-main { display: flex; flex-direction: column; gap: 2px; }
+.vd-l { font-size: 14px; color: var(--vd-muted); }
+.vd-v { font-size: 46px; font-weight: 700; line-height: 1.08; letter-spacing: -.03em; }
+.vd-v.neg { color: #FF9AA8; }
+.verdict.compact .vd-v { font-size: 32px; }
+.vd-s { font-size: 13px; color: var(--vd-muted); }
+.vd-s b { color: var(--vd-fg); }
+.vd-cap { display: flex; flex-direction: column; gap: 7px; }
+.vd-row { display: flex; justify-content: space-between; gap: 10px; font-size: 14px; flex-wrap: wrap; }
+.verdict.compact .vd-row { font-size: 13px; }
+.vd-track { position: relative; height: 10px; border-radius: 5px; background: var(--vd-track); }
+.vd-fill { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 5px; background: var(--amber); }
+.vd-fill.over { background: #FF6F84; }
+.vd-mark { position: absolute; top: -5px; width: 2px; height: 20px; background: #FFFFFF; border-radius: 1px; }
+.mini-live { display: flex; flex-direction: column; gap: 10px; }
+.mini-live .mini { position: static; }
+@media (min-width: 1000px) { .layout.with-mini .mini-live { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 84px); } .layout.with-mini { grid-template-columns: minmax(0, 1fr) 300px; } }
+
+/* Zwijane sekcje: na komputerze zawsze otwarte, nagłówek ukryty */
+.mcoll > summary { list-style: none; }
+.mcoll > summary::-webkit-details-marker { display: none; }
+.mcoll-b { display: flex; flex-direction: column; gap: var(--sp-4); }
+@media (min-width: 641px) { .mcoll > summary { display: none; } }
+
+/* Strona startowa */
+.intro { display: flex; flex-direction: column; gap: 28px; padding-block: 16px 8px; }
+.intro-hero { display: flex; flex-wrap: wrap; gap: 40px; align-items: center; }
+.intro-copy { flex: 1 1 460px; min-width: 0; display: flex; flex-direction: column; gap: 18px; }
+.intro-k { font-size: 13px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--warn); }
+.intro-h { font-size: clamp(32px, 5vw, 52px); line-height: 1.07; letter-spacing: -.03em; font-weight: 700; }
+.intro-p { font-size: 18px; line-height: 1.55; color: var(--muted); max-width: 56ch; }
+.intro-btns { display: flex; flex-wrap: wrap; gap: 10px; }
+.btn-lg { min-height: 52px; padding: 0 24px; font-size: 16px; border-radius: 12px; justify-content: center; }
+.intro-ticks { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 14px; color: var(--muted); }
+.intro-ticks li { display: flex; align-items: center; gap: 6px; }
+.intro-ticks svg { color: var(--good); }
+.intro-ex { flex: 1 1 340px; min-width: 0; max-width: 440px; display: flex; flex-direction: column; gap: 8px; }
+.intro-exl { font-size: 13px; color: var(--muted); }
+.intro-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+.intro-card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; display: flex; flex-direction: column; gap: 6px; font-size: 14px; color: var(--muted); line-height: 1.5; }
+.intro-card b { color: var(--ink); font-size: 17px; }
+.intro-n { font-size: 13px; font-weight: 700; color: var(--accent); }
+
+.tiles.tiles-key { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+@media (max-width: 900px) { .tiles.tiles-key { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+/* Pasek „Wstecz / Dalej” */
+.pager .btn { min-height: 48px; padding: 0 20px; border-radius: 12px; font-size: 15px; }
+
+/* ===== Telefon ===== */
+@media (max-width: 640px) {
+  body { padding-left: max(14px, env(safe-area-inset-left, 0px)); padding-right: max(14px, env(safe-area-inset-right, 0px)); }
+  .app { padding-top: 10px; gap: 12px; }
+  .top { flex-wrap: nowrap; padding-bottom: 0; }
+  .brand h1.wm { font-size: 24px; }
+  .logo svg { width: 34px; height: 34px; }
+  .top-actions .theme { display: none; }
+  .menu-btn { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 10px; cursor: pointer; }
+  .lang button { min-height: 40px; }
+  .toolbar { display: none; }
+  .stepper { padding-block: 6px 8px; margin-inline: -14px; padding-inline: 14px; border-bottom: 1px solid var(--line); }
+  .st-head { display: flex; justify-content: space-between; gap: 10px; font-size: 13px; margin-bottom: 2px; }
+  .st-head b { font-weight: 600; }
+  .st-head span { color: var(--muted); }
+  .stepper ol { gap: 4px; }
+  .stepper button, .stepper button.cur, .stepper button.done { padding: 8px 0; min-height: 26px; justify-content: center; }
+  .stepper .st-lab { display: none; }
+  .exnote { font-size: 12.5px; }
+  .stage-head .eyebrow { display: none; }
+  .pager { position: sticky; bottom: 0; z-index: 6; flex-wrap: nowrap; margin-inline: -14px; padding: 10px 14px calc(12px + env(safe-area-inset-bottom, 0px)); background: var(--surface); border-top: 1px solid var(--line); }
+  .pager .btn-primary { flex: 1 1 auto; justify-content: center; min-height: 52px; }
+  .pager .btn-ghost { flex: 0 0 auto; min-height: 52px; min-width: 52px; justify-content: center; padding: 0 14px; }
+  .pager .pg-bl { display: none; }
+  .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .tile { padding: 12px; }
+  .tile-l { font-size: 11px; letter-spacing: .04em; }
+  .tile-v { font-size: 19px; }
+  .verdict { padding: 18px; gap: 14px; }
+  .vd-v { font-size: 38px; }
+  .mcoll { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; }
+  .mcoll > summary { min-height: 52px; display: flex; align-items: center; justify-content: space-between; padding: 0 14px; font-weight: 600; font-size: 15px; cursor: pointer; }
+  .mcoll-i::after { content: '+'; color: var(--muted); font-size: 20px; font-weight: 500; }
+  .mcoll[open] .mcoll-i::after { content: '\2212'; }
+  .mcoll[open] > summary { border-bottom: 1px solid var(--line); }
+  .mcoll-b { padding: 12px; }
+  .mcoll-b > .card, .mcoll-b > .tiles .tile { box-shadow: none; }
+  .layout .mini-s0 { display: none; }
+  .intro { padding-top: 6px; gap: 22px; }
+  .intro-hero { gap: 22px; }
+  .intro-p { font-size: 16px; }
+  .intro-btns { flex-direction: column; }
+  .intro-btns .btn { width: 100%; }
+  .intro-cards { display: none; }
+}
+@media print { .sheet-bg, .pager { display: none !important; } }
 </style>
 </head><body>
 <div id="root"><main style="max-width:880px;margin:40px auto;padding:0 20px;font-family:system-ui,sans-serif;color:#0F1B22;line-height:1.55">
@@ -708,7 +857,7 @@ a { color: var(--accent); text-underline-offset: 2px; }
 <p>Run the numbers before you run the business. Coasely is a free online calculator for a first business or startup idea: break-even point, pricing and unit costs, sole-proprietorship taxes and social security (ZUS) for 2026, loans and leverage, a 3-year cash-flow forecast and a DCF valuation. It also estimates market size and a market saturation index for every Polish municipality, using official data from Statistics Poland (GUS).</p>
 <h2>Kalkulator pomysłu na biznes</h2>
 <p>Coasely to darmowy kalkulator dla osób, które chcą założyć pierwszą firmę: próg rentowności, cena i koszty, porównanie form opodatkowania JDG (skala, liniowy, ryczałt) i składki ZUS na 2026 rok, kredyt i dźwignia finansowa, prognoza na 3 lata, wycena DCF oraz test pomysłu. Narzędzie szacuje też wielkość rynku i nasycenie konkurencją w każdej gminie w Polsce na podstawie danych GUS (REGON, Bank Danych Lokalnych). Dla uczniów, studentów i początkujących przedsiębiorców, po polsku i po angielsku.</p>
-<p>Created by Maja Kosmowska.</p>
+<p>Created by Maja Kosmowska. <a href="/pl/" hreflang="pl" lang="pl">Wersja polska</a> · <a href="/kalkulator-progu-rentownosci/" lang="pl">Kalkulator progu rentowności</a></p>
 </main></div>
 <script>
 /* Motyw jasny / ciemny: ustawiany przed startem aplikacji, żeby strona nie mrugała */
@@ -1921,7 +2070,7 @@ var LANG_KEY = 'moj-pierwszy-biznes-lang';
 
 function loadState() { try { var r = localStorage.getItem(STORE); if (!r) return null; var s = JSON.parse(r); if (!s || s.v !== 1) return null; return upgradeState(s, mergeDeep(deepClone(BLANK), s)); } catch (e) { return null; } }
 function saveState(s) { try { localStorage.setItem(STORE, JSON.stringify(s)); } catch (e) {} }
-function loadLang() { try { var l = localStorage.getItem(LANG_KEY); if (l === 'en' || l === 'pl') return l; } catch (e) {} return 'en'; }
+function loadLang() { try { if (/^\/pl(\/|$)/.test(location.pathname)) return 'pl'; } catch (e) {} try { var l = localStorage.getItem(LANG_KEY); if (l === 'en' || l === 'pl') return l; } catch (e) {} return 'en'; }
 function saveLang(l) { try { localStorage.setItem(LANG_KEY, l); } catch (e) {} }
 function uid() { return 'c' + Math.random().toString(36).slice(2, 9); }
 function decStr(v) { var s = String(v); return LANG === 'en' ? s : s.replace('.', ','); }
@@ -2063,17 +2212,114 @@ function Notice(p) {
 function uLabel(c, n) { return plural(n, c.F); }
 function utilText(c) { return c.util == null ? '—' : c.util === Infinity ? L('brak czasu', 'no time') : num(c.util * 100) + '%'; }
 
+
+/* ---------- v11: werdykt, zwijane sekcje na telefonie, strona startowa ---------- */
+function useMedia(q) {
+  var s = useState(function () { try { return window.matchMedia(q).matches; } catch (e) { return false; } });
+  useEffect(function () {
+    try {
+      var m = window.matchMedia(q), f = function () { s[1](m.matches); };
+      f();
+      if (m.addEventListener) m.addEventListener('change', f); else m.addListener(f);
+      return function () { if (m.removeEventListener) m.removeEventListener('change', f); else m.removeListener(f); };
+    } catch (e) {}
+  }, [q]);
+  return s[0];
+}
+var MOBILE_Q = '(max-width: 640px)';
+
+/* Sekcja, którą na telefonie można zwinąć; na komputerze zawsze otwarta, bez nagłówka do klikania */
+function MColl(p) {
+  var mob = useMedia(MOBILE_Q);
+  return html`<details className=${'mcoll' + (p.className ? ' ' + p.className : '')} open=${!mob || !!p.openOnMobile}>
+    <summary className="mcoll-s"><span>${p.title}</span><span className="mcoll-i" aria-hidden="true"></span></summary>
+    <div className="mcoll-b">${p.children}</div>
+  </details>`;
+}
+
+function verdictOf(c, fin) {
+  var net = fin && fin.auto ? Math.round(fin.net) : c.op;
+  if (c.cm <= 0 || c.be == null) return { tone: 'bad', t: L('Pomysł się nie spina', 'The idea does not work'), net: net };
+  if (c.beOver) return { tone: 'bad', t: L('Próg poza zasięgiem', 'Break-even out of reach'), net: net };
+  if (c.planOver) return { tone: 'warn', t: L('Plan ponad możliwości', 'Plan exceeds capacity'), net: net };
+  if (net <= 0) return { tone: 'bad', t: L('Na minusie', 'Making a loss'), net: net };
+  if (c.target > 0 && c.op < c.target) return { tone: 'warn', t: L('Zarabia, ale poniżej celu', 'Profitable, below target'), net: net };
+  return { tone: 'good', t: L('Pomysł się spina', 'The idea works'), net: net };
+}
+
+function Verdict(p) {
+  var c = p.c, fin = p.fin;
+  if (!c.ok) return null;
+  var v = verdictOf(c, fin);
+  var auto = fin && fin.auto;
+  var maxV = Math.max(c.capacity || 0, c.units || 0, c.be || 0, 1) * (c.capacity ? 1 : 1.15);
+  var w = Math.min(100, (c.units || 0) / maxV * 100), mark = c.be != null ? Math.min(100, c.be / maxV * 100) : null;
+  var icon = v.tone === 'good'
+    ? html`<svg viewBox="0 0 14 14" width="13" height="13" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M2.5 7.5l3 3 6-7"/></svg>`
+    : html`<svg viewBox="0 0 14 14" width="13" height="13" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" aria-hidden="true"><path d="M7 3v5M7 10.6v.4"/></svg>`;
+  return html`<section className=${'verdict' + (p.compact ? ' compact' : '')} aria-label=${L('Werdykt', 'Verdict')} aria-live="polite">
+    <div className="vd-top">
+      <span className=${'vd-badge ' + v.tone}>${icon}${v.t}</span>
+      ${p.compact ? (p.noctx ? null : html`<span className="vd-ctx">${L('Na żywo', 'Live')}</span>`) : html`<span className="vd-ctx">${[p.st && p.st.idea.type, p.st && p.st.idea.city, auto ? L(FORM_INFO[fin.form].n[0], FORM_INFO[fin.form].n[1]) : null].filter(Boolean).join(' · ')}</span>`}
+    </div>
+    <div className="vd-main">
+      <span className="vd-l">${auto ? L('Zostaje Ci na rękę miesięcznie', 'Take-home per month') : L('Wynik miesięczny przed podatkiem', 'Monthly result before tax')}</span>
+      <span className=${'vd-v num' + (v.net < 0 ? ' neg' : '')}>${money(v.net)}</span>
+      ${p.compact ? null : html`<span className="vd-s">${auto ? L('po podatku, składkach ZUS i odsetkach', 'after income tax, social security and loan interest') : L('podatek i ZUS uzupełnisz w etapie 4', 'add tax and social security in step 4')}</span>`}
+    </div>
+    <div className="vd-cap">
+      <div className="vd-row"><span>${L('Sprzedaż w miesiącu', 'Sales per month')}</span><span className="num"><b>${num(c.units, 0)}</b>${c.capacity != null ? L(' z ', ' of ') + num(c.capacity) + L(' możliwych', ' possible') : ' ' + uLabel(c, c.units)}</span></div>
+      <div className="vd-track"><div className=${'vd-fill' + (c.planOver ? ' over' : '')} style=${{ width: w + '%' }}></div>${mark != null ? html`<div className="vd-mark" style=${{ left: mark + '%' }}></div>` : null}</div>
+      <span className="vd-s">${c.be != null ? html`${L('Próg rentowności: ', 'Break-even: ')}<b>${num(c.beClients)} ${klientow(c.beClients)}</b> (${num(c.be)} ${uLabel(c, c.be)})${p.compact ? '' : L(', biała kreska', ', white mark')}` : L('Brak progu rentowności: marża ≤ 0', 'No break-even: margin ≤ 0')}</span>
+    </div>
+  </section>`;
+}
+
+/* Strona startowa: tylko przy pierwszej wizycie, bez zapisanego planu */
+function Intro(p) {
+  var c = p.c, fin = p.fin, v = c.ok ? verdictOf(c, fin) : null;
+  var tick = html`<svg viewBox="0 0 14 14" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M2.5 7.5l3 3 6-7"/></svg>`;
+  return html`<section className="intro">
+    <div className="intro-hero">
+      <div className="intro-copy">
+        <p className="intro-k">${L('Darmowy kalkulator pomysłu na biznes', 'Free business idea calculator')}</p>
+        <h2 className="intro-h">${L('Policz, zanim założysz firmę', 'Run the numbers before you run the business')}</h2>
+        <p className="intro-p">${L('W 7 krokach sprawdzisz, czy Twój pomysł się opłaci: rynek i konkurencja w Twojej gminie, cena i koszty, ZUS i podatki ' + TAX.year + ', prognoza na 3 lata i wycena.', 'Test a first business idea in 7 steps: the market and competition in any Polish municipality, price and costs, ' + TAX.year + ' taxes and social security, a 3-year forecast and a valuation.')}</p>
+        <div className="intro-btns">
+          <button type="button" className="btn btn-primary btn-lg" onClick=${p.onStart}>${L('Zacznij od swojego pomysłu', 'Start with your idea')} →</button>
+          <button type="button" className="btn btn-ghost btn-lg" onClick=${p.onExample}>${L('Zobacz przykład', 'See an example')}</button>
+        </div>
+        <ul className="intro-ticks">
+          <li>${tick}${L('za darmo, bez konta', 'free, no account')}</li>
+          <li>${tick}${L('oficjalne dane GUS', 'official GUS data')}</li>
+          <li>${tick}${L('eksport do Excela', 'Excel export')}</li>
+          <li>${tick}${L('po polsku i po angielsku', 'Polish and English')}</li>
+        </ul>
+      </div>
+      ${v ? html`<div className="intro-ex">
+        <p className="intro-exl">${L('Przykład: ', 'Example: ')}${p.st.idea.type}${p.st.idea.city ? ' · ' + p.st.idea.city : ''}</p>
+        <${Verdict} c=${c} fin=${fin} st=${p.st} compact=${true} noctx=${true} />
+      </div>` : null}
+    </div>
+    <div className="intro-cards">
+      <div className="intro-card"><span className="intro-n">1 · ${L('Rynek', 'Market')}</span><b>${L('Czy jest dla Ciebie miejsce?', 'Is there room for you?')}</b><span>${L('Konkurencja z rejestru REGON i z mapy oraz wskaźnik nasycenia rynku w Twojej gminie.', 'Competitors from the REGON register and the map, and a market saturation index for your municipality.')}</span></div>
+      <div className="intro-card"><span className="intro-n">2 · ${L('Koszty i podatki', 'Costs and taxes')}</span><b>${L('Czy to się opłaci?', 'Will it pay?')}</b><span>${L('Próg rentowności, najlepsza cena oraz skala, liniowy czy ryczałt według przepisów na ' + TAX.year + ' r.', 'Break-even, the best price, and tax scale vs flat tax vs lump-sum under ' + TAX.year + ' rules.')}</span></div>
+      <div className="intro-card"><span className="intro-n">3 · ${L('Prognoza i wycena', 'Forecast and value')}</span><b>${L('Ile to może być warte?', 'What could it become?')}</b><span>${L('Gotówka miesiąc po miesiącu przez 3 lata, test pomysłu i orientacyjna wycena DCF.', 'Cash month by month for 3 years, a stress test and an indicative DCF valuation.')}</span></div>
+    </div>
+  </section>`;
+}
+
 /* ---------- Mini podsumowanie ---------- */
 function Mini(p) {
   var c = p.c;
   if (!c.ok) return html`<aside className="mini"><p className="mini-h">${L('Na żywo', 'Live')}</p><p className="muted small">${L('Uzupełnij cenę i liczbę jednostek na klienta w etapie 3, a tu pojawią się wyniki.', 'Fill in the price and units per customer in step 3 and the results will appear here.')}</p></aside>`;
   var tone = c.op > 0 ? 'good' : c.op < 0 ? 'bad' : '';
   return html`<aside className="mini" aria-live="polite">
-    <p className="mini-h">${L('Na żywo', 'Live')}</p>
+    ${p.sub ? null : html`<p className="mini-h">${L('Na żywo', 'Live')}</p>`}
     <dl>
       <div><dt>${L('Marża pokrycia', 'Contribution margin')}</dt><dd className=${c.cm <= 0 ? 'bad' : ''}>${money(c.cm)}</dd></div>
       <div><dt>${L('Wynik operacyjny', 'Operating result')}</dt><dd className=${tone}>${money(c.op)}</dd></div>
-      ${p.fin && p.fin.auto ? html`<div><dt>${L('Zysk netto', 'Net profit')}</dt><dd className=${p.fin.net > 0 ? 'good' : p.fin.net < 0 ? 'bad' : ''}>${money(Math.round(p.fin.net))}</dd></div>` : null}
+      ${p.fin && p.fin.auto && !p.sub ? html`<div><dt>${L('Zysk netto', 'Net profit')}</dt><dd className=${p.fin.net > 0 ? 'good' : p.fin.net < 0 ? 'bad' : ''}>${money(Math.round(p.fin.net))}</dd></div>` : null}
       <div><dt>${L('Klienci do progu', 'Customers to break even')}</dt><dd>${c.beClients != null ? num(c.beClients) : '—'}</dd></div>
       <div><dt>${L('Wykorzystanie czasu', 'Time used')}</dt><dd className=${c.planOver ? 'bad' : ''}>${utilText(c)}</dd></div>
     </dl>
@@ -2844,22 +3090,25 @@ function StageResults(p) {
       ? 'Break-even needs ' + num(c.be) + ' ' + uLabel(c, c.be) + ', but ' + teamNom(c) + ' can handle ' + num(c.capacity) + '. Under these assumptions the business will not cover its costs.'
       : 'Do progu potrzeba ' + num(c.be) + ' ' + uLabel(c, c.be) + ', a ' + teamNom(c) + ' obsłuży ' + num(c.capacity) + '. Przy tych założeniach firma nie pokryje kosztów.'}<//>` : null}
 
-    <div className="tiles">
-      <${Tile} label=${L('Przychód miesięczny', 'Monthly revenue')} value=${money(c.revenue)} sub=${num(c.units, 1) + ' ' + uLabel(c, c.units) + ' × ' + money(c.price)} term="przychod" />
-      <${Tile} label=${L('Koszty stałe', 'Fixed costs')} value=${money(c.fixedTotal)} sub=${L('co miesiąc, bez względu na sprzedaż', 'every month, whatever you sell')} term="staly" />
-      <${Tile} label=${L('Koszty zmienne', 'Variable costs')} value=${money(c.varTotal)} sub=${money(c.unitVar) + L(' na jednostkę', ' per unit')} term="zmienny" />
-      <${Tile} label=${L('Marża pokrycia', 'Contribution margin')} value=${money(c.cm)} sub=${L('na jednostce · ', 'per unit · ') + (c.price > 0 ? num(c.cm / c.price * 100) : 0) + L('% ceny', '% of price')} term="marza" tone=${c.cm <= 0 ? 'bad' : ''} />
-      <${Tile} label=${L('Wynik operacyjny', 'Operating result')} value=${money(c.op)} sub=${c.planOver ? L('nieosiągalny przy obecnej przepustowości', 'not achievable at current capacity') : c.op >= 0 ? L('zysk przed podatkiem dochodowym', 'profit before income tax') : L('strata miesięczna', 'monthly loss')} term="zysk" tone=${c.planOver ? 'warn' : opTone} />
-      ${p.fin && p.fin.auto ? html`<${Tile} label=${L('Zysk netto', 'Net profit')} value=${money(Math.round(p.fin.net))} sub=${L('po podatku, składkach i odsetkach · ', 'after tax, contributions and interest · ') + L(FORM_INFO[p.fin.form].n[0], FORM_INFO[p.fin.form].n[1])} tone=${p.fin.net > 0 ? 'good' : p.fin.net < 0 ? 'bad' : ''} />` : null}
+    <${Verdict} c=${c} fin=${p.fin} st=${p.st} />
+    <div className="tiles tiles-key">
+      <${Tile} label=${L('Przychód miesięczny', 'Monthly revenue')} value=${money(Math.round(c.revenue))} sub=${num(c.units, 1) + ' ' + uLabel(c, c.units) + ' × ' + money(c.price)} term="przychod" />
+      <${Tile} label=${L('Marża pokrycia', 'Contribution margin')} value=${money(Math.round(c.cm))} sub=${L('na jednostce · ', 'per unit · ') + (c.price > 0 ? num(c.cm / c.price * 100) : 0) + L('% ceny', '% of price')} term="marza" tone=${c.cm <= 0 ? 'bad' : ''} />
       <${Tile} label=${L('Klienci do progu rentowności', 'Customers to break even')} value=${c.beClients == null ? L('nieosiągalny', 'not achievable') : num(c.beClients)} sub=${c.be == null ? L('marża ≤ 0 zł', 'margin ≤ PLN 0') : num(c.be) + ' ' + uLabel(c, c.be)} term="prog" tone=${c.beOver ? 'warn' : ''} />
+      <${Tile} label=${L('Orientacyjny zwrot inwestycji', 'Approximate payback period')} value=${pay} sub=${c.op > 0 && c.inv > 0 ? money(c.inv) + ' ÷ ' + money(c.op) + L(' miesięcznie', ' per month') : null} tone=${c.op <= 0 ? 'bad' : ''} />
+    </div>
+    <${MColl} className="mcoll-tiles" title=${L('Więcej wskaźników', 'More figures')}><div className="tiles">
+      <${Tile} label=${L('Koszty stałe', 'Fixed costs')} value=${money(Math.round(c.fixedTotal))} sub=${L('co miesiąc, bez względu na sprzedaż', 'every month, whatever you sell')} term="staly" />
+      <${Tile} label=${L('Koszty zmienne', 'Variable costs')} value=${money(Math.round(c.varTotal))} sub=${money(c.unitVar) + L(' na jednostkę', ' per unit')} term="zmienny" />
+      <${Tile} label=${L('Wynik operacyjny', 'Operating result')} value=${money(Math.round(c.op))} sub=${c.planOver ? L('nieosiągalny przy obecnej przepustowości', 'not achievable at current capacity') : c.op >= 0 ? L('zysk przed podatkiem dochodowym', 'profit before income tax') : L('strata miesięczna', 'monthly loss')} term="zysk" tone=${c.planOver ? 'warn' : opTone} />
+      ${p.fin && p.fin.auto ? html`<${Tile} label=${L('Zysk netto', 'Net profit')} value=${money(Math.round(p.fin.net))} sub=${L('po podatku, składkach i odsetkach · ', 'after tax, contributions and interest · ') + L(FORM_INFO[p.fin.form].n[0], FORM_INFO[p.fin.form].n[1])} tone=${p.fin.net > 0 ? 'good' : p.fin.net < 0 ? 'bad' : ''} />` : null}
       <${Tile} label=${L('Klienci do celu', 'Customers to reach target')} value=${c.goalClients == null ? L('nieosiągalny', 'not achievable') : num(c.goalClients)} sub=${c.goalUnits == null ? L('marża ≤ 0 zł', 'margin ≤ PLN 0') : L('cel ', 'target ') + money(c.target) + ' · ' + num(c.goalUnits) + ' ' + uLabel(c, c.goalUnits)} tone=${c.goalOver ? 'warn' : ''} />
       <${Tile} label=${L('Średnio dziennie (' + c.F[2] + ')', 'Average per day (' + c.F[2] + ')')} value=${c.perDay == null ? '—' : num(c.perDay, 1)} sub=${c.bePerDay == null ? L('podaj dni pracy', 'enter working days') : L('do progu: ', 'to break even: ') + num(c.bePerDay, 1) + L(' dziennie', ' per day')} />
       <${Tile} label=${L('Wykorzystanie możliwości obsługi', 'Capacity used')} value=${utilText(c)} sub=${c.capacity == null ? L('uzupełnij organizację pracy', 'fill in working time') : num(c.units, 1) + L(' z ', ' of ') + num(c.capacity) + L(' możliwych', ' possible')} tone=${utilTone} />
-      <${Tile} label=${L('Orientacyjny zwrot inwestycji', 'Approximate payback period')} value=${pay} sub=${c.op > 0 && c.inv > 0 ? money(c.inv) + ' ÷ ' + money(c.op) + L(' miesięcznie', ' per month') : null} tone=${c.op <= 0 ? 'bad' : ''} />
-    </div>
+    </div><//>
     <p className="small muted">${L('Czas zwrotu to uproszczenie: zakłada, że co miesiąc masz ten sam wynik od pierwszego dnia, bez podatków i bez okresu rozruchu, kiedy klientów jest mniej.', 'The payback period is a simplification: it assumes the same result every month from day one, with no taxes and no start-up period when customers are fewer.')}${c.planOver ? L(' Ten plan przekracza możliwości obsługi, więc czas zwrotu też jest nierealny.', ' This plan exceeds capacity, so the payback period is unrealistic too.') : ''}</p>
 
-    <div className="split">
+    <${MColl} title=${L('Rachunek wyników i możliwości obsługi', 'Income statement and capacity')}><div className="split">
       <div className="receipt" aria-label=${L('Podsumowanie prostym językiem', 'Plain-language summary')}>
         <p className="rc-h">${L('Rachunek wyników', 'Income statement')}</p>
         <p className="rc-sub">${p.st.idea.type || L('Twój biznes', 'Your business')} · ${L('miesiąc', 'month')}</p>
@@ -2882,20 +3131,20 @@ function StageResults(p) {
         <div className="card-h"><h3>${L('Plan a możliwości obsługi', 'Plan vs. capacity')}</h3></div>
         <${CapacityBars} c=${c} />
       </div>
-    </div>
+    </div><//>
 
     <${Insights} list=${p.sig || []} />
 
-    <div className="card">
+    <${MColl} title=${L('Wykres progu rentowności', 'Break-even chart')}><div className="card">
       <div className="card-h"><h3>${L('Przychody i koszty a liczba sprzedanych jednostek', 'Revenue and costs against units sold')}</h3></div>
       <${BreakEvenChart} c=${c} />
       <p className="small muted">${L('Linie przecinają się w progu rentowności. Na lewo od niego koszty są wyższe niż przychód, na prawo przychód je przewyższa.', 'The lines cross at the break-even point. To the left, costs exceed revenue; to the right, revenue exceeds costs.')}</p>
-    </div>
+    </div><//>
 
-    <div className="card">
+    <${MColl} title=${L('Struktura kosztów', 'Cost breakdown')}><div className="card">
       <div className="card-h"><h3>${L('Struktura miesięcznych kosztów', 'Breakdown of monthly costs')}</h3></div>
       <${CostStructure} c=${c} />
-    </div>
+    </div><//>
   </section>`;
 }
 
@@ -3830,14 +4079,18 @@ function App() {
       try { if (saved) localStorage.setItem(STORE + '-backup', JSON.stringify(saved)); history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
       return { st: fromLink, notice: saved ? 'backup' : 'plain' };
     }
-    return { st: saved || exampleState('fryzjer'), notice: null };
+    var fresh = false; try { fresh = !saved && !(location.hash || '').replace('#', ''); } catch (e) {}
+    return { st: saved || exampleState('fryzjer'), notice: null, fresh: fresh };
   })[0];
   var S = useState(boot.st), st = S[0], setSt = S[1];
   var noteS = useState(boot.notice), notice = noteS[0], setNotice = noteS[1];
   var stepS = useState(stepFromHash), step = stepS[0], setStep = stepS[1];
+  var introS = useState(!!boot.fresh), intro = introS[0], setIntro = introS[1];
+  var menuS = useState(false), menu = menuS[0], setMenu = menuS[1];
+  useEffect(function () { if (!menu) return; var f = function (e) { if (e.key === 'Escape') setMenu(false); }; window.addEventListener('keydown', f); return function () { window.removeEventListener('keydown', f); }; }, [menu]);
   var pend = useState(null), pending = pend[0], setPending = pend[1];
   useEffect(function () { saveState(st); }, [st]);
-  useEffect(function () { saveLang(lang); try { document.documentElement.lang = lang; document.title = L('Coasely · Kalkulator pomysłu na biznes', 'Coasely · Free business idea calculator'); } catch (e) {} }, [lang]);
+  useEffect(function () { saveLang(lang); try { if (/(^|\.)coasely\.com$/.test(location.hostname)) { var base = lang === 'pl' ? '/pl/' : '/'; if (location.pathname !== base) history.replaceState(history.state, '', base + location.search + location.hash); } } catch (e) {} try { document.documentElement.lang = lang; document.title = L('Coasely · Kalkulator pomysłu na biznes', 'Coasely · Free business idea calculator'); } catch (e) {} }, [lang]);
   useEffect(function () { try { window.scrollTo(0, 0); } catch (e) {} }, [step]);
   var set = function (path, v) { setSt(function (s) { return setIn(s, path, v); }); };
   /* zmiany w etapach 1–3 ustawiają nowy punkt startowy suwaków w etapie 5 */
@@ -3861,7 +4114,7 @@ function App() {
   }
   function importPlan(s) {
     try { localStorage.setItem(STORE + '-backup', JSON.stringify(st)); } catch (e) {}
-    setSt(s); setNotice('backup'); setPending(null); setStep(0);
+    setSt(s); setNotice('backup'); setPending(null); setStep(0); setIntro(false);
   }
   function restoreBackup() {
     try { var r = localStorage.getItem(STORE + '-backup'); var b = r && JSON.parse(r); if (b && b.v === 1) setSt(upgradeState(b, mergeDeep(deepClone(BLANK), b))); } catch (e) {}
@@ -3878,7 +4131,7 @@ function App() {
     catch (e) { setXlsxMsg(L('Nie udało się utworzyć pliku: ', 'Could not create the file: ') + (e && e.message)); }
   }
   function confirm() {
-    if (pending.kind === 'reset') { setSt(blankState()); setStep(0); }
+    if (pending.kind === 'reset') { setSt(blankState()); setStep(0); setIntro(false); }
     else if (pending.kind === 'example') setSt(exampleState(pending.id));
     setPending(null);
   }
@@ -3892,7 +4145,7 @@ function App() {
     html`<${StageForecast} st=${st} set=${set} c=${c} ms=${ms} fin=${fin} fc=${fc} sig=${sig} goCosts=${goCosts} />`,
     html`<${StageExp} st=${st} set=${set} setSt=${setSt} c=${c} ms=${ms} fin=${fin} fc=${fc} goCosts=${goCosts} toggleDemand=${toggleDemand} />`
   ];
-  var showMini = step === 1 || step === 2 || step === 3;
+  var showMini = step <= 3;
   var pendEx = pending && pending.kind === 'example' ? findExample(pending.id) : null;
   var curEx = st.example ? findExample(st.example) : null;
 
@@ -3913,6 +4166,7 @@ function App() {
           <button type="button" role="radio" aria-checked=${lang === 'pl'} className=${lang === 'pl' ? 'on' : ''} lang="pl" title="Polski" onClick=${function () { if (lang !== 'pl') { setLangS('pl'); setSt(function (s) { return relangState(s, 'pl'); }); } }}>PL</button>
           <button type="button" role="radio" aria-checked=${lang === 'en'} className=${lang === 'en' ? 'on' : ''} lang="en" title="English" onClick=${function () { if (lang !== 'en') { setLangS('en'); setSt(function (s) { return relangState(s, 'en'); }); } }}>EN</button>
         </div>
+        <button type="button" className="menu-btn" aria-label=${L('Menu narzędzi', 'Tools menu')} aria-expanded=${menu} onClick=${function () { setMenu(true); }}><svg viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true"><path d="M3 6h14M3 10h14M3 14h14"/></svg></button>
       </div>
     </header>
     <nav className="toolbar" aria-label=${L('Narzędzia', 'Tools')}>
@@ -3922,8 +4176,23 @@ function App() {
       <button type="button" className="tb" onClick=${exportXlsx} disabled=${!c.ok}>${L('Eksport do Excela', 'Export to Excel')}</button>
       <button type="button" className=${'tb' + (view === 'about' ? ' on' : '')} onClick=${function () { setPending(null); setView(view === 'about' ? 'app' : 'about'); try { window.scrollTo(0, 0); } catch (e) {} }}>${L('O projekcie i metodologia', 'About and methodology')}</button>
       <button type="button" className="tb danger" onClick=${function () { setView('app'); setPending({ kind: 'reset' }); }}>${L('Zacznij od nowa', 'Start over')}</button>
-      
     </nav>
+    ${menu ? html`<div className="sheet-bg" onClick=${function (e) { if (e.target === e.currentTarget) setMenu(false); }}>
+      <div className="sheet" role="dialog" aria-modal="true" aria-label=${L('Narzędzia', 'Tools')}>
+        <span className="sheet-grip" aria-hidden="true"></span>
+        <div className="sheet-h"><h2>${L('Narzędzia', 'Tools')}</h2><button type="button" className="sheet-close" aria-label=${L('Zamknij', 'Close')} onClick=${function () { setMenu(false); }}>×</button></div>
+        <button type="button" className="sheet-item" onClick=${function () { setMenu(false); setView('app'); setPending({ kind: 'plans' }); }}>${L('Moje plany', 'My plans')}</button>
+        <button type="button" className="sheet-item" onClick=${function () { setMenu(false); setView('app'); setPending({ kind: 'pick' }); }}>${L('Przykłady', 'Examples')}</button>
+        <button type="button" className="sheet-item" onClick=${function () { setMenu(false); setView('app'); setPending({ kind: 'share' }); }}>${L('Udostępnij i drukuj', 'Share and print')}</button>
+        <button type="button" className="sheet-item" disabled=${!c.ok} onClick=${function () { setMenu(false); exportXlsx(); }}>${L('Eksport do Excela', 'Export to Excel')}</button>
+        <button type="button" className="sheet-item" onClick=${function () { setMenu(false); setPending(null); setView('about'); try { window.scrollTo(0, 0); } catch (e) {} }}>${L('O projekcie i metodologia', 'About and methodology')}</button>
+        <div className="sheet-sep"></div>
+        <div className="sheet-row"><span>${L('Motyw', 'Theme')}</span><div className="seg3" role="radiogroup" aria-label=${L('Motyw', 'Theme')}>
+          ${['auto', 'light', 'dark'].map(function (t) { return html`<button key=${t} type="button" role="radio" aria-checked=${theme === t} className=${theme === t ? 'on' : ''} onClick=${function () { setTheme(t); }}>${t === 'auto' ? L('Auto', 'Auto') : t === 'light' ? L('Jasny', 'Light') : L('Ciemny', 'Dark')}</button>`; })}
+        </div></div>
+        <button type="button" className="sheet-item danger" onClick=${function () { setMenu(false); setView('app'); setPending({ kind: 'reset' }); }}>${L('Zacznij od nowa', 'Start over')}</button>
+      </div>
+    </div>` : null}
     ${xlsxMsg ? html`<div className="linkbar" role="status"><span>${xlsxMsg}</span><button type="button" className="btn btn-text" onClick=${function () { setXlsxMsg(null); }}>${L('Zamknij', 'Close')}</button></div>` : null}
 
     ${notice ? html`<div className="linkbar" role="status"><span>${notice === 'saved' ? L('Otwarto zapisany plan. Poprzednie dane są zapamiętane.', 'A saved plan has been opened. Your previous data has been kept.') : L('Otwarto przesłany plan.', 'A shared plan has been opened.') + (notice === 'backup' ? L(' Twój poprzedni plan jest zapamiętany.', ' Your previous plan has been kept.') : '')}</span>
@@ -3941,11 +4210,12 @@ function App() {
     </div>` : null}
 
 
-    ${view === 'about' ? html`<${About} onBack=${function () { setView('app'); }} />` : html`<${React.Fragment}>
+    ${view === 'about' ? html`<${About} onBack=${function () { setView('app'); }} />` : intro ? html`<${Intro} st=${st} c=${c} fin=${fin} onStart=${function () { setSt(blankState()); setStep(0); setIntro(false); }} onExample=${function () { setStep(4); setIntro(false); }} />` : html`<${React.Fragment}>
     <nav className="stepper" aria-label=${L('Etapy', 'Steps')}>
+      <div className="st-head"><b>${L('Krok ', 'Step ') + (step + 1) + L(' z ', ' of ') + STEPS.length + ' · ' + stepName(STEPS[step])}</b>${step < STEPS.length - 1 ? html`<span>${L('Dalej: ', 'Next: ') + stepName(STEPS[step + 1])}</span>` : null}</div>
       <ol>${STEPS.map(function (s, i) {
-        return html`<li key=${s.id}><button type="button" className=${(i === step ? 'cur' : '') + (i < step ? ' done' : '')} aria-current=${i === step ? 'step' : null} onClick=${function () { setStep(i); }}>
-          <span className="st-n num">${i + 1}</span><span className="st-t">${stepName(s)}</span></button></li>`;
+        return html`<li key=${s.id}><button type="button" className=${(i === step ? 'cur' : '') + (i < step ? ' done' : '')} aria-current=${i === step ? 'step' : null} aria-label=${(i + 1) + '. ' + stepName(s)} onClick=${function () { setStep(i); }}>
+          <span className="st-bar" aria-hidden="true"></span><span className="st-lab" aria-hidden="true"><span className="st-n num">${i + 1}</span><span className="st-t">${stepName(s)}</span></span></button></li>`;
       })}</ol>
     </nav>
     ${(function () {
@@ -3963,11 +4233,11 @@ function App() {
     <div className=${'layout' + (showMini ? ' with-mini' : '')}>
       <main>${stages[step]}
         <div className="pager">
-          ${step > 0 ? html`<button type="button" className="btn btn-ghost" onClick=${function () { setStep(step - 1); }}>← ${stepName(STEPS[step - 1])}</button>` : html`<span></span>`}
+          ${step > 0 ? html`<button type="button" className="btn btn-ghost" aria-label=${L('Wstecz: ', 'Back: ') + stepName(STEPS[step - 1])} onClick=${function () { setStep(step - 1); }}><span aria-hidden="true">←</span><span className="pg-bl" aria-hidden="true">${stepName(STEPS[step - 1])}</span></button>` : html`<span></span>`}
           ${step < STEPS.length - 1 ? html`<button type="button" className="btn btn-primary" onClick=${function () { setStep(step + 1); }}>${L('Dalej: ', 'Next: ')}${stepName(STEPS[step + 1])} →</button>` : null}
         </div>
       </main>
-      ${showMini ? html`<${Mini} c=${c} fin=${fin} />` : null}
+      ${showMini ? html`<div className=${'mini-live' + (step === 0 ? ' mini-s0' : '')}><${Verdict} c=${c} fin=${fin} st=${st} compact=${true} /><${Mini} c=${c} fin=${fin} sub=${c.ok} /></div>` : null}
     </div><//>`}
     ${donateUrl() ? html`<div className="coffee-row"><span>${L('Podoba Ci się Coasely?', 'Like Coasely?')}</span><a className="btn btn-ghost coffee" href=${donateUrl()} target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 9h12v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V9z"/><path d="M16 11h1.5a2.5 2.5 0 0 1 0 5H16"/><path d="M8 3.5c0 1 1 1 1 2s-1 1-1 2M12 3.5c0 1 1 1 1 2s-1 1-1 2"/></svg>${L('Postaw mi kawę', 'Buy me a coffee')}</a></div>` : null}
     <${Faq} />

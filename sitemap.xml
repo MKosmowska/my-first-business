@@ -1,4 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://coasely.com/</loc><changefreq>monthly</changefreq><priority>1.0</priority></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://coasely.com/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://coasely.com/"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://coasely.com/pl/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://coasely.com/"/>
+    <lastmod>2026-11-22</lastmod>
+  </url>
+  <url>
+    <loc>https://coasely.com/pl/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://coasely.com/"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://coasely.com/pl/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://coasely.com/"/>
+    <lastmod>2026-11-22</lastmod>
+  </url>
+  <url>
+    <loc>https://coasely.com/kalkulator-progu-rentownosci/</loc>
+    <lastmod>2026-11-22</lastmod>
+  </url>
 </urlset>

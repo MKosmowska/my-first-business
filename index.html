@@ -1090,6 +1090,27 @@ button.ex.active, button.ex[aria-pressed="true"] { box-shadow: 0 0 0 2px var(--a
 }
 @media (max-width: 640px) and (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .mcoll .card, :root:not([data-theme="light"]) .mcoll .receipt { box-shadow: none !important; background: transparent; } }
 
+
+/* v20: kolor kwoty zależny od wyniku (zielony / żółty / czerwony) */
+:root { --on-navy-good: #5FD9A5; --on-navy-warn: #F0C46E; --on-navy-bad: #FF8A9A; }
+.mini dd.good { color: var(--on-navy-good); } .mini dd.bad { color: var(--on-navy-bad); }
+.verdict.vt-good .vd-v { color: var(--on-navy-good); } .verdict.vt-warn .vd-v { color: var(--on-navy-warn); } .verdict.vt-bad .vd-v { color: var(--on-navy-bad); }
+/* v19: pasek na żywo (telefon) */
+.livebar { display: none; }
+@media (max-width: 640px) {
+  .pager.has-live { flex-wrap: wrap; row-gap: 8px; padding-top: 8px; }
+  .livebar { display: flex; flex: 1 1 100%; order: -1; align-items: center; gap: 10px; min-height: 44px; padding: 0 14px; border: 0; border-radius: 14px; background: var(--vd-bg); color: #FFFFFF; font: 600 14px var(--f-body); text-align: left; cursor: pointer; }
+  .lb-dot { width: 9px; height: 9px; border-radius: 5px; background: var(--vd-muted); flex: none; }
+  .livebar.good .lb-dot { background: var(--on-navy-good); } .livebar.warn .lb-dot { background: var(--on-navy-warn); } .livebar.bad .lb-dot { background: var(--on-navy-bad); }
+  .lb-t { flex: 1 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 500; color: var(--vd-muted); }
+  .lb-v { font-size: 17px; font-weight: 700; white-space: nowrap; }
+  .livebar.good .lb-v { color: var(--on-navy-good); } .livebar.warn .lb-v { color: var(--on-navy-warn); } .livebar.bad .lb-v { color: var(--on-navy-bad); }
+  .lb-u { font-size: 12px; font-weight: 500; color: var(--vd-muted); margin-left: 2px; }
+  .lb-ch { color: var(--vd-muted); font-size: 14px; }
+  .layout .mini-live { display: none; }
+  .live-sheet { gap: 12px; }
+  .live-sheet .mini { position: static; }
+}
 /* v16: pasek struktury kosztów */
 .cs-barbox { display: flex; flex-direction: column; gap: 6px; margin: 4px 0 6px; }
 .cs-split { display: flex; font-size: 12px; font-weight: 500; color: var(--muted); white-space: nowrap; }
@@ -1099,6 +1120,9 @@ button.ex.active, button.ex[aria-pressed="true"] { box-shadow: 0 0 0 2px var(--a
 .cs-seg { display: flex; gap: 2px; height: 26px; border-radius: 8px; overflow: hidden; }
 .cs-seg i { display: block; height: 100%; min-width: 2px; }
 .cs-div { position: absolute; top: -5px; bottom: -5px; width: 2px; margin-left: -1px; background: var(--ink); border-radius: 1px; }
+.notice { gap: 10px; padding: 16px 18px; }
+.notice .btn { margin-top: 6px; }
+@media (max-width: 640px) { .notice .btn { align-self: stretch; justify-content: center; } }
 @media (max-width: 640px) { .cs-seg { height: 20px; } .mcoll .card-h h3 { display: none; } .mcoll .card-h:not(:has(> :not(h3))) { display: none; } }
 </style>
 </head><body>
@@ -2509,7 +2533,7 @@ function Verdict(p) {
   var icon = v.tone === 'good'
     ? html`<svg viewBox="0 0 14 14" width="13" height="13" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M2.5 7.5l3 3 6-7"/></svg>`
     : html`<svg viewBox="0 0 14 14" width="13" height="13" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" aria-hidden="true"><path d="M7 3v5M7 10.6v.4"/></svg>`;
-  return html`<section className=${'verdict' + (p.compact ? ' compact' : '')} aria-label=${L('Werdykt', 'Verdict')} aria-live="polite">
+  return html`<section className=${'verdict vt-' + v.tone + (p.compact ? ' compact' : '')} aria-label=${L('Werdykt', 'Verdict')} aria-live="polite">
     <div className="vd-top">
       <span className=${'vd-badge ' + v.tone}>${icon}${v.t}</span>
       ${p.compact ? (p.noctx ? null : html`<span className="vd-ctx">${L('Na żywo', 'Live')}</span>`) : html`<span className="vd-ctx">${[p.st && p.st.idea.type, p.st && p.st.idea.city, auto ? L(FORM_INFO[fin.form].n[0], FORM_INFO[fin.form].n[1]) : null].filter(Boolean).join(' · ')}</span>`}
@@ -2559,6 +2583,17 @@ function Intro(p) {
       <div className="intro-card"><span className="intro-n">3 · ${L('Prognoza i wycena', 'Forecast and value')}</span><b>${L('Ile to może być warte?', 'What could it become?')}</b><span>${L('Gotówka miesiąc po miesiącu przez 3 lata, test pomysłu i orientacyjna wycena DCF.', 'Cash month by month for 3 years, a stress test and an indicative DCF valuation.')}</span></div>
     </div>
   </section>`;
+}
+
+/* Telefon: cienki pasek z wynikiem nad przyciskiem „Dalej” (kroki 2–4); po stuknięciu pełny panel od dołu */
+function LiveBar(p) {
+  var c = p.c, fin = p.fin;
+  if (!c.ok) return html`<button type="button" className="livebar" onClick=${p.onOpen} aria-label=${L('Pokaż wyniki na żywo', 'Show live results')}>
+    <span className="lb-dot" aria-hidden="true"></span><span className="lb-t">${L('Uzupełnij cenę i klientów, żeby zobaczyć wynik', 'Fill in price and customers to see the result')}</span><span className="lb-ch" aria-hidden="true">⌃</span></button>`;
+  var v = verdictOf(c, fin);
+  return html`<button type="button" className=${'livebar ' + v.tone} onClick=${p.onOpen} aria-label=${L('Wynik na żywo: ', 'Live result: ') + v.t + ', ' + money(v.net) + L('. Pokaż szczegóły', '. Show details')}>
+    <span className="lb-dot" aria-hidden="true"></span><span className="lb-t">${v.t}</span>
+    <span className="lb-v num">${money(v.net)}<span className="lb-u">${L('/mies.', '/mo')}</span></span><span className="lb-ch" aria-hidden="true">⌃</span></button>`;
 }
 
 /* ---------- Mini podsumowanie ---------- */
@@ -4338,6 +4373,9 @@ function App() {
   var stepS = useState(stepFromHash), step = stepS[0], setStep = stepS[1];
   var introS = useState(!!boot.fresh), intro = introS[0], setIntro = introS[1];
   var menuS = useState(false), menu = menuS[0], setMenu = menuS[1];
+  var liveS = useState(false), liveOpen = liveS[0], setLiveOpen = liveS[1];
+  useEffect(function () { if (!liveOpen) return; var f = function (e) { if (e.key === 'Escape') setLiveOpen(false); }; window.addEventListener('keydown', f); return function () { window.removeEventListener('keydown', f); }; }, [liveOpen]);
+  useEffect(function () { setLiveOpen(false); }, [step]);
   useEffect(function () { if (!pending) return; var f = function (e) { if (e.key === 'Escape') setPending(null); }; window.addEventListener('keydown', f); try { if (pending.kind === 'share' || pending.kind === 'plans') window.scrollTo({ top: 0, behavior: 'smooth' }); } catch (e) {} return function () { window.removeEventListener('keydown', f); }; }, [pending]);
   useEffect(function () { if (!menu) return; var f = function (e) { if (e.key === 'Escape') setMenu(false); }; window.addEventListener('keydown', f); return function () { window.removeEventListener('keydown', f); }; }, [menu]);
   var pend = useState(null), pending = pend[0], setPending = pend[1];
@@ -4429,6 +4467,16 @@ function App() {
       <button type="button" className=${'tb' + (view === 'about' ? ' on' : '')} onClick=${function () { setPending(null); setView(view === 'about' ? 'app' : 'about'); try { window.scrollTo(0, 0); } catch (e) {} }}>${L('O projekcie i metodologia', 'About and methodology')}</button>
       <button type="button" className="tb danger" onClick=${function () { setView('app'); setPending({ kind: 'reset' }); }}>${L('Zacznij od nowa', 'Start over')}</button>
     </nav>
+
+    ${liveOpen ? html`<div className="sheet-bg" onClick=${function (e) { if (e.target === e.currentTarget) setLiveOpen(false); }}>
+      <div className="sheet live-sheet" role="dialog" aria-modal="true" aria-label=${L('Wyniki na żywo', 'Live results')}>
+        <span className="sheet-grip" aria-hidden="true"></span>
+        <div className="sheet-h"><h2>${L('Na żywo', 'Live')}</h2><button type="button" className="sheet-close" aria-label=${L('Zamknij', 'Close')} onClick=${function () { setLiveOpen(false); }}>×</button></div>
+        <${Verdict} c=${c} fin=${fin} st=${st} compact=${true} noctx=${true} />
+        <${Mini} c=${c} fin=${fin} sub=${c.ok} />
+        <p className="small muted">${L('Wynik zmienia się od razu, gdy poprawiasz liczby.', 'The result updates as soon as you change any number.')}</p>
+      </div>
+    </div>` : null}
     ${menu ? html`<div className="sheet-bg" onClick=${function (e) { if (e.target === e.currentTarget) setMenu(false); }}>
       <div className="sheet" role="dialog" aria-modal="true" aria-label=${L('Narzędzia', 'Tools')}>
         <span className="sheet-grip" aria-hidden="true"></span>
@@ -4484,7 +4532,8 @@ function App() {
 
     <div className=${'layout' + (showMini ? ' with-mini' : '')}>
       <main>${stages[step]}
-        <div className=${'pager' + (step === 0 ? ' pager-s0' : '')}>
+        <div className=${'pager' + (step === 0 ? ' pager-s0' : '') + (step >= 1 && step <= 3 ? ' has-live' : '')}>
+          ${step >= 1 && step <= 3 ? html`<${LiveBar} c=${c} fin=${fin} onOpen=${function () { setLiveOpen(true); }} />` : null}
           ${step > 0 ? html`<button type="button" className="btn btn-ghost" aria-label=${L('Wstecz: ', 'Back: ') + stepName(STEPS[step - 1])} onClick=${function () { setStep(step - 1); }}><span aria-hidden="true">←</span><span className="pg-bl" aria-hidden="true">${stepName(STEPS[step - 1])}</span></button>` : html`<span></span>`}
           ${step < STEPS.length - 1 ? html`<button type="button" className="btn btn-primary" onClick=${function () { setStep(step + 1); }}>${L('Dalej: ', 'Next: ')}${stepName(STEPS[step + 1])} →</button>` : null}
         </div>

@@ -695,6 +695,12 @@ a { color: var(--accent); text-underline-offset: 2px; }
 .faq-item[open] summary::after { content: '\2212'; }
 .faq-item p { margin: 0; padding: 0 14px 14px; color: var(--muted); font-size: 14px; line-height: 1.55; max-width: none; }
 .faq-item summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 7px; }
+.coffee-card { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 18px; border-color: color-mix(in srgb, var(--accent) 35%, var(--line)); background: color-mix(in srgb, var(--accent) 5%, var(--surface)); }
+.coffee-card h3 { margin: 0 0 4px; font-size: 18px; }
+.coffee-card p { margin: 0; color: var(--muted); }
+.coffee-ic { width: 54px; height: 54px; border-radius: 10px; display: grid; place-items: center; background: var(--logo-bg); color: #fff; }
+.coffee-big { font-size: 15px; padding: 12px 20px; gap: 8px; display: inline-flex; align-items: center; white-space: nowrap; }
+@media (max-width: 640px) { .coffee-card { grid-template-columns: auto 1fr; } .coffee-big { grid-column: 1 / -1; justify-content: center; } }
 </style>
 </head><body>
 <div id="root"><main style="max-width:880px;margin:40px auto;padding:0 20px;font-family:system-ui,sans-serif;color:#0F1B22;line-height:1.55">
@@ -764,7 +770,7 @@ var LANG = 'en';
 /* Linki do wsparcia („postaw kawę”), osobno dla wersji polskiej i angielskiej.
    PL: np. 'https://buycoffee.to/twojanazwa' (BLIK, przelew). EN: np. 'https://buymeacoffee.com/twojanazwa' (karty, PayPal).
    Jeśli wypełnisz tylko jeden, będzie używany w obu językach. Gdy oba są puste, przycisk się nie wyświetla. */
-var DONATE_URL_PL = '';
+var DONATE_URL_PL = 'https://buycoffee.to/coasely';
 var DONATE_URL_EN = '';
 function donateUrl() { return LANG === 'en' ? (DONATE_URL_EN || DONATE_URL_PL) : (DONATE_URL_PL || DONATE_URL_EN); }
 function L(pl, en) { return LANG === 'en' ? en : pl; }
@@ -3627,9 +3633,9 @@ function About(p) {
       <p>${L('Nazywam się Maja Kosmowska, jestem licealistką z Warszawy i interesuję się ekonomią oraz finansami.', 'I am Maja Kosmowska, a secondary-school student from Warsaw interested in economics and finance.')}</p>
       <p>${L('Pomysł zrodził się na lekcjach przedsiębiorczości. Planowaliśmy tam własne firmy, ale na liczbach wziętych z głowy: nikt nie wiedział, ilu konkurentów naprawdę działa w okolicy, ile zabiorą podatki i ZUS ani czy biznes przetrwa słabszy miesiąc. Zaczęłam szukać narzędzia, które pozwoliłoby sprawdzić pomysł na prawdziwych danych, i zauważyłam, że takiego po prostu nie ma. Są płatne programy tworzone pod rynek amerykański albo proste kalkulatory, które liczą jedną rzecz.', 'The idea was born in entrepreneurship classes. We planned our own businesses there, but on numbers pulled out of thin air: nobody knew how many competitors really operated nearby, how much tax and social security would take, or whether the business would survive a slow month. I started looking for a tool that would test an idea on real data, and noticed that one simply did not exist. There are paid programs built for the US market, or simple calculators that work out a single number.')}</p>
       <p>${L('Dlatego stworzyłam Coasely. Łączy dane GUS dla każdej gminy w Polsce, polskie podatki i finansowanie, prognozę na trzy lata i test pomysłu w jednym miejscu, za darmo i w dwóch językach. Chcę, żeby każdy, kto ma pomysł na pierwszy biznes, mógł go uczciwie sprawdzić, zanim wyda na niego pierwsze pieniądze.', 'So I created Coasely. It brings together Statistics Poland data for every Polish municipality, Polish tax and financing, a three-year forecast and a stress test in one place, free and in two languages. I want everyone with an idea for a first business to be able to test it honestly before spending any money on it.')}</p>
-      ${donateUrl() ? html`<div className="donate"><p>${L('Podoba Ci się Coasely? Narzędzie jest i zostanie darmowe. Jeśli chcesz wesprzeć jego rozwój, możesz postawić mi kawę.', 'Like Coasely? The tool is and will stay free. If you would like to support its development, you can buy me a coffee.')}</p><a className="btn btn-ghost coffee" href=${donateUrl()} target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 9h12v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V9z"/><path d="M16 11h1.5a2.5 2.5 0 0 1 0 5H16"/><path d="M8 3.5c0 1 1 1 1 2s-1 1-1 2M12 3.5c0 1 1 1 1 2s-1 1-1 2"/></svg>${L('Postaw mi kawę', 'Buy me a coffee')}</a></div>` : null}
     </div>
 
+    ${donateUrl() ? html`<div className="card coffee-card"><div className="coffee-ic"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 9h12v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V9z"/><path d="M16 11h1.5a2.5 2.5 0 0 1 0 5H16"/><path d="M8 3.5c0 1 1 1 1 2s-1 1-1 2M12 3.5c0 1 1 1 1 2s-1 1-1 2"/></svg></div><div className="coffee-txt"><h3>${L('Wesprzyj Coasely', 'Support Coasely')}</h3><p>${L('Coasely jest i zostanie darmowe, bez reklam i bez zakładania konta. Jeśli pomogło Ci przemyśleć pomysł albo po prostu Ci się podoba, możesz postawić mi kawę. Wsparcie idzie na domenę, aktualizację danych GUS i nowe funkcje.', 'Coasely is and will stay free, with no ads and no account needed. If it helped you think an idea through, or you simply like it, you can buy me a coffee. It goes towards the domain, keeping the GUS data up to date and new features.')}</p></div><a className="btn btn-primary coffee-big" href=${donateUrl()} target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 9h12v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V9z"/><path d="M16 11h1.5a2.5 2.5 0 0 1 0 5H16"/><path d="M8 3.5c0 1 1 1 1 2s-1 1-1 2M12 3.5c0 1 1 1 1 2s-1 1-1 2"/></svg>${L('Postaw mi kawę', 'Buy me a coffee')}</a></div>` : null}
     <div className="card mark-card">
       <div className="mark-row"><span className="logo big" aria-hidden="true"><svg viewBox="0 0 40 40"><rect width="40" height="40" rx="4.5" fill="#18284A"/><rect x="8" y="6.5" width="6.5" height="27" rx=".8" fill="#FFFFFF"/><rect x="8" y="6.5" width="24" height="6.5" rx=".8" fill="#FFFFFF"/><rect x="8" y="27" width="15" height="6.5" rx=".8" fill="#FFFFFF"/></svg></span>
       <div><h3>${L('Znak Coasely', 'The Coasely mark')}</h3>

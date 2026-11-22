@@ -1616,10 +1616,12 @@ var PKD = {
 };
 var PKD_ORDER = ['S', 'P', 'R', 'I', 'G', 'N', 'M', 'J', 'L', 'Q', 'F', 'H', 'C'];
 var PKD_KEYS = [
-  ['S', ['fryzjer', 'hair', 'salon', 'barber', 'manicure', 'paznok', 'kosmety', 'masaz', 'spa', 'naprawa', 'serwis', 'rower', 'telefon', 'zwierz', 'pies', 'psow', 'pralni', 'krawiec', 'krawcow', 'tatua', 'szewc', 'hairdress', 'nail', 'beaut', 'repair', 'pet']],
+  ['G', ['warsztat', 'mechanik', 'carrepair', 'wulkaniz', 'petshop', 'optyk', 'optician', 'drogeri', 'ksiegar', 'bookshop', 'spozyw', 'grocery', 'boutique', 'clothing', 'odziez']],
+  ['M', ['weteryn', 'veterin', 'vetclinic']],
+  ['S', ['fryzjer', 'hair', 'salon', 'barber', 'manicure', 'paznok', 'kosmety', 'masaz', 'spa', 'naprawa', 'serwis', 'rower', 'telefon', 'zwierz', 'pies', 'psow', 'pralni', 'krawiec', 'krawcow', 'tatua', 'szewc', 'hairdress', 'nail', 'beaut', 'repair', 'pet', 'groom', 'tattoo', 'laundr', 'tailor']],
   ['P', ['korepet', 'szkol', 'jezyk', 'kurs', 'nauka', 'lekcj', 'edukac', 'przedszkol', 'tutor', 'course', 'school']],
   ['R', ['trener', 'fitness', 'silowni', 'joga', 'jogi', 'sport', 'taniec', 'tanca', 'basen', 'escape', 'rozrywk', 'trainer', 'yoga', 'gym']],
-  ['I', ['kawiar', 'coffee', 'lodziar', 'foodtruck', 'catering', 'bar', 'restaur', 'pizz', 'bistro', 'nocleg', 'hostel', 'hotel', 'doby', 'pensjonat', 'agroturyst', 'cukiern', 'cafe', 'icecream', 'guest', 'shortterm']],
+  ['I', ['kawiar', 'coffee', 'lodziar', 'foodtruck', 'catering', 'bar', 'restaur', 'pizz', 'bistro', 'nocleg', 'hostel', 'hotel', 'doby', 'pensjonat', 'agroturyst', 'cukiern', 'cafe', 'icecream', 'guest', 'shortterm', 'fastfood', 'kebab', 'burger', 'pub', 'farmstay', 'cakeshop']],
   ['C', ['piekarn', 'produkc', 'szycie', 'stolar', 'browar', 'manufaktur', 'bakery']],
   ['G', ['sklep', 'second', 'kwiac', 'rekodziel', 'upomin', 'myjnia', 'vending', 'automat', 'box', 'printondemand', 'handel', 'commerce', 'butik', 'antykwar', 'shop', 'florist', 'carwash', 'gift']],
   ['N', ['sprzat', 'wypozycz', 'ochron', 'ogrod', 'clean', 'equipmentrental']],
@@ -2636,10 +2638,10 @@ function AreaPicker(p) {
 
 /* ---------- ETAP 1 ---------- */
 var TYPES = [['Fryzjer', 'Hairdresser'], ['Barber', 'Barber'], ['Manicure i paznokcie', 'Nail studio'], ['Kosmetyczka', 'Beautician'], ['Masaż', 'Massage'], ['Korepetycje', 'Tutoring'], ['Szkoła językowa', 'Language school'], ['Trener personalny', 'Personal trainer'], ['Studio jogi', 'Yoga studio'],
-  ['Kawiarnia', 'Café'], ['Piekarnia', 'Bakery'], ['Lodziarnia', 'Ice cream shop'], ['Food truck', 'Food truck'], ['Catering dietetyczny', 'Diet catering'], ['Bar', 'Bar'],
-  ['Sklep internetowy', 'Online shop'], ['Second hand', 'Second-hand shop'], ['Kwiaciarnia', 'Florist'], ['Rękodzieło i upominki', 'Handmade gifts'],
-  ['Serwis rowerowy', 'Bike repair shop'], ['Naprawa telefonów', 'Phone repair'], ['Myjnia samochodowa', 'Car wash'], ['Sprzątanie', 'Cleaning service'], ['Opieka nad zwierzętami', 'Pet sitting'],
-  ['Fotograf', 'Photographer'], ['Strony internetowe', 'Web design'], ['Grafik', 'Graphic designer'], ['Social media dla firm', 'Social media management'], ['Noclegi', 'Guest house'],
+  ['Kawiarnia', 'Café'], ['Restauracja', 'Restaurant'], ['Pizzeria', 'Pizzeria'], ['Fast food / kebab', 'Fast food / kebab'], ['Bistro', 'Bistro'], ['Cukiernia', 'Cake shop'], ['Piekarnia', 'Bakery'], ['Lodziarnia', 'Ice cream shop'], ['Food truck', 'Food truck'], ['Catering dietetyczny', 'Diet catering'], ['Bar', 'Bar'], ['Pub', 'Pub'],
+  ['Sklep internetowy', 'Online shop'], ['Sklep spożywczy', 'Grocery shop'], ['Butik odzieżowy', 'Clothing boutique'], ['Second hand', 'Second-hand shop'], ['Kwiaciarnia', 'Florist'], ['Księgarnia', 'Bookshop'], ['Drogeria', 'Cosmetics shop'], ['Sklep zoologiczny', 'Pet shop'], ['Optyk', 'Optician'], ['Rękodzieło i upominki', 'Handmade gifts'],
+  ['Serwis rowerowy', 'Bike repair shop'], ['Naprawa telefonów', 'Phone repair'], ['Warsztat samochodowy', 'Car repair shop'], ['Myjnia samochodowa', 'Car wash'], ['Krawiec', 'Tailor'], ['Pralnia', 'Laundry'], ['Studio tatuażu', 'Tattoo studio'], ['Sprzątanie', 'Cleaning service'], ['Opieka nad zwierzętami', 'Pet sitting'], ['Groomer', 'Dog groomer'], ['Gabinet weterynaryjny', 'Vet clinic'], ['Fizjoterapia', 'Physiotherapy'], ['Siłownia', 'Gym'], ['Szkoła tańca', 'Dance school'], ['Escape room', 'Escape room'],
+  ['Fotograf', 'Photographer'], ['Strony internetowe', 'Web design'], ['Grafik', 'Graphic designer'], ['Social media dla firm', 'Social media management'], ['Noclegi', 'Guest house'], ['Hotel', 'Hotel'], ['Agroturystyka', 'Farm stay'],
   ['Wynajem mieszkania na doby', 'Short-term flat rental'], ['Wypożyczalnia sprzętu', 'Equipment rental'], ['Kurs online', 'Online course'], ['Print on demand', 'Print on demand'], ['Box subskrypcyjny', 'Subscription box'], ['Automat vendingowy', 'Vending machine']];
 
 function StageIdea(p) {

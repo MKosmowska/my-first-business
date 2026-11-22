@@ -1,15 +1,18 @@
-<!doctype html><html lang="en"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
-<title>Coasely · Run the numbers before you run the business</title>
+<!doctype html><html lang="en"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<title>Coasely · Free business idea calculator | Kalkulator biznesu</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Test a business idea on real data: market and competition for every Polish municipality (Statistics Poland), break-even, 2026 taxes and social security, loans, a 3-year forecast and DCF valuation. Free, in English and Polish.">
+<meta name="description" content="Free business idea calculator: break-even, pricing, 2026 taxes and ZUS, loans, 3-year forecast, DCF valuation and market saturation for every Polish municipality. Darmowy kalkulator pomysłu na biznes.">
 <meta property="og:title" content="Coasely · Run the numbers before you run the business">
 <meta property="og:description" content="Market data for every Polish municipality, a market saturation index, taxes and social security 2026, loans and leverage, a 3-year forecast and DCF valuation.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://coasely.com/">
-<meta property="og:image" content="https://coasely.com/og.png">
+<meta property="og:url" content="https://mkosmowska.github.io/my-first-business/">
+<meta property="og:image" content="https://mkosmowska.github.io/my-first-business/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="author" content="Maja Kosmowska">
+<link rel="canonical" href="https://mkosmowska.github.io/my-first-business/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Coasely","alternateName":"My First Business","url":"https://mkosmowska.github.io/my-first-business/","applicationCategory":"FinanceApplication","operatingSystem":"Any","inLanguage":["en","pl"],"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"PLN"},"keywords":"business idea calculator, startup calculator, break-even calculator, first business, kalkulator biznesu, kalkulator progu rentowności, biznesplan, kalkulator JDG, nasycenie rynku, pomysł na biznes","featureList":["Break-even analysis","2026 Polish taxes and ZUS for sole proprietors","Loan and leverage","3-year forecast","DCF valuation","Market saturation index for every Polish municipality"],"description":"Free tool to test a business idea on real data: market saturation for every Polish municipality, break-even, 2026 taxes, a 3-year forecast and DCF valuation.","author":{"@type":"Person","name":"Maja Kosmowska","url":"https://github.com/mkosmowska"},"creator":{"@type":"Person","name":"Maja Kosmowska"}}</script>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 40 40%22%3E%3Crect width=%2240%22 height=%2240%22 rx=%224.5%22 fill=%22%2318284A%22/%3E%3Crect x=%228%22 y=%226.5%22 width=%226.5%22 height=%2227%22 rx=%22.8%22 fill=%22%23FFFFFF%22/%3E%3Crect x=%228%22 y=%226.5%22 width=%2224%22 height=%226.5%22 rx=%22.8%22 fill=%22%23FFFFFF%22/%3E%3Crect x=%228%22 y=%2227%22 width=%2215%22 height=%226.5%22 rx=%22.8%22 fill=%22%23FFFFFF%22/%3E%3C/svg%3E">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
@@ -661,8 +664,33 @@ a { color: var(--accent); text-underline-offset: 2px; }
 .donate { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--sp-3); margin-top: var(--sp-2); padding-top: var(--sp-4); border-top: 1px solid var(--line); }
 .donate p { max-width: 60ch; color: var(--muted); }
 .btns .confirm { flex-basis: 100%; }
+
+/* status icons v10.3 */
+.ck-i, .sig-i { padding: 3px; box-sizing: border-box; }
+.ck-i svg, .sig-i svg { display: block; }
+:root[data-theme="dark"] .ck-i, :root[data-theme="dark"] .sig-i { --ic: var(--good); background: color-mix(in srgb, var(--ic) 22%, transparent) !important; color: var(--ic); box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--ic) 75%, transparent); }
+:root[data-theme="dark"] .ck-warn .ck-i, :root[data-theme="dark"] .sig-warn .sig-i { --ic: var(--warn); }
+:root[data-theme="dark"] .ck-fail .ck-i, :root[data-theme="dark"] .sig-bad .sig-i { --ic: var(--bad); }
+:root[data-theme="dark"] .sig-info .sig-i { --ic: var(--muted); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .ck-i, :root:not([data-theme="light"]) .sig-i { --ic: var(--good); background: color-mix(in srgb, var(--ic) 22%, transparent) !important; color: var(--ic); box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--ic) 75%, transparent); }
+  :root:not([data-theme="light"]) .ck-warn .ck-i, :root:not([data-theme="light"]) .sig-warn .sig-i { --ic: var(--warn); }
+  :root:not([data-theme="light"]) .ck-fail .ck-i, :root:not([data-theme="light"]) .sig-bad .sig-i { --ic: var(--bad); }
+  :root:not([data-theme="light"]) .sig-info .sig-i { --ic: var(--muted); }
+}
+.foot-by { display: block; margin-top: 10px; font-size: 12.5px; letter-spacing: .01em; color: var(--muted); opacity: .9; }
+.brand-home { display: flex; align-items: center; gap: 14px; color: inherit; text-decoration: none; border-radius: 6px; cursor: pointer; transition: opacity .15s; }
+.brand-home:hover { opacity: .82; }
+.brand-home:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 </style>
-<div id="root"></div>
+</head><body>
+<div id="root"><main style="max-width:880px;margin:40px auto;padding:0 20px;font-family:system-ui,sans-serif;color:#0F1B22;line-height:1.55">
+<h1>Coasely: free business idea calculator</h1>
+<p>Run the numbers before you run the business. Coasely is a free online calculator for a first business or startup idea: break-even point, pricing and unit costs, sole-proprietorship taxes and social security (ZUS) for 2026, loans and leverage, a 3-year cash-flow forecast and a DCF valuation. It also estimates market size and a market saturation index for every Polish municipality, using official data from Statistics Poland (GUS).</p>
+<h2>Kalkulator pomysłu na biznes</h2>
+<p>Coasely to darmowy kalkulator dla osób, które chcą założyć pierwszą firmę: próg rentowności, cena i koszty, porównanie form opodatkowania JDG (skala, liniowy, ryczałt) i składki ZUS na 2026 rok, kredyt i dźwignia finansowa, prognoza na 3 lata, wycena DCF oraz test pomysłu. Narzędzie szacuje też wielkość rynku i nasycenie konkurencją w każdej gminie w Polsce na podstawie danych GUS (REGON, Bank Danych Lokalnych). Dla uczniów, studentów i początkujących przedsiębiorców, po polsku i po angielsku.</p>
+<p>Created by Maja Kosmowska.</p>
+</main></div>
 <script>
 /* Motyw jasny / ciemny: ustawiany przed startem aplikacji, żeby strona nie mrugała */
 (function () { try { var t = localStorage.getItem('moj-pierwszy-biznes-theme'); if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t); } catch (e) {} })();
@@ -1116,10 +1144,10 @@ var AREA_BY_CODE = {}, AREA_DUP = {};
   GMINY.forEach(function (g) { if (seen[key(g)] > 1) AREA_DUP[g[0]] = 1; });
 })();
 function areaType(t) {
-  return t === 1 ? L('miasto (gmina miejska)', 'town (urban municipality)') : t === 2 ? L('gmina wiejska', 'rural municipality') : t === 4 ? L('miasto', 'town')
+  return t === 1 ? L('miasto (gmina miejska)', 'urban municipality') : t === 2 ? L('gmina wiejska', 'rural municipality') : t === 4 ? L('miasto', 'town')
     : t === 5 ? L('obszar wiejski gminy', 'rural part of the municipality') : t === 8 ? L('dzielnica Warszawy', 'district of Warsaw') : '';
 }
-function areaWoj(g) { return L('woj. ', 'voiv. ') + WOJ_NAMES[WOJ_CODES.indexOf(g[0].slice(0, 2))]; }
+function areaWoj(g) { var n = WOJ_NAMES[WOJ_CODES.indexOf(g[0].slice(0, 2))] || ''; return L('woj. ' + n, n.charAt(0).toUpperCase() + n.slice(1) + ' Voivodeship'); }
 function areaPow(g) { return POWIATY[g[0].slice(0, 4)] || null; }
 function areaPowName(g) { var p = areaPow(g); if (!p) return ''; var cc = p[0].indexOf('m. ') === 0 ? p[0].replace(/^m\. (st\. )?/, '').replace(/ od \d+$/, '') : ''; return cc ? L('miasto na prawach powiatu', 'city with county status') : L('pow. ', 'county ') + p[0]; }
 function cityCounty(g) { var pw = areaPow(g); if (!pw || pw[0].indexOf('m. ') !== 0) return ''; return pw[0].replace(/^m\. (st\. )?/, '').replace(/ od \d+$/, ''); }
@@ -3080,7 +3108,7 @@ function CriticalTest(p) {
   var pass = list.filter(function (x) { return x.st === 'pass'; }).length, fail = list.filter(function (x) { return x.st === 'fail'; }).length;
   var chk = st.check || {}, selfN = SELF_CHECKS.filter(function (x) { return chk[x[0]]; }).length;
   var verdict = fail === 0 && pass >= list.length - 1 ? ['good', L('Pomysł broni się w liczbach', 'The idea holds up in the numbers')] : fail <= 2 ? ['warn', L('Pomysł ma słabe punkty do poprawy', 'The idea has weak points to fix')] : ['bad', L('Przy tych założeniach pomysł jest ryzykowny', 'Under these assumptions the idea is risky')];
-  var icon = { pass: '✓', warn: '!', fail: '✕' };
+  var icon = { pass: html`<${StIc} k="ok" />`, warn: html`<${StIc} k="warn" />`, fail: html`<${StIc} k="x" />` };
   return html`<div className="card">
     <div className="card-h"><h3>${L('Test punktów krytycznych', 'Critical checkpoints')}</h3><span className=${'score ' + verdict[0]}>${pass} / ${list.length}</span></div>
     <p className=${'verdict ' + verdict[0]}>${verdict[1]}. ${L('Sprawdzamy automatycznie na Twoich liczbach, czy biznes wytrzyma typowe problemy pierwszego roku.', 'We check automatically, on your numbers, whether the business survives typical first-year problems.')}</p>
@@ -3317,11 +3345,16 @@ function StageFinance(p) {
 function Insights(p) {
   var list = p.list;
   if (!list.length) return null;
-  var icon = { bad: '!', warn: '!', good: '✓', info: 'i' };
+  var icon = { bad: html`<${StIc} k="warn" />`, warn: html`<${StIc} k="warn" />`, good: html`<${StIc} k="ok" />`, info: html`<${StIc} k="i" />` };
   return html`<div className="card">
     <div className="card-h"><h3>${L('Sygnały z Twoich liczb', 'Signals from your numbers')}</h3><span className="small muted">${L('wyliczane automatycznie', 'calculated automatically')}</span></div>
     <ul className="sig">${list.map(function (s, i) { return html`<li key=${i} className=${'sig-' + s.tone}><span className="sig-i" aria-hidden="true">${icon[s.tone]}</span><div><p className="sig-t">${s.t}</p><p className="sig-d">${s.d}</p></div></li>`; })}</ul>
   </div>`;
+}
+
+function StIc(p) {
+  var k = p.k, d = k === 'ok' ? 'M6.5 12.5l3.6 3.6 7.4-8.2' : k === 'x' ? 'M8 8l8 8M16 8l-8 8' : k === 'i' ? 'M12 11v6M12 7.6v.2' : 'M12 6.8v6.6M12 17v.2';
+  return html`<svg viewBox="0 0 24 24" width="100%" height="100%" aria-hidden="true"><path d=${d} fill="none" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round"/></svg>`;
 }
 
 function AiPanel(p) {
@@ -3546,13 +3579,13 @@ function About(p) {
     <div className="card dict">
       <p className="dict-tagline">${L('Każdy biznes zaczyna się od zgadywania. Zgaduj mądrze.', 'Every business starts as a guess. Make it an educated one.')}</p>
       <p className="eyebrow">${L('Skąd nazwa', 'Where the name comes from')}</p>
-      <div className="dict-head"><span className="dict-w">Coase</span><span className="dict-ph">/koʊz/</span><span className="dict-pos">${L('nazwisko', 'proper noun')}</span></div>
+      <div className="dict-head"><span className="dict-w">Coase</span><span className="dict-ph">/koʊs/</span><span className="dict-pos">${L('nazwisko', 'proper noun')}</span></div>
       <ol className="dict-list">
         <li><span className="dict-tag">${L('ekonomista', 'economist')}</span>${L('Ronald Coase (1910–2013), brytyjski ekonomista, laureat Nagrody Nobla z ekonomii w 1991 roku.', 'Ronald Coase (1910–2013), British economist and winner of the 1991 Nobel Prize in Economics.')}</li>
         <li><span className="dict-tag">${L('natura firmy', 'nature of the firm')}</span>${L('esej „The Nature of the Firm” (1937) z pytaniem: po co w ogóle zakładać firmę, skoro wszystko można kupić na rynku? Odpowiedź: bo korzystanie z rynku też kosztuje (koszty transakcyjne).', 'the essay “The Nature of the Firm” (1937), which asked why firms exist at all if everything can be bought on the market. The answer: because using the market has costs too (transaction costs).')}</li>
         <li><span className="dict-tag">${L('twierdzenie', 'theorem')}</span>${L('twierdzenie Coase’a (1960): gdy negocjacje są tanie, strony same dochodzą do najlepszego rozwiązania, niezależnie od tego, kto ma jakie prawa.', 'the Coase theorem (1960): when bargaining is cheap, the parties reach the best outcome on their own, whoever holds which rights.')}</li>
       </ol>
-      <div className="dict-us"><span className="dict-w sm">Coase·ly</span><span className="dict-ph">/ˈkoʊz.li/</span><p>${L('Odpowiedź na pytanie Coase’a dla Twojego pomysłu: czy warto zamienić go w firmę? Zaczynasz od kilku uczciwych założeń i prawdziwych danych, a narzędzie pokazuje, czy liczby się spinają, zanim wydasz pierwszą złotówkę.', 'Coase’s question, applied to your idea: is it worth turning into a business? Start from a few honest assumptions and real data, and see whether the numbers add up before you spend your first złoty.')}</p></div>
+      <div className="dict-us"><span className="dict-w sm">Coase·ly</span><span className="dict-ph">/ˈkoʊs.li/</span><p>${L('Odpowiedź na pytanie Coase’a dla Twojego pomysłu: czy warto zamienić go w firmę? Zaczynasz od kilku uczciwych założeń i prawdziwych danych, a narzędzie pokazuje, czy liczby się spinają, zanim wydasz pierwszą złotówkę.', 'Coase’s question, applied to your idea: is it worth turning into a business? Start from a few honest assumptions and real data, and see whether the numbers add up before you spend your first złoty.')}</p></div>
       <blockquote className="dict-q">${L('Richard Cantillon jako pierwszy opisał przedsiębiorcę jako kogoś, kto działa w niepewności. Coasely pomaga tę niepewność zmierzyć.', 'Richard Cantillon was the first to describe the entrepreneur as someone who acts under uncertainty. Coasely helps you measure that uncertainty.')}</blockquote>
       <p className="small muted">${L('Nazwa jest hołdem dla Ronalda Coase’a. Coasely nie jest w żaden sposób powiązane z nim, jego rodziną ani instytucjami jego imienia.', 'The name is a tribute to Ronald Coase. Coasely is not affiliated with him, his family or any institution bearing his name.')}</p>
     </div>
@@ -3768,7 +3801,7 @@ function App() {
   var stepS = useState(stepFromHash), step = stepS[0], setStep = stepS[1];
   var pend = useState(null), pending = pend[0], setPending = pend[1];
   useEffect(function () { saveState(st); }, [st]);
-  useEffect(function () { saveLang(lang); try { document.documentElement.lang = lang; document.title = L('Coasely · Policz, zanim zaczniesz', 'Coasely · Run the numbers before you run the business'); } catch (e) {} }, [lang]);
+  useEffect(function () { saveLang(lang); try { document.documentElement.lang = lang; document.title = L('Coasely · Kalkulator pomysłu na biznes', 'Coasely · Free business idea calculator'); } catch (e) {} }, [lang]);
   useEffect(function () { try { window.scrollTo(0, 0); } catch (e) {} }, [step]);
   var set = function (path, v) { setSt(function (s) { return setIn(s, path, v); }); };
   /* zmiany w etapach 1–3 ustawiają nowy punkt startowy suwaków w etapie 5 */
@@ -3830,8 +3863,8 @@ function App() {
   return html`<${React.Fragment}><div className="app">
     <header className="top">
       <div className="brand">
-        <span className="logo" aria-hidden="true"><svg viewBox="0 0 40 40"><rect width="40" height="40" rx="4.5" fill="var(--logo-bg)"/><rect x="8" y="6.5" width="6.5" height="27" rx=".8" fill="#FFFFFF"/><rect x="8" y="6.5" width="24" height="6.5" rx=".8" fill="#FFFFFF"/><rect x="8" y="27" width="15" height="6.5" rx=".8" fill="#FFFFFF"/></svg></span>
-        <span className="wm-sep" aria-hidden="true"></span><h1 className="wm">Coasely</h1>
+        <a className="brand-home" href="#" title=${L('Strona główna', 'Home')} aria-label=${L('Coasely: strona główna', 'Coasely: home')} onClick=${function (e) { e.preventDefault(); setPending(null); setView('app'); setStep(0); try { history.replaceState(null, '', location.pathname + location.search); window.scrollTo({ top: 0, behavior: 'smooth' }); } catch (x) {} }}><span className="logo" aria-hidden="true"><svg viewBox="0 0 40 40"><rect width="40" height="40" rx="4.5" fill="var(--logo-bg)"/><rect x="8" y="6.5" width="6.5" height="27" rx=".8" fill="#FFFFFF"/><rect x="8" y="6.5" width="24" height="6.5" rx=".8" fill="#FFFFFF"/><rect x="8" y="27" width="15" height="6.5" rx=".8" fill="#FFFFFF"/></svg></span>
+        <span className="wm-sep" aria-hidden="true"></span><h1 className="wm">Coasely</h1></a>
         <p className="brand-k"><span>${L('Wiedz, zanim ruszysz.', 'Know before you go.')}</span>${L('Liczby stojące za Twoim pierwszym biznesem', 'The numbers behind your first business')}</p>
       </div>
       <div className="top-actions">
@@ -3901,7 +3934,7 @@ function App() {
       ${showMini ? html`<${Mini} c=${c} fin=${fin} />` : null}
     </div><//>`}
     ${donateUrl() ? html`<div className="coffee-row"><span>${L('Podoba Ci się Coasely?', 'Like Coasely?')}</span><a className="btn btn-ghost coffee" href=${donateUrl()} target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 9h12v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V9z"/><path d="M16 11h1.5a2.5 2.5 0 0 1 0 5H16"/><path d="M8 3.5c0 1 1 1 1 2s-1 1-1 2M12 3.5c0 1 1 1 1 2s-1 1-1 2"/></svg>${L('Postaw mi kawę', 'Buy me a coffee')}</a></div>` : null}
-    <footer className="foot small muted">${L('Wyniki są szacunkowe i nie są poradą podatkową ani inwestycyjną. Podatki i składki według przepisów na ' + TAX.year + ' r., w uproszczeniu, bez VAT i sezonowości. Dane zapisują się tylko w tej przeglądarce. Gminy i powiaty: GUS, Bank Danych Lokalnych, 2025. Firmy według branż: GUS, rejestr REGON, 31.10.2026. Konkurencja: © autorzy OpenStreetMap. Odwiedziny liczymy anonimowo (GoatCounter, bez ciasteczek).', 'Results are estimates, not tax or investment advice. Tax and contributions follow ' + TAX.year + ' Polish rules, simplified, without VAT or seasonality. Your data is saved only in this browser. Municipalities and counties: Statistics Poland (GUS), Local Data Bank, 2025. Businesses by industry: GUS REGON register, 31 Oct 2026. Competitors: © OpenStreetMap contributors. Visits are counted anonymously (GoatCounter, no cookies).')}</footer>
+    <footer className="foot small muted">${L('Wyniki są szacunkowe i nie są poradą podatkową ani inwestycyjną. Podatki i składki według przepisów na ' + TAX.year + ' r., w uproszczeniu, bez VAT i sezonowości. Dane zapisują się tylko w tej przeglądarce. Gminy i powiaty: GUS, Bank Danych Lokalnych, 2025. Firmy według branż: GUS, rejestr REGON, 31.10.2026. Konkurencja: © autorzy OpenStreetMap. Odwiedziny liczymy anonimowo (GoatCounter, bez ciasteczek).', 'Results are estimates, not tax or investment advice. Tax and contributions follow ' + TAX.year + ' Polish rules, simplified, without VAT or seasonality. Your data is saved only in this browser. Municipalities and counties: Statistics Poland (GUS), Local Data Bank, 2025. Businesses by industry: GUS REGON register, 31 Oct 2026. Competitors: © OpenStreetMap contributors. Visits are counted anonymously (GoatCounter, no cookies).')}<span className="foot-by">© 2026 Coasely · ${L('Stworzyła Maja Kosmowska', 'Created by Maja Kosmowska')}</span></footer>
   </div>
   <${PrintReport} st=${st} c=${c} ms=${ms} fin=${fin} fc=${fc} /><//>`;
 }

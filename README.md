@@ -55,7 +55,7 @@ Jeden plik `index.html` (React 18 i htm z CDN), bez własnego serwera. Strona ni
 
 
 ## Nazwa i znak Coasely
-Nazwa jest hołdem dla Ronalda Coase'a (1910–2013), noblisty z ekonomii, który w eseju „The Nature of the Firm” (1937) zapytał, po co w ogóle zakładać firmę. Coasely stawia to pytanie przy Twoim pomyśle: czy warto zamienić go w firmę? Wymowa: /ˈkoʊz.li/. Richard Cantillon jako pierwszy opisał przedsiębiorcę jako kogoś, kto działa w niepewności; Coasely pomaga tę niepewność zmierzyć. Projekt nie jest powiązany z Ronaldem Coase'em, jego rodziną ani instytucjami jego imienia.
+Nazwa jest hołdem dla Ronalda Coase'a (1910–2013), noblisty z ekonomii, który w eseju „The Nature of the Firm” (1937) zapytał, po co w ogóle zakładać firmę. Coasely stawia to pytanie przy Twoim pomyśle: czy warto zamienić go w firmę? Wymowa: /ˈkoʊs.li/. Richard Cantillon jako pierwszy opisał przedsiębiorcę jako kogoś, kto działa w niepewności; Coasely pomaga tę niepewność zmierzyć. Projekt nie jest powiązany z Ronaldem Coase'em, jego rodziną ani instytucjami jego imienia.
 
 Znak: litera C z pełnych bloków w kolorze #18284A; górne ramię dłuższe od dolnego (wzrost). Pliki: `coasely-logo.svg` i `coasely-logo-dark.svg` (sam znak), `coasely-logo-full.png` i `coasely-logo-full-dark.png` (znak, kreska i nazwa, przezroczyste tło).
 

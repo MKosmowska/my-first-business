@@ -1089,6 +1089,16 @@ button.ex.active, button.ex[aria-pressed="true"] { box-shadow: 0 0 0 2px var(--a
   .mcoll .card, .mcoll .receipt, :root[data-theme="dark"] .mcoll .card, :root[data-theme="dark"] .mcoll .receipt { box-shadow: none !important; background: transparent; padding: 6px 4px; border-radius: 0; }
 }
 @media (max-width: 640px) and (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .mcoll .card, :root:not([data-theme="light"]) .mcoll .receipt { box-shadow: none !important; background: transparent; } }
+/* v28: pasek kroków w granacie zamiast żółtego */
+.stepper button.done .st-bar { background: #B7C3D8; }
+.stepper button.cur .st-bar { background: #14284B; }
+:root[data-theme="dark"] .stepper button.done .st-bar { background: #3B5179; }
+:root[data-theme="dark"] .stepper button.cur .st-bar { background: #C9D8F2; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .stepper button.done .st-bar { background: #3B5179; } :root:not([data-theme="light"]) .stepper button.cur .st-bar { background: #C9D8F2; } }
+/* v29: złota kropka w logo */
+.wm-dot { color: #C98A1E; }
+:root[data-theme="dark"] .wm-dot { color: #E3B45C; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .wm-dot { color: #E3B45C; } }
 
 
 /* v20: kolor kwoty zależny od wyniku (zielony / żółty / czerwony) */
@@ -1111,6 +1121,17 @@ button.ex.active, button.ex[aria-pressed="true"] { box-shadow: 0 0 0 2px var(--a
   .live-sheet { gap: 12px; }
   .live-sheet .mini { position: static; }
 }
+
+/* v27: karta do udostępnienia */
+.share-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.share-btn { gap: 8px; }
+.share-sheet { gap: 12px; }
+.share-sheet .seg3 { align-self: flex-start; }
+.share-prev { display: flex; justify-content: center; background: var(--surface-2); border-radius: 16px; padding: 12px; }
+.share-prev img { display: block; border-radius: 10px; box-shadow: 0 8px 24px rgba(0,0,0,.2); max-width: 100%; }
+.share-prev.square img { width: min(100%, 360px); }
+.share-prev.story img { height: min(52vh, 480px); width: auto; }
+@media (min-width: 641px) { .sheet-bg:has(.share-sheet) { align-items: center; } .share-sheet { border-radius: 20px; max-width: 480px; } }
 /* v16: pasek struktury kosztów */
 .cs-barbox { display: flex; flex-direction: column; gap: 6px; margin: 4px 0 6px; }
 .cs-split { display: flex; font-size: 12px; font-weight: 500; color: var(--muted); white-space: nowrap; }
@@ -2294,10 +2315,27 @@ var EXAMPLES = [
       tax: { form: 'ryczalt', ryczRate: '8.5' },
       fin: { equity: '12000', loanOn: false }
     }
+  },
+  {
+    id: 'kebab', name: ['Kebab', 'Kebab shop'], tag: ['Gastronomia · Łódź', 'Food & drink · Łódź'],
+    blurb: ['Mały lokal z kebabem przy Piotrkowskiej: właściciel i dwie osoby na zmianie, kredyt na rożen i wyposażenie.', 'A small kebab shop on Piotrkowska Street: the owner and two staff per shift, a loan for the grill and fit-out.'],
+    text: { type: ['Kebab', 'Kebab shop'], city: ['Łódź', 'Łódź'], address: ['Piotrkowska', 'Piotrkowska'] },
+    data: {
+      idea: { model: 'lokalny', unit: 'zamówienie', area: '1061011' },
+      market: { size: { radius: '500', pop: '20000', density: '', pct: '30', every: '2', share: '' } },
+      sales: { price: '28', upc: '2', clients: '1040' },
+      fixed: { rent: '5500', media: '2000', accounting: '450', marketing: '800', software: '150', zus: '1800', other: '600', hasEmployee: true, employees: '2', employee: '7000' },
+      variable: { materials: '9,6', packaging: '1', delivery: '0', other: '0', commission: '1,5' },
+      work: { days: '26', hours: '12', minutes: '', pct: '', maxOrders: '4000' },
+      goals: { target: '8000', investment: '70000' },
+      scen: { ostrozny: { price: '26', clients: '800', materials: '10,5' }, optymistyczny: { price: '30', clients: '1250', materials: '9,6' } },
+      tax: { form: 'skala' },
+      fin: { equity: '30000', loanOn: true, loan: '50000', rate: '9', years: '5' }
+    }
   }
 ];
 function exName(e) { return L(e.name[0], e.name[1]); }
-var EX_GROUPS = [{ id: 'all', n: ['', ''], ids: ['fryzjer', 'kawiarnia', 'kurs'] }];
+var EX_GROUPS = [{ id: 'all', n: ['', ''], ids: ['fryzjer', 'kawiarnia', 'kebab', 'kurs'] }];
 function findExample(key) {
   return EXAMPLES.filter(function (x) { return x.id === key || x.name[0] === key || x.name[1] === key; })[0] || null;
 }
@@ -2594,6 +2632,87 @@ function LiveBar(p) {
   return html`<button type="button" className=${'livebar ' + v.tone} onClick=${p.onOpen} aria-label=${L('Wynik na żywo: ', 'Live result: ') + v.t + ', ' + money(v.net) + L('. Pokaż szczegóły', '. Show details')}>
     <span className="lb-dot" aria-hidden="true"></span><span className="lb-t">${v.t}</span>
     <span className="lb-v num">${money(v.net)}<span className="lb-u">${L('/mies.', '/mo')}</span></span><span className="lb-ch" aria-hidden="true">⌃</span></button>`;
+}
+
+/* ---------- Udostępnij wynik: karta PNG (kwadrat 1080 lub relacja 1080×1920) ---------- */
+function drawShareCard(c, fin, st, fmt) {
+  var W = 1080, H = fmt === 'story' ? 1920 : 1080;
+  var cv = document.createElement('canvas'); cv.width = W; cv.height = H;
+  var g = cv.getContext('2d');
+  var v = verdictOf(c, fin);
+  var col = v.tone === 'good' ? '#5FD9A5' : v.tone === 'warn' ? '#F0C46E' : '#FF8A9A';
+  var F = function (w, s) { return w + ' ' + s + 'px Inter, -apple-system, "Segoe UI", system-ui, sans-serif'; };
+  g.fillStyle = '#14284B'; g.fillRect(0, 0, W, H);
+  var y0 = fmt === 'story' ? 360 : 110, x0 = 90;
+  // logo
+  g.fillStyle = '#FFFFFF'; roundRect(g, x0, y0, 64, 64, 14); g.fill();
+  g.fillStyle = '#14284B'; g.fillRect(x0 + 13, y0 + 10, 10, 44); g.fillRect(x0 + 13, y0 + 10, 38, 10); g.fillRect(x0 + 13, y0 + 44, 24, 10);
+  g.fillStyle = '#FFFFFF'; g.font = F(700, 44); g.textBaseline = 'middle'; g.fillText('Coasely', x0 + 86, y0 + 33);
+  // headline
+  var y = y0 + 150; g.textBaseline = 'alphabetic';
+  g.fillStyle = '#C3D0E6'; g.font = F(500, 34);
+  var what = (st.idea.type || L('Mój pomysł', 'My idea')) + (st.idea.city ? ' · ' + st.idea.city : '');
+  g.fillText(fit(g, L('Mój pomysł: ', 'My idea: ') + what, W - 2 * x0), x0, y);
+  y += 90; g.fillStyle = '#FFFFFF'; g.font = F(700, 64); g.fillText(fit(g, v.t, W - 2 * x0), x0, y);
+  // amount
+  y += 190; g.fillStyle = col; g.font = F(700, 150); g.fillText(fit(g, money(v.net), W - 2 * x0), x0, y);
+  y += 60; g.fillStyle = '#C3D0E6'; g.font = F(500, 34);
+  g.fillText(fin && fin.auto ? L('zostaje na rękę co miesiąc', 'take-home every month') : L('wynik miesięczny przed podatkiem', 'monthly result before tax'), x0, y);
+  // stats
+  y += 110;
+  var stats = [];
+  if (c.be != null) stats.push([num(c.beClients), L('klientów do progu', 'to break even')]);
+  if (c.payback != null) stats.push([num(c.payback, 1), L('mies. do zwrotu', 'months to payback')]);
+  if (c.capacity != null) stats.push([Math.round(c.units / c.capacity * 100) + '%', L('zajętego czasu', 'capacity used')]);
+  var sw = (W - 2 * x0 - 40 * (stats.length - 1)) / Math.max(stats.length, 1);
+  stats.forEach(function (s, i) {
+    var sx = x0 + i * (sw + 40);
+    g.fillStyle = 'rgba(255,255,255,0.08)'; roundRect(g, sx, y, sw, 170, 24); g.fill();
+    g.fillStyle = '#FFFFFF'; g.font = F(700, 56); g.fillText(fit(g, s[0], sw - 48), sx + 28, y + 82);
+    g.fillStyle = '#C3D0E6'; g.font = F(500, 24); g.fillText(fit(g, s[1], sw - 48), sx + 28, y + 132);
+  });
+  // footer
+  var fy = fmt === 'story' ? H - 380 : H - 110;
+  g.fillStyle = '#FFFFFF'; g.font = F(600, 36); g.fillText(L('A Twój pomysł? Sprawdź za darmo', 'What about your idea? Check it free'), x0, fy);
+  g.fillStyle = '#F0C46E'; g.font = F(700, 40); g.fillText('coasely.com', x0, fy + 58);
+  return cv;
+  function roundRect(ctx, x, y, w, h, r) { ctx.beginPath(); ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r); ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath(); }
+  function fit(ctx, s, max) { s = String(s); if (ctx.measureText(s).width <= max) return s; while (s.length > 1 && ctx.measureText(s + '…').width > max) s = s.slice(0, -1); return s + '…'; }
+}
+
+function ShareResult(p) {
+  var S = useState(null), url = S[0], setUrl = S[1];
+  var F = useState('square'), fmt = F[0], setFmt = F[1];
+  var B = useState(null), blob = B[0], setBlob = B[1];
+  var c = p.c, fin = p.fin, st = p.st;
+  useEffect(function () {
+    if (!p.open || !c.ok) return;
+    var cv = drawShareCard(c, fin, st, fmt), u = null, alive = true;
+    cv.toBlob(function (b) { if (!alive || !b) return; u = URL.createObjectURL(b); setBlob(b); setUrl(u); }, 'image/png');
+    return function () { alive = false; if (u) URL.revokeObjectURL(u); };
+  }, [p.open, fmt, c, fin, st]);
+  if (!p.open) return null;
+  var link = 'https://coasely.com' + (LANG === 'pl' ? '/pl/' : '/') + '?ref=share';
+  var name = 'coasely-' + (fmt === 'story' ? 'relacja' : 'wynik') + '.png';
+  var file = null; try { if (blob) file = new File([blob], name, { type: 'image/png' }); } catch (e) {}
+  var canShareFile = false; try { canShareFile = !!(file && navigator.canShare && navigator.canShare({ files: [file] })); } catch (e) {}
+  function share() {
+    if (canShareFile) { navigator.share({ files: [file], text: L('Sprawdziłam swój pomysł na biznes w Coasely. A Twój? ', 'I tested my business idea with Coasely. What about yours? ') + link }).catch(function () {}); return; }
+    var a = document.createElement('a'); a.href = url; a.download = name; document.body.appendChild(a); a.click(); a.remove();
+  }
+  return html`<div className="sheet-bg" onClick=${function (e) { if (e.target === e.currentTarget) p.onClose(); }}>
+    <div className="sheet share-sheet" role="dialog" aria-modal="true" aria-label=${L('Pokaż znajomym', 'Show your friends')}>
+      <span className="sheet-grip" aria-hidden="true"></span>
+      <div className="sheet-h"><h2>${L('Pokaż znajomym', 'Show your friends')}</h2><button type="button" className="sheet-close" aria-label=${L('Zamknij', 'Close')} onClick=${p.onClose}>×</button></div>
+      <div className="seg3" role="radiogroup" aria-label=${L('Format', 'Format')}>
+        <button type="button" role="radio" aria-checked=${fmt === 'square'} className=${fmt === 'square' ? 'on' : ''} onClick=${function () { setFmt('square'); }}>${L('Post (kwadrat)', 'Post (square)')}</button>
+        <button type="button" role="radio" aria-checked=${fmt === 'story'} className=${fmt === 'story' ? 'on' : ''} onClick=${function () { setFmt('story'); }}>${L('Relacja', 'Story')}</button>
+      </div>
+      <div className=${'share-prev ' + fmt}>${url ? html`<img src=${url} alt=${L('Podgląd karty z wynikiem', 'Result card preview')} />` : null}</div>
+      <p className="small muted">${L('Na karcie są tylko ogólne liczby, bez szczegółów Twoich kosztów.', 'The card shows only headline numbers, none of your cost details.')}</p>
+      <button type="button" className="btn btn-primary btn-lg" disabled=${!url} onClick=${share}>${canShareFile ? L('Udostępnij', 'Share') : L('Pobierz obrazek', 'Download image')}</button>
+    </div>
+  </div>`;
 }
 
 /* ---------- Mini podsumowanie ---------- */
@@ -3377,6 +3496,7 @@ function StageResults(p) {
       : 'Do progu potrzeba ' + num(c.be) + ' ' + uLabel(c, c.be) + ', a ' + teamNom(c) + ' obsłuży ' + num(c.capacity) + '. Przy tych założeniach firma nie pokryje kosztów.'}<//>` : null}
 
     <${Verdict} c=${c} fin=${p.fin} st=${p.st} />
+    ${c.ok ? html`<div className="share-row"><button type="button" className="btn btn-ghost share-btn" onClick=${function () { if (window.__coaselyShare) window.__coaselyShare(); }}><svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M10 13V3M6 7l4-4 4 4"/><path d="M4 11v6h12v-6"/></svg>${L('Pokaż znajomym', 'Show your friends')}</button><span className="small muted">${L('Gotowa karta z wynikiem na Instagram, WhatsApp albo Messengera', 'A ready-made result card for Instagram, WhatsApp or Messenger')}</span></div>` : null}
     <div className="tiles tiles-key">
       <${Tile} label=${L('Przychód miesięczny', 'Monthly revenue')} value=${money(Math.round(c.revenue))} sub=${num(c.units, 1) + ' ' + uLabel(c, c.units) + ' × ' + money(c.price)} term="przychod" />
       <${Tile} label=${L('Marża pokrycia', 'Contribution margin')} value=${money(Math.round(c.cm))} sub=${L('na jednostce · ', 'per unit · ') + (c.price > 0 ? num(c.cm / c.price * 100) : 0) + L('% ceny', '% of price')} term="marza" tone=${c.cm <= 0 ? 'bad' : ''} />
@@ -4365,6 +4485,8 @@ function App() {
       try { if (saved) localStorage.setItem(STORE + '-backup', JSON.stringify(saved)); history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
       return { st: fromLink, notice: saved ? 'backup' : 'plain' };
     }
+    var exq = null; try { var mq = /[?&](?:przyklad|example)=([a-z]+)/.exec(location.search); if (mq && findExample(mq[1])) exq = mq[1]; } catch (e) {}
+    if (exq) { try { location.hash = 'rentownosc'; } catch (e) {} return { st: exampleState(exq), notice: null, fresh: false }; }
     var fresh = false; try { fresh = !saved && !(location.hash || '').replace('#', ''); } catch (e) {}
     return { st: saved || exampleState('fryzjer'), notice: null, fresh: fresh };
   })[0];
@@ -4374,6 +4496,9 @@ function App() {
   var introS = useState(!!boot.fresh), intro = introS[0], setIntro = introS[1];
   var menuS = useState(false), menu = menuS[0], setMenu = menuS[1];
   var liveS = useState(false), liveOpen = liveS[0], setLiveOpen = liveS[1];
+  var shareS = useState(false), shareOpen = shareS[0], setShareOpen = shareS[1];
+  useEffect(function () { if (!shareOpen) return; var f = function (e) { if (e.key === 'Escape') setShareOpen(false); }; window.addEventListener('keydown', f); return function () { window.removeEventListener('keydown', f); }; }, [shareOpen]);
+  useEffect(function () { window.__coaselyShare = function () { setShareOpen(true); }; return function () { delete window.__coaselyShare; }; }, []);
   useEffect(function () { if (!liveOpen) return; var f = function (e) { if (e.key === 'Escape') setLiveOpen(false); }; window.addEventListener('keydown', f); return function () { window.removeEventListener('keydown', f); }; }, [liveOpen]);
   useEffect(function () { setLiveOpen(false); }, [step]);
   useEffect(function () { if (!pending) return; var f = function (e) { if (e.key === 'Escape') setPending(null); }; window.addEventListener('keydown', f); try { if (pending.kind === 'share' || pending.kind === 'plans') window.scrollTo({ top: 0, behavior: 'smooth' }); } catch (e) {} return function () { window.removeEventListener('keydown', f); }; }, [pending]);
@@ -4443,7 +4568,7 @@ function App() {
     <header className="top">
       <div className="brand">
         <a className="brand-home" href="#" title=${L('Strona główna', 'Home')} aria-label=${L('Coasely: strona główna', 'Coasely: home')} onClick=${function (e) { e.preventDefault(); setPending(null); setView('app'); setStep(0); try { history.replaceState(null, '', location.pathname + location.search); window.scrollTo({ top: 0, behavior: 'smooth' }); } catch (x) {} }}><span className="logo" aria-hidden="true"><svg viewBox="0 0 40 40"><rect width="40" height="40" rx="4.5" fill="var(--logo-bg)"/><rect x="8" y="6.5" width="6.5" height="27" rx=".8" fill="#FFFFFF"/><rect x="8" y="6.5" width="24" height="6.5" rx=".8" fill="#FFFFFF"/><rect x="8" y="27" width="15" height="6.5" rx=".8" fill="#FFFFFF"/></svg></span>
-        <span className="wm-sep" aria-hidden="true"></span><h1 className="wm">Coasely</h1></a>
+        <span className="wm-sep" aria-hidden="true"></span><h1 className="wm">Coasely<span className="wm-dot" aria-hidden="true">.</span></h1></a>
         <p className="brand-k"><span>${L('Wiedz, zanim ruszysz.', 'Know before you go.')}</span>${L('Liczby stojące za Twoim pierwszym biznesem', 'The numbers behind your first business')}</p>
       </div>
       <div className="top-actions">
@@ -4468,6 +4593,7 @@ function App() {
       <button type="button" className="tb danger" onClick=${function () { setView('app'); setPending({ kind: 'reset' }); }}>${L('Zacznij od nowa', 'Start over')}</button>
     </nav>
 
+    <${ShareResult} open=${shareOpen} onClose=${function () { setShareOpen(false); }} c=${c} fin=${fin} st=${st} />
     ${liveOpen ? html`<div className="sheet-bg" onClick=${function (e) { if (e.target === e.currentTarget) setLiveOpen(false); }}>
       <div className="sheet live-sheet" role="dialog" aria-modal="true" aria-label=${L('Wyniki na żywo', 'Live results')}>
         <span className="sheet-grip" aria-hidden="true"></span>
@@ -4483,7 +4609,8 @@ function App() {
         <div className="sheet-h"><h2>${L('Narzędzia', 'Tools')}</h2><button type="button" className="sheet-close" aria-label=${L('Zamknij', 'Close')} onClick=${function () { setMenu(false); }}>×</button></div>
         <button type="button" className="sheet-item" onClick=${function () { setMenu(false); setView('app'); setPending({ kind: 'plans' }); }}>${L('Moje plany', 'My plans')}</button>
         <button type="button" className="sheet-item" onClick=${function () { setMenu(false); setView('app'); setPending({ kind: 'pick' }); }}>${L('Przykłady', 'Examples')}</button>
-        <button type="button" className="sheet-item" onClick=${function () { setMenu(false); setView('app'); setPending({ kind: 'share' }); }}>${L('Udostępnij i drukuj', 'Share and print')}</button>
+        <button type="button" className="sheet-item" disabled=${!c.ok} onClick=${function () { setMenu(false); setShareOpen(true); }}>${L('Pokaż znajomym (karta z wynikiem)', 'Show your friends (result card)')}</button>
+        <button type="button" className="sheet-item" onClick=${function () { setMenu(false); setView('app'); setPending({ kind: 'share' }); }}>${L('Udostępnij link i drukuj', 'Share link and print')}</button>
         <button type="button" className="sheet-item" disabled=${!c.ok} onClick=${function () { setMenu(false); exportXlsx(); }}>${L('Eksport do Excela', 'Export to Excel')}</button>
         <button type="button" className="sheet-item" onClick=${function () { setMenu(false); setPending(null); setView('about'); try { window.scrollTo(0, 0); } catch (e) {} }}>${L('O projekcie i metodologia', 'About and methodology')}</button>
         <div className="sheet-sep"></div>

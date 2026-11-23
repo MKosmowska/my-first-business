@@ -1,37 +1,31 @@
 # Coasely
 
-> Coasely (coasely.com) is a free, bilingual (Polish and English) online calculator for testing a first business idea in Poland on real data. No account is needed and plans are saved only in the user's browser.
+> Coasely (coasely.com) is a free, bilingual (Polish/English) business-idea calculator. In 7 steps it checks whether a small business idea makes sense: local competition, costs, break-even point, net profit after Polish taxes and social security (ZUS), a 12-month forecast and a stress test. No sign-up; data stays in the browser.
 
-Coasely was created in 2026 by Maja Kosmowska, a high school student from Warsaw and finalist of the National Economics Olympiad and the Entrepreneurship Olympiad. The name is a tribute to the economist Ronald Coase.
+Creator: Maja Kosmowska (Warsaw, Poland), finalist of the Polish National Economics Olympiad and the Entrepreneurship Olympiad.
 
-## What it does
-
-The calculator walks the user through 7 steps:
-
-1. Idea: type of business, business model (local or online) and Polish municipality.
-2. Market: number of competitors in the same industry in every Polish municipality (GUS REGON register), a market saturation index based on a regression across all municipalities, competitors from OpenStreetMap within 5 km, and an estimate of how many customers the local market could give.
-3. Price and costs: fixed and variable costs, contribution margin, service capacity and break-even point.
-4. Finance and tax: own contribution, loan, and a comparison of Polish tax options for sole traders under 2026 rules (tax scale, flat tax, lump-sum tax, limited company) including ZUS social security contributions.
-5. Results: monthly take-home profit, break-even customers, payback period, income statement and cost breakdown.
-6. Forecast and valuation: 36-month cash-flow forecast and an indicative DCF valuation.
-7. Stress test: 11 critical checkpoints, sensitivity sliders, best price and scenarios.
-
-Plans can be exported to Excel, shared by link or printed.
+## The 7 steps
+1. Idea – business type, location, business model
+2. Market – how many similar businesses are registered nearby (GUS REGON, OpenStreetMap), population (GUS BDL)
+3. Costs – fixed and variable costs, staff, rent
+4. Financing – own capital, loan, depreciation
+5. Profitability – break-even point, contribution margin, net profit after tax and ZUS (2026 rules)
+6. Forecast – 12 months with ramp-up and seasonality
+7. Test – pessimistic scenarios and sensitivity
 
 ## Who it is for
-
-High school and university students (for example in the Polish school subject "Biznes i zarządzanie"), teachers, and first-time founders in Poland who want to check whether a business idea is worth starting.
-
-## Data sources
-
-- Statistics Poland (GUS): REGON business register, Local Data Bank (population, density, wages, tourist accommodation), household budget survey.
-- OpenStreetMap contributors (competitor locations).
-- Polish tax and ZUS rules for 2026.
-
-Results are estimates and are not tax or investment advice.
+Students, first-time founders, teachers of entrepreneurship classes, and anyone who wants to check a small business idea (café, hair salon, online course, shop) before investing.
 
 ## Pages
+- https://coasely.com/ – calculator (English)
+- https://coasely.com/pl/ – calculator (Polish)
+- https://coasely.com/kalkulator-progu-rentownosci/ – break-even calculator explainer (Polish)
+- https://coasely.com/gdzie-zaczac-biznes-ranking/ – 2026 market-gap ranking of 208 Polish towns (GUS REGON data, CSV download)
+- https://coasely.com/dla-nauczycieli/ – free 45-minute lesson plan and printable worksheet for teachers (PDF, Polish)
+- https://coasely.com/czy-oplaca-sie/ – Is it profitable? Worked break-even examples by industry (Polish): café, kebab shop, hair salon, online course
+- https://coasely.com/czy-oplaca-sie-otworzyc-kawiarnie/ – Is opening a café profitable? Worked example (Polish)
+- https://coasely.com/czy-oplaca-sie-otworzyc-kebab/ – Is opening a kebab shop profitable? (Polish)
+- https://coasely.com/czy-oplaca-sie-otworzyc-salon-fryzjerski/ – Is opening a hair salon profitable? (Polish)
+- https://coasely.com/czy-oplaca-sie-sprzedawac-kurs-online/ – Is selling an online course profitable? (Polish)
 
-- [Coasely (English)](https://coasely.com/): the calculator in English.
-- [Coasely (Polski)](https://coasely.com/pl/): kalkulator pomysłu na biznes po polsku.
-- [Kalkulator progu rentowności](https://coasely.com/kalkulator-progu-rentownosci/): break-even formula, worked example and common mistakes (Polish).
+Results are estimates, not tax or investment advice.

@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Czy opłaca się otworzyć kawiarnię? Koszty, zarobki i próg rentowności | Coasely</title>
+<meta name="description" content="Ile kosztuje otwarcie kawiarni, ile trzeba sprzedać kaw dziennie, żeby wyjść na zero, i ile zostaje na rękę? Przykład wyliczenia krok po kroku i darmowy kalkulator.">
+<link rel="canonical" href="https://coasely.com/czy-oplaca-sie-otworzyc-kawiarnie/">
+<meta property="og:title" content="Czy opłaca się otworzyć kawiarnię?">
+<meta property="og:description" content="Koszty, zarobki i próg rentowności kawiarni na przykładzie. Policz swój wariant w darmowym kalkulatorze.">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="pl_PL">
+<meta property="og:url" content="https://coasely.com/czy-oplaca-sie-otworzyc-kawiarnie/">
+<meta property="og:image" content="https://coasely.com/og-pl.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="author" content="Maja Kosmowska">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Czy opłaca się otworzyć kawiarnię? Koszty, zarobki i próg rentowności","inLanguage":"pl","author":{"@type":"Person","name":"Maja Kosmowska"},"publisher":{"@type":"Organization","name":"Coasely","logo":{"@type":"ImageObject","url":"https://coasely.com/apple-touch-icon.png"}},"image":"https://coasely.com/og-pl.png","datePublished":"2026-11-23","dateModified":"2026-11-23","mainEntityOfPage":"https://coasely.com/czy-oplaca-sie-otworzyc-kawiarnie/"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Coasely","item":"https://coasely.com/pl/"},{"@type":"ListItem","position":2,"name":"Czy się opłaca?","item":"https://coasely.com/czy-oplaca-sie/"},{"@type":"ListItem","position":3,"name":"Czy opłaca się otworzyć kawiarnię?","item":"https://coasely.com/czy-oplaca-sie-otworzyc-kawiarnie/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"pl","mainEntity":[
+{"@type":"Question","name":"Ile kosztuje otwarcie kawiarni?","acceptedAnswer":{"@type":"Answer","text":"W przykładzie małej kawiarni przy uczelni jednorazowa inwestycja to 120 000 zł: ekspres i młynki, remont, meble i wyposażenie. Dużo zależy od stanu lokalu i tego, czy kupujesz sprzęt nowy, czy używany."}},
+{"@type":"Question","name":"Ile kaw dziennie musi sprzedać kawiarnia, żeby wyjść na zero?","acceptedAnswer":{"@type":"Answer","text":"W przykładzie próg rentowności to około 1200 zamówień miesięcznie, czyli około 46 dziennie przy 26 dniach pracy w miesiącu. To liczba przed podatkiem, przy średnim rachunku 31 zł i kosztach stałych około 25 300 zł miesięcznie."}},
+{"@type":"Question","name":"Ile można zarobić na kawiarni?","acceptedAnswer":{"@type":"Answer","text":"W przykładzie przy 2100 zamówieniach miesięcznie właścicielce zostaje około 12 800 zł miesięcznie po podatku i składkach. Przy mniejszym ruchu wynik szybko spada, bo koszty stałe kawiarni są wysokie."}}
+]}</script>
+<style>
+:root{--bg:#F5F5F7;--surface:#fff;--ink:#0F1A2B;--muted:#5E6573;--line:#E6E8EC;--accent:#14284B;--accent-soft:#E7EFF3;--marker:#C98A1E;--good:#16865E;--warn-soft:#FBF0DC}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 Inter,system-ui,-apple-system,sans-serif}
+a{color:var(--accent)}
+header,main,footer{max-width:760px;margin:0 auto;padding:0 20px}
+header{display:flex;justify-content:space-between;align-items:center;padding-top:20px;padding-bottom:20px}
+.logo{font-weight:700;font-size:20px;text-decoration:none;color:var(--ink)}
+.logo span{color:var(--marker)}
+nav a{font-size:15px;margin-left:16px;text-decoration:none}
+.crumbs{font-size:14px;color:var(--muted)}
+h1{font-size:34px;line-height:1.15;letter-spacing:-.02em;margin:8px 0 12px}
+h2{font-size:24px;letter-spacing:-.015em;margin:40px 0 10px}
+h3{font-size:18px;margin:24px 0 6px}
+.lead{font-size:19px;color:var(--muted)}
+.card{background:var(--surface);border-radius:20px;padding:22px 24px;margin:20px 0}
+table{width:100%;border-collapse:collapse;font-size:16px}
+td{padding:8px 0;border-bottom:1px solid var(--line)}
+td:last-child{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+tr.sum td{font-weight:700;border-bottom:none}
+.kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:20px 0}
+.kpi{background:var(--accent);color:#fff;border-radius:20px;padding:18px 20px}
+.kpi b{display:block;font-size:28px;letter-spacing:-.02em}
+.kpi span{font-size:14px;color:#C3D0E6}
+.cta{background:var(--accent);color:#fff;border-radius:24px;padding:28px;margin:36px 0;text-align:center}
+.cta p{margin:0 0 14px;font-size:18px}
+.btn{display:inline-block;background:var(--marker);color:#2B1D03;font-weight:700;text-decoration:none;padding:13px 26px;border-radius:999px}
+.note{background:var(--warn-soft);border-radius:14px;padding:14px 18px;font-size:15px}
+footer{color:var(--muted);font-size:14px;padding-top:30px;padding-bottom:40px;border-top:1px solid var(--line);margin-top:50px}
+@media (max-width:600px){h1{font-size:28px}.kpis{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+  <a class="logo" href="/pl/">Coasely<span>.</span></a>
+  <nav><a href="/pl/">Kalkulator</a><a href="/czy-oplaca-sie/">Czy się opłaca?</a></nav>
+</header>
+<main>
+<p class="crumbs"><a href="/pl/">Coasely</a> › <a href="/czy-oplaca-sie/">Czy się opłaca?</a> › Kawiarnia</p>
+<h1>Czy opłaca się otworzyć kawiarnię? Koszty, zarobki i próg rentowności</h1>
+<p class="lead">Kawiarnia może się opłacać, ale ma wysokie koszty stałe: czynsz i pensje trzeba zapłacić, nawet gdy przyjdzie mało gości. Dlatego najważniejsze pytanie brzmi: ile zamówień dziennie musisz sprzedać, żeby wyjść na zero? Poniżej przykład wyliczenia krok po kroku.</p>
+
+<div class="kpis">
+  <div class="kpi"><b>~46 dziennie</b><span>zamówień do progu rentowności</span></div>
+  <div class="kpi"><b>12 846 zł</b><span>na rękę miesięcznie w przykładzie</span></div>
+  <div class="kpi"><b>120 000 zł</b><span>inwestycja na start</span></div>
+</div>
+
+<h2>Przykład: mała kawiarnia przy uczelni</h2>
+<p>Właścicielka i dwie osoby za barem, lokal przy uczelni w Gdańsku, średni rachunek 31 zł, a klient przychodzi średnio 1,5 raza w miesiącu. Liczby to przykładowe założenia, nie dane rynkowe; w kalkulatorze zmienisz je na własne.</p>
+
+<h3>Koszty stałe (miesięcznie)</h3>
+<div class="card">
+<table>
+  <tr><td>Wynagrodzenia 2 pracowników (z kosztami pracodawcy)</td><td>14 800 zł</td></tr>
+  <tr><td>Najem lokalu</td><td>6 500 zł</td></tr>
+  <tr><td>Media i internet</td><td>1 300 zł</td></tr>
+  <tr><td>Marketing</td><td>800 zł</td></tr>
+  <tr><td>Księgowość</td><td>550 zł</td></tr>
+  <tr><td>ZUS właścicielki (preferencyjny)</td><td>456 zł</td></tr>
+  <tr><td>Oprogramowanie, terminal i inne</td><td>850 zł</td></tr>
+  <tr class="sum"><td>Razem</td><td>25 256 zł</td></tr>
+</table>
+</div>
+
+<h3>Koszt jednego zamówienia</h3>
+<p>Kawa, mleko i dodatki to około 8,50 zł, kubek i serwetki 1 zł, a prowizja za płatność kartą 1,5% ceny. Razem około <b>9,97 zł</b>, więc z rachunku 31 zł zostaje <b>21,04 zł</b> na pokrycie kosztów stałych.</p>
+
+<h3>Próg rentowności</h3>
+<div class="card">
+<p style="margin:0;font-size:19px;font-weight:600;text-align:center">25 256 zł ÷ 21,04 zł ≈ 1 201 zamówień miesięcznie</p>
+</div>
+<p>To około 46 zamówień dziennie przy 26 dniach pracy w miesiącu, czyli mniej więcej 800 stałych klientów miesięcznie. Poniżej tej liczby kawiarnia traci, powyżej zarabia.</p>
+
+<h3>Wynik przy 2100 zamówieniach miesięcznie</h3>
+<div class="card">
+<table>
+  <tr><td>Przychód (2 100 × 31 zł)</td><td>65 100 zł</td></tr>
+  <tr><td>− koszty zmienne</td><td>20 927 zł</td></tr>
+  <tr><td>− koszty stałe</td><td>25 256 zł</td></tr>
+  <tr><td>Wynik operacyjny</td><td>18 917 zł</td></tr>
+  <tr><td>− amortyzacja, odsetki od kredytu</td><td>2 659 zł</td></tr>
+  <tr><td>− składka zdrowotna i ryczałt</td><td>3 412 zł</td></tr>
+  <tr class="sum"><td>Zysk netto</td><td>12 846 zł</td></tr>
+</table>
+</div>
+<p>Inwestycja 120 000 zł (wkład własny 45 000 zł i kredyt 95 000 zł) wraca w uproszczeniu po około 6 miesiącach pełnego ruchu. W praktyce dłużej, bo pierwsze miesiące to rozruch z mniejszą liczbą gości.</p>
+
+<div class="cta">
+  <p>Policz swój wariant: inne miasto, czynsz albo cena kawy. Coasely sprawdzi też, ile kawiarni działa już w Twojej gminie.</p>
+  <a class="btn" href="/pl/?przyklad=kawiarnia">Otwórz przykład kawiarni w kalkulatorze</a>
+</div>
+
+<h2>Najczęstsze błędy przy otwieraniu kawiarni</h2>
+<h3>1. Zbyt optymistyczny ruch</h3>
+<p>Przy kosztach stałych powyżej 25 000 zł każdy słabszy dzień boli. Sprawdź, ilu ludzi realnie przechodzi obok lokalu i ile kawiarni jest już w okolicy.</p>
+<h3>2. Pominięte pensje i ZUS</h3>
+<p>W kawiarni największym kosztem są często ludzie, nie czynsz. Policz pełny koszt pracodawcy, a nie tylko wypłatę „na rękę”.</p>
+<h3>3. Sezonowość</h3>
+<p>Kawiarnia przy uczelni ma mniej gości w wakacje i w sesji. Zaplanuj zapas gotówki na słabsze miesiące.</p>
+<h3>4. Za niska cena</h3>
+<p>Podwyżka średniego rachunku o 2 zł obniża w przykładzie próg rentowności o około 100 zamówień miesięcznie.</p>
+
+<p class="note">Wyniki są szacunkowe i nie stanowią porady podatkowej ani inwestycyjnej. Podatki i składki według przepisów na 2026 r., w uproszczeniu.</p>
+
+<h2>Najczęstsze pytania</h2>
+<h3>Ile kosztuje otwarcie kawiarni?</h3>
+<p>W przykładzie małej kawiarni przy uczelni jednorazowa inwestycja to 120 000 zł: ekspres i młynki, remont, meble i wyposażenie. Dużo zależy od stanu lokalu i tego, czy kupujesz sprzęt nowy, czy używany.</p>
+<h3>Ile kaw dziennie musi sprzedać kawiarnia, żeby wyjść na zero?</h3>
+<p>W przykładzie próg rentowności to około 1200 zamówień miesięcznie, czyli około 46 dziennie przy 26 dniach pracy w miesiącu. To liczba przed podatkiem, przy średnim rachunku 31 zł i kosztach stałych około 25 300 zł miesięcznie.</p>
+<h3>Ile można zarobić na kawiarni?</h3>
+<p>W przykładzie przy 2100 zamówieniach miesięcznie właścicielce zostaje około 12 800 zł miesięcznie po podatku i składkach. Przy mniejszym ruchu wynik szybko spada, bo koszty stałe kawiarni są wysokie.</p>
+
+<div class="cta">
+  <p>Masz inny pomysł niż kawiarnia? Sprawdź go w 7 krokach.</p>
+  <a class="btn" href="/pl/">Zacznij w Coasely</a>
+</div>
+<p>Zobacz też: <a href="/czy-oplaca-sie-otworzyc-kebab/">Kebab</a> · <a href="/czy-oplaca-sie-otworzyc-salon-fryzjerski/">Salon fryzjerski</a> · <a href="/czy-oplaca-sie-sprzedawac-kurs-online/">Kurs online</a> · <a href="/czy-oplaca-sie/">wszystkie branże</a></p>
+</main>
+<footer>Coasely · darmowy kalkulator pomysłu na biznes · autorka: Maja Kosmowska · <a href="/pl/">Strona główna</a> · <a href="/kalkulator-progu-rentownosci/">Kalkulator progu rentowności</a></footer>
+</body>
+</html>

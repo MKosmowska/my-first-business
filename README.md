@@ -1,3 +1,11 @@
+# Coasely – free business idea calculator
+
+**Live:** https://coasely.com · **Po polsku:** https://coasely.com/pl/
+
+Coasely is a free, bilingual (PL/EN) calculator that lets students and first-time founders test a business idea in Poland on real data: competitors in every Polish municipality (GUS REGON), market saturation, break-even, 2026 taxes and ZUS, a 3-year cash-flow forecast, a DCF valuation and a stress test.
+
+Created by Maja Kosmowska.
+
 # Coasely · Run the numbers before you run the business
 
 Narzędzie do wczesnej prognozy i wyceny pomysłu na biznes: od rynku na prawdziwych danych, przez koszty, podatki i finansowanie, po prognozę na 3 lata i orientacyjną wycenę.

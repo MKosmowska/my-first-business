@@ -1,0 +1,37 @@
+# Coasely
+
+> Coasely (coasely.com) is a free, bilingual (Polish and English) online calculator for testing a first business idea in Poland on real data. No account is needed and plans are saved only in the user's browser.
+
+Coasely was created in 2026 by Maja Kosmowska, a high school student from Warsaw and finalist of the National Economics Olympiad and the Entrepreneurship Olympiad. The name is a tribute to the economist Ronald Coase.
+
+## What it does
+
+The calculator walks the user through 7 steps:
+
+1. Idea: type of business, business model (local or online) and Polish municipality.
+2. Market: number of competitors in the same industry in every Polish municipality (GUS REGON register), a market saturation index based on a regression across all municipalities, competitors from OpenStreetMap within 5 km, and an estimate of how many customers the local market could give.
+3. Price and costs: fixed and variable costs, contribution margin, service capacity and break-even point.
+4. Finance and tax: own contribution, loan, and a comparison of Polish tax options for sole traders under 2026 rules (tax scale, flat tax, lump-sum tax, limited company) including ZUS social security contributions.
+5. Results: monthly take-home profit, break-even customers, payback period, income statement and cost breakdown.
+6. Forecast and valuation: 36-month cash-flow forecast and an indicative DCF valuation.
+7. Stress test: 11 critical checkpoints, sensitivity sliders, best price and scenarios.
+
+Plans can be exported to Excel, shared by link or printed.
+
+## Who it is for
+
+High school and university students (for example in the Polish school subject "Biznes i zarządzanie"), teachers, and first-time founders in Poland who want to check whether a business idea is worth starting.
+
+## Data sources
+
+- Statistics Poland (GUS): REGON business register, Local Data Bank (population, density, wages, tourist accommodation), household budget survey.
+- OpenStreetMap contributors (competitor locations).
+- Polish tax and ZUS rules for 2026.
+
+Results are estimates and are not tax or investment advice.
+
+## Pages
+
+- [Coasely (English)](https://coasely.com/): the calculator in English.
+- [Coasely (Polski)](https://coasely.com/pl/): kalkulator pomysłu na biznes po polsku.
+- [Kalkulator progu rentowności](https://coasely.com/kalkulator-progu-rentownosci/): break-even formula, worked example and common mistakes (Polish).

@@ -1654,7 +1654,7 @@ function searchAreas(q) {
 /* ===== Konkurencja według rejestru REGON (GUS) ===== */
 var REGON_SRC = { pl: 'GUS: rejestr REGON (31.10.2026), Powierzchnia i ludność w przekroju terytorialnym 2025, Bank Danych Lokalnych (miejsca noclegowe 2025), Budżety gospodarstw domowych 2025', en: 'Statistics Poland (GUS): REGON register (31 Oct 2026), Area and population by territorial units 2025, Local Data Bank (tourist beds 2025), Household Budget Survey 2025' };
 var PKD = {
-  C: ['Produkcja', 'Manufacturing'], F: ['Budownictwo i remonty', 'Construction and renovation'], G: ['Handel i naprawa samochodów', 'Retail, wholesale and car repair'],
+  C: ['Produkcja', 'Manufacturing'], F: ['Budownictwo i remonty', 'Construction and renovation'], G: ['Handel (sklepy, hurtownie, naprawa aut)', 'Trade (shops, wholesale, car repair)'],
   H: ['Transport i kurierzy', 'Transport and couriers'], I: ['Gastronomia i noclegi', 'Food service and accommodation'], J: ['IT, internet i media', 'IT, internet and media'],
   L: ['Nieruchomości', 'Real estate'], M: ['Usługi specjalistyczne (marketing, foto, projektowanie)', 'Professional services (marketing, photo, design)'],
   N: ['Sprzątanie, wypożyczalnie, usługi dla firm', 'Cleaning, rentals, business support'], P: ['Edukacja', 'Education'], Q: ['Zdrowie', 'Health'],
@@ -2949,6 +2949,7 @@ function OsmFinder(p) {
           : L('Nie udało się połączyć z OpenStreetMap. Sprawdź połączenie z internetem i spróbuj ponownie.', 'Could not connect to OpenStreetMap. Check your internet connection and try again.') });
       });
   }
+  useEffect(function () { if (p.auto && cat && ((addr && city) || hasCoords)) run(); }, []);
   return html`<div className="card">
     <div className="card-h"><h3>${L('Znajdź konkurentów na mapie', 'Find competitors on the map')}</h3></div>
     <p className="hint">${L('Aplikacja wyszuka w OpenStreetMap firmy wybranego rodzaju w promieniu 5 km od Twojego adresu i wpisze je na listę poniżej, razem z odległością.', 'The app searches OpenStreetMap for businesses of the chosen type within 5 km of your address and adds them to the list below with their distance.')}</p>
@@ -2995,13 +2996,13 @@ function StageMarket(p) {
 
     <div className="field">
       <${Seg} label=${L('Źródło danych', 'Data source')} value=${m.mode} onChange=${function (v) { set(['market', 'mode'], v); }}
-        options=${[['manual', L('Wpisz dane ręcznie', 'Enter data manually'), L('Twoje własne ustalenia', 'your own findings')], ['demo', L('Przykład demonstracyjny', 'Demo example'), L('przykładowe dane do nauki', 'sample data for learning')]]} />
+        options=${[['manual', L('Prawdziwe firmy', 'Real businesses'), L('z mapy albo wpisane przez Ciebie', 'from the map or added by you')], ['demo', L('Lista przykładowa', 'Sample list'), L('wymyślone firmy do nauki', 'made-up businesses for practice')]]} />
     </div>
 
     ${local ? html`<div className="card area-card"><${AreaPicker} market=${true} st=${st} onPick=${p.pickArea} onClear=${function () { set(['idea', 'area'], ''); }} />
       <p className="small muted">${L('Od gminy lub dzielnicy zależą dane GUS w tym etapie: liczba mieszkańców, konkurencja i nasycenie rynku. Sama ulica jej nie zmienia, ale wyszukiwanie konkurencji niżej podpowie, jeśli adres leży w innej dzielnicy.', 'The municipality or district drives the GUS data in this step: residents, competition and market saturation. The street alone does not change it, but the competitor search below will tell you if the address lies in another district.')}</p></div>` : null}
-    ${local && !demo ? html`<${OsmFinder} st=${st} apply=${p.apply} pickArea=${p.pickArea} />` : null}
-    ${local && demo ? html`<p className="hint">${L('Żeby znaleźć prawdziwych konkurentów na mapie, wybierz „Wpisz dane ręcznie”.', 'To find real competitors on the map, choose “Enter data manually”.')}</p>` : null}
+    ${local ? html`<${OsmFinder} st=${st} apply=${p.apply} pickArea=${p.pickArea} auto=${demo} />` : null}
+    
     ${demo ? html`<div className="fakebar" role="note"><${Fake} /><span>${L('Wszystkie nazwy, adresy i odległości poniżej są wymyślone. Nie opisują żadnego prawdziwego miejsca.', 'All names, addresses and distances below are made up. They do not describe any real place.')}</span></div>` : null}
 
     <div className="duo"><div className="card">
@@ -3061,7 +3062,7 @@ function StageMarket(p) {
     </div>` : null}
 
     <div className="card">
-      <div className="card-h"><h3>${demo ? L('Wyniki (dane przykładowe)', 'Results (sample data)') : L('Wyniki po usunięciu duplikatów', 'Results after removing duplicates')}</h3>${demo ? html`<${Fake} />` : null}</div>
+      <div className="card-h"><h3>${demo ? L('Lista przykładowa (wymyślone firmy)', 'Sample list (made-up businesses)') : L('Wyniki po usunięciu duplikatów', 'Results after removing duplicates')}</h3>${demo ? html`<${Fake} />` : null}</div>
       ${stats.list.length === 0 ? html`<p className="empty">${L('Brak firm na liście.', 'No businesses on the list.')}</p>` : html`<div className="tblwrap"><table className="tbl">
         <thead><tr><th>${L('Nazwa', 'Name')}</th>${local ? html`<th>${L('Adres', 'Address')}</th><th className="r">${L('Odległość', 'Distance')}</th>` : html`<th>${L('Strona / platforma', 'Website / marketplace')}</th><th>${L('Uwagi', 'Notes')}</th>`}</tr></thead>
         <tbody>${stats.list.map(function (x, j) {

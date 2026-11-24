@@ -2793,7 +2793,7 @@ function AreaPicker(p) {
 
 /* ---------- ETAP 1 ---------- */
 var TYPES = [['Fryzjer', 'Hairdresser'], ['Barber', 'Barber'], ['Manicure i paznokcie', 'Nail studio'], ['Kosmetyczka', 'Beautician'], ['Masaż', 'Massage'], ['Korepetycje', 'Tutoring'], ['Szkoła językowa', 'Language school'], ['Trener personalny', 'Personal trainer'], ['Studio jogi', 'Yoga studio'],
-  ['Kawiarnia', 'Café'], ['Restauracja', 'Restaurant'], ['Pizzeria', 'Pizzeria'], ['Fast food / kebab', 'Fast food / kebab'], ['Bistro', 'Bistro'], ['Cukiernia', 'Cake shop'], ['Piekarnia', 'Bakery'], ['Lodziarnia', 'Ice cream shop'], ['Food truck', 'Food truck'], ['Catering dietetyczny', 'Diet catering'], ['Bar', 'Bar'], ['Pub', 'Pub'],
+  ['Kawiarnia', 'Café'], ['Restauracja', 'Restaurant'], ['Pizzeria', 'Pizzeria'], ['Fast food / kebab', 'Fast food / kebab'], ['Bistro', 'Bistro'], ['Cukiernia', 'Cake shop'], ['Piekarnia', 'Bakery'], ['Lodziarnia', 'Ice cream shop'], ['Food truck', 'Food truck'], ['Catering dietetyczny', 'Diet catering'], ['Bar', 'Bar'], ['Kebab', 'Kebab shop'], ['Żabka (franczyza)', 'Żabka franchise'], ['Pub', 'Pub'],
   ['Sklep internetowy', 'Online shop'], ['Sklep spożywczy', 'Grocery shop'], ['Butik odzieżowy', 'Clothing boutique'], ['Second hand', 'Second-hand shop'], ['Kwiaciarnia', 'Florist'], ['Księgarnia', 'Bookshop'], ['Drogeria', 'Cosmetics shop'], ['Sklep zoologiczny', 'Pet shop'], ['Optyk', 'Optician'], ['Rękodzieło i upominki', 'Handmade gifts'],
   ['Serwis rowerowy', 'Bike repair shop'], ['Naprawa telefonów', 'Phone repair'], ['Warsztat samochodowy', 'Car repair shop'], ['Myjnia samochodowa', 'Car wash'], ['Krawiec', 'Tailor'], ['Pralnia', 'Laundry'], ['Studio tatuażu', 'Tattoo studio'], ['Sprzątanie', 'Cleaning service'], ['Opieka nad zwierzętami', 'Pet sitting'], ['Groomer', 'Dog groomer'], ['Gabinet weterynaryjny', 'Vet clinic'], ['Fizjoterapia', 'Physiotherapy'], ['Siłownia', 'Gym'], ['Szkoła tańca', 'Dance school'], ['Escape room', 'Escape room'],
   ['Fotograf', 'Photographer'], ['Strony internetowe', 'Web design'], ['Grafik', 'Graphic designer'], ['Social media dla firm', 'Social media management'], ['Noclegi', 'Guest house'], ['Hotel', 'Hotel'], ['Agroturystyka', 'Farm stay'],
@@ -2803,11 +2803,11 @@ function StageIdea(p) {
   var st = p.st, set = p.set, i = st.idea, local = i.model === 'lokalny';
   return html`<section className="stage">
     <header className="stage-head"><p className="eyebrow">${eyebrow(1)}</p><h2>${L('Pomysł na biznes', 'Your business idea')}</h2>
-      <p className="lede">${L('Czy Twój pomysł nadaje się na firmę? Opisz, co sprzedajesz i gdzie, albo zacznij od gotowego przykładu i zmień jego liczby.', 'Could your idea work as a business? Describe what you sell and where, or start from a ready-made example and change its numbers.')}</p></header>
+      <p className="lede">${L('Czy Twój pomysł nadaje się na firmę? Sprawdź konkurencję, próg rentowności i to, ile naprawdę zostanie na rękę.', 'Could your idea work as a business? Check the competition, your break-even point and what you will really take home.')}</p></header>
 
     <div className="card">
       <div className="grid2">
-        <${TextField} st=${st} set=${set} path=${['idea', 'type']} label=${L('Rodzaj biznesu', 'Type of business')} placeholder=${L('np. fryzjer, myjnia, korepetycje', 'e.g. hairdresser, car wash, tutoring')} list="types" />
+        <${TextField} st=${st} set=${set} path=${['idea', 'type']} label=${L('Rodzaj biznesu', 'Type of business')} placeholder=${L('np. fryzjer, kebab, Żabka, korepetycje', 'e.g. hairdresser, kebab shop, tutoring')} list="types" />
         <div className="field"><div className="lab"><span className="lab-t">${L('Model działania', 'Business model')}</span></div>
           <${Seg} label=${L('Model działania', 'Business model')} value=${i.model} onChange=${function (v) { set(['idea', 'model'], v); }}
             options=${[['lokalny', L('Lokalny', 'Local'), L('klienci z okolicy', 'customers nearby')], ['online', 'Online', L('cała Polska', 'all of Poland')]]} />
@@ -4596,7 +4596,7 @@ function App() {
       <div className="brand">
         <a className="brand-home" href="#" title=${L('Strona główna', 'Home')} aria-label=${L('Coasely: strona główna', 'Coasely: home')} onClick=${function (e) { e.preventDefault(); setPending(null); setView('app'); setStep(0); try { history.replaceState(null, '', location.pathname + location.search); window.scrollTo({ top: 0, behavior: 'smooth' }); } catch (x) {} }}><span className="logo" aria-hidden="true"><svg viewBox="0 0 40 40"><rect width="40" height="40" rx="4.5" fill="var(--logo-bg)"/><rect x="8" y="6.5" width="6.5" height="27" rx=".8" fill="#FFFFFF"/><rect x="8" y="6.5" width="24" height="6.5" rx=".8" fill="#FFFFFF"/><rect x="8" y="27" width="15" height="6.5" rx=".8" fill="#FFFFFF"/></svg></span>
         <span className="wm-sep" aria-hidden="true"></span><h1 className="wm">Coasely<span className="wm-dot" aria-hidden="true">.</span></h1></a>
-        <p className="brand-k"><span>${L('Wiedz, zanim ruszysz.', 'Know before you go.')}</span>${L('Liczby stojące za Twoim pierwszym biznesem', 'The numbers behind your first business')}</p>
+        <p className="brand-k"><span>${L('Wiedz, zanim ruszysz.', 'Know before you go.')}</span>${L('Policz, czy Twój pomysł się opłaca', 'Find out if your idea pays off')}</p>
       </div>
       <div className="top-actions">
         <button type="button" className="theme" title=${L('Motyw: ', 'Theme: ') + themeName[theme] + L(' (kliknij: ', ' (click: ') + themeName[nextTheme] + ')'} aria-label=${L('Motyw: ', 'Theme: ') + themeName[theme]} onClick=${function () { setTheme(nextTheme); }}>

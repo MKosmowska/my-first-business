@@ -2333,10 +2333,27 @@ var EXAMPLES = [
       tax: { form: 'skala' },
       fin: { equity: '30000', loanOn: true, loan: '50000', rate: '9', years: '5' }
     }
+  },
+  {
+    id: 'zabka', name: ['Żabka (franczyza)', 'Żabka franchise'], tag: ['Franczyza · Warszawa', 'Franchise · Warsaw'],
+    blurb: ['Sklep sieci w Śródmieściu: lokal, towar i wyposażenie od sieci, właścicielka i 3 pracowników. Uproszczenie: 1 zamówienie to średni paragon 20 zł, z którego większość to towar i udział sieci.', 'A chain store in central Warsaw: premises, stock and fit-out from the chain, the owner and 3 staff. Simplified: 1 sale is an average 20 zł receipt, most of which is stock and the chain’s share.'],
+    text: { type: ['Żabka (franczyza)', 'Żabka franchise'], city: ['Warszawa', 'Warsaw'], address: ['Marszałkowska', 'Marszałkowska'] },
+    data: {
+      idea: { model: 'lokalny', unit: 'zamówienie', area: '1465108' },
+      market: { size: { radius: '500', pop: '25000', density: '', pct: '60', every: '0,2', share: '' } },
+      sales: { price: '20', upc: '3', clients: '2500' },
+      fixed: { rent: '0', media: '900', accounting: '400', marketing: '0', software: '0', zus: '1930', other: '2200', hasEmployee: true, employees: '3', employee: '6200' },
+      variable: { materials: '15,33', packaging: '0', delivery: '0', other: '0', commission: '0' },
+      work: { days: '30', hours: '16', minutes: '', pct: '', maxOrders: '12000' },
+      goals: { target: '8000', investment: '8000' },
+      scen: { ostrozny: { price: '20', clients: '2150', materials: '15,33' }, optymistyczny: { price: '20', clients: '2800', materials: '15,33' } },
+      tax: { form: 'liniowy', stage: 'full' },
+      fin: { equity: '8000', loanOn: false }
+    }
   }
 ];
 function exName(e) { return L(e.name[0], e.name[1]); }
-var EX_GROUPS = [{ id: 'all', n: ['', ''], ids: ['fryzjer', 'kawiarnia', 'kebab', 'kurs'] }];
+var EX_GROUPS = [{ id: 'all', n: ['', ''], ids: ['fryzjer', 'kawiarnia', 'kebab', 'zabka', 'kurs'] }];
 function findExample(key) {
   return EXAMPLES.filter(function (x) { return x.id === key || x.name[0] === key || x.name[1] === key; })[0] || null;
 }

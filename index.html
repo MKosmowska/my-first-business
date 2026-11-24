@@ -2374,7 +2374,7 @@ function exampleState(id) {
   s.idea.type = e.text.type[i]; s.idea.city = e.text.city[i]; s.idea.address = e.text.address[i];
   if (LANG === 'en') ['sales', 'variable'].forEach(function (g) { Object.keys(s[g]).forEach(function (k) { if (typeof s[g][k] === 'string') s[g][k] = s[g][k].replace(',', '.'); }); });
   s.example = e.id;
-  s.market = Object.assign({}, s.market, { mode: 'demo' });
+  s.market = Object.assign({}, s.market, { mode: 'manual', items: [], osm: null });
   return s;
 }
 function blankState() { return deepClone(BLANK); }
@@ -2969,14 +2969,10 @@ function StageMarket(p) {
         'Online shops are not on the map. Check search engines and marketplaces, and enter businesses in manual mode. Made-up numbers are never shown as real results.')}
     <//>` : null}
 
-    <div className="field">
-      <${Seg} label=${L('Źródło danych', 'Data source')} value=${m.mode} onChange=${function (v) { set(['market', 'mode'], v); }}
-        options=${[['manual', L('Prawdziwe firmy', 'Real businesses'), L('z mapy albo wpisane przez Ciebie', 'from the map or added by you')], ['demo', L('Lista przykładowa', 'Sample list'), L('wymyślone firmy do nauki', 'made-up businesses for practice')]]} />
-    </div>
 
     ${local ? html`<div className="card area-card"><${AreaPicker} market=${true} st=${st} onPick=${p.pickArea} onClear=${function () { set(['idea', 'area'], ''); }} />
       <p className="small muted">${L('Od gminy lub dzielnicy zależą dane GUS w tym etapie: liczba mieszkańców, konkurencja i nasycenie rynku. Sama ulica jej nie zmienia, ale wyszukiwanie konkurencji niżej podpowie, jeśli adres leży w innej dzielnicy.', 'The municipality or district drives the GUS data in this step: residents, competition and market saturation. The street alone does not change it, but the competitor search below will tell you if the address lies in another district.')}</p></div>` : null}
-    ${local ? html`<${OsmFinder} st=${st} apply=${p.apply} pickArea=${p.pickArea} auto=${demo} />` : null}
+    ${local ? html`<${OsmFinder} st=${st} apply=${p.apply} pickArea=${p.pickArea} auto=${!m.osm} />` : null}
     
     ${demo ? html`<div className="fakebar" role="note"><${Fake} /><span>${L('Wszystkie nazwy, adresy i odległości poniżej są wymyślone. Nie opisują żadnego prawdziwego miejsca.', 'All names, addresses and distances below are made up. They do not describe any real place.')}</span></div>` : null}
 

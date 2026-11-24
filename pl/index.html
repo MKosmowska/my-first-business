@@ -1099,6 +1099,10 @@ button.ex.active, button.ex[aria-pressed="true"] { box-shadow: 0 0 0 2px var(--a
 .wm-dot { color: #C98A1E; }
 :root[data-theme="dark"] .wm-dot { color: #E3B45C; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .wm-dot { color: #E3B45C; } }
+/* v42: ręczne dopisywanie w karcie mapy */
+.osm-manual { border-top: 1px solid var(--line); margin-top: 18px; padding-top: 16px; }
+.osm-manual .card-h h3 { font-size: 16px; }
+.more-btn { margin-top: 10px; }
 
 
 /* v20: kolor kwoty zależny od wyniku (zielony / żółty / czerwony) */
@@ -2970,6 +2974,7 @@ function OsmFinder(p) {
       ${status.s === 'err' ? html`<span className="status bad" role="status">${status.t}</span>` : null}
     </div>
     <p className="small muted">${L('Mapę tworzą wolontariusze, więc w mniejszych miejscowościach brakuje części firm, a niektóre mogły się już zamknąć. Traktuj wynik jako „co najmniej tylu konkurentów” i dopisz firmy, które znasz. Dane: ', 'The map is made by volunteers, so smaller towns miss some businesses and some may have closed. Treat the result as “at least this many competitors” and add businesses you know. Data: ')}<a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© ${L('autorzy OpenStreetMap', 'OpenStreetMap contributors')}</a>.</p>
+    ${p.children}
   </div>`;
 }
 
@@ -2985,46 +2990,8 @@ function StageMarket(p) {
   if (stats.unknown) extras.push(L('bez odległości: ', 'no distance: ') + stats.unknown);
   if (stats.dupes) extras.push(L('usunięte duplikaty: ', 'duplicates removed: ') + stats.dupes);
 
-  return html`<section className="stage">
-    <header className="stage-head"><p className="eyebrow">${eyebrow(2)}</p><h2>${L('Rynek i konkurencja', 'Market and competition')}</h2>
-      <p className="lede">${local ? L('Sprawdź, ile podobnych firm działa w pobliżu Twojego punktu.', 'Check how many similar businesses operate near your location.') : L('Zbierz listę firm, które sprzedają podobne rzeczy w internecie w Polsce.', 'Make a list of businesses that sell similar things online in Poland.')}</p></header>
-
-    ${!local ? html`<${Notice} tone="info" title=${L('Konkurencję online zbierasz sama', 'You collect online competitors yourself')}>
-      ${L('Sklepów internetowych nie ma na mapie. Sprawdź wyszukiwarkę i platformy sprzedażowe, a firmy wpisz w trybie ręcznym. Nie pokazujemy wymyślonych liczb jako prawdziwych wyników.',
-        'Online shops are not on the map. Check search engines and marketplaces, and enter businesses in manual mode. Made-up numbers are never shown as real results.')}
-    <//>` : null}
-
-
-    ${local ? html`<div className="card area-card"><${AreaPicker} market=${true} st=${st} onPick=${p.pickArea} onClear=${function () { set(['idea', 'area'], ''); }} />
-      <p className="small muted">${L('Od gminy lub dzielnicy zależą dane GUS w tym etapie: liczba mieszkańców, konkurencja i nasycenie rynku. Sama ulica jej nie zmienia, ale wyszukiwanie konkurencji niżej podpowie, jeśli adres leży w innej dzielnicy.', 'The municipality or district drives the GUS data in this step: residents, competition and market saturation. The street alone does not change it, but the competitor search below will tell you if the address lies in another district.')}</p></div>` : null}
-    ${local ? html`<${OsmFinder} st=${st} apply=${p.apply} pickArea=${p.pickArea} auto=${!m.osm} />` : null}
-    
-    ${demo ? html`<div className="fakebar" role="note"><${Fake} /><span>${L('Wszystkie nazwy, adresy i odległości poniżej są wymyślone. Nie opisują żadnego prawdziwego miejsca.', 'All names, addresses and distances below are made up. They do not describe any real place.')}</span></div>` : null}
-
-    <div className="duo"><div className="card">
-      <div className="card-h"><h3>${L('Źródło i data', 'Source and date')}</h3></div>
-      ${demo ? html`<dl className="meta"><div><dt>${L('Źródło', 'Source')}</dt><dd>${L('Brak. Dane wymyślone na potrzeby ćwiczenia.', 'None. Data invented for this exercise.')}</dd></div><div><dt>${L('Data pozyskania', 'Date collected')}</dt><dd>${L('nie dotyczy', 'not applicable')}</dd></div></dl>`
-        : html`<div className="grid2">
-          <${TextField} st=${st} set=${set} path=${['market', 'source']} label=${L('Skąd masz dane?', 'Where is the data from?')} placeholder=${local ? L('np. mapa online, spacer po okolicy', 'e.g. online map, a walk around the area') : L('np. wyszukiwarka, platforma sprzedażowa', 'e.g. search engine, marketplace')} />
-          <${TextField} st=${st} set=${set} path=${['market', 'date']} label=${L('Data sprawdzenia', 'Date checked')} type="date" />
-        </div>
-        ${!m.source || !m.date ? html`<p className="hint">${L('Wpisz źródło i datę. Bez nich nie wiadomo, na ile aktualna jest Twoja lista.', 'Enter the source and date. Without them nobody can tell how up to date your list is.')}</p>` : null}`}
-    </div>
-
-    ${local ? html`<div className="card">
-      <div className="card-h"><h3>${L('Konkurenci w promieniu od ', 'Competitors within a radius of ')}${st.idea.address ? st.idea.address : L('Twojego punktu', 'your location')}</h3></div>
-      <div className="radii">
-        ${stats.radii.map(function (r) {
-          return html`<div key=${r.r} className="radius"><span className="radius-n">${r.count}</span><span className="radius-l">${L('do ', 'within ')}${r.r >= 1000 ? num(r.r / 1000, 1) + ' km' : r.r + ' m'}</span></div>`;
-        })}
-      </div>
-      <p className="hint">${L('Promienie zawierają się w sobie: firma 300 m od Ciebie liczy się w każdym z nich. Nie dodawaj tych liczb do siebie. Odległość liczymy w linii prostej, nie trasą dojazdu.', 'The radii are nested: a business 300 m away counts in every one of them. Do not add these numbers up. Distance is measured in a straight line, not along a route.')}</p>
-      <p className="small muted">${extras.join(' · ')}</p>
-      <p className="small muted">${L('Lista może być niepełna: część firm nie ma wizytówek w internecie, inne już nie działają. Traktuj wynik jako przybliżenie.', 'The list may be incomplete: some businesses are not listed online, others have closed. Treat the result as an approximation.')}</p>
-    </div>` : null}</div>
-
-    ${!demo ? html`<div className="card">
-      <div className="card-h"><h3>${local ? L('Twoja lista placówek', 'Your list of businesses') : L('Twoja lista konkurentów online', 'Your list of online competitors')}</h3>
+  var listBlock = !demo ? html`<div className=${local ? 'osm-manual' : 'card'}>
+      <div className="card-h"><h3>${local ? L('Brakuje jakiejś firmy? Dopisz ją', 'Missing a business? Add it') : L('Twoja lista konkurentów online', 'Your list of online competitors')}</h3>
         <button type="button" className="btn btn-ghost" onClick=${addRow}>${L('+ Dodaj firmę', '+ Add business')}</button></div>
       ${local ? html`<details className="adv"><summary>${L('Mam współrzędne zamiast odległości', 'I have coordinates instead of distances')}</summary>
         <p className="hint">${L('Wpisz współrzędne swojego punktu, a przy firmach ich współrzędne. Aplikacja policzy odległość w linii prostej. Jeśli podasz i odległość, i współrzędne, liczy się odległość.', 'Enter the coordinates of your location and of each business. The app will calculate the straight-line distance. If you give both a distance and coordinates, the distance is used.')}</p>
@@ -3055,15 +3022,46 @@ function StageMarket(p) {
           ${!osm.length && m.osm && m.osm.packed ? html`<p className="hint">${L('Ten plan zawiera ' + m.osm.packed + ' firm z OpenStreetMap: są wliczone w liczby konkurentów powyżej, ale ich lista nie jest przesyłana w kodzie planu. Kliknij „Szukaj w OpenStreetMap”, żeby ją zobaczyć.', 'This plan includes ' + m.osm.packed + ' businesses from OpenStreetMap: they are counted above, but their list is not sent in the plan code. Click “Search OpenStreetMap” to see it.')}</p>` : null}
           ${osm.length ? html`<details className="adv"><summary>${L('Firmy z OpenStreetMap (' + osm.length + '): rozwiń, aby poprawić lub usunąć', 'Businesses from OpenStreetMap (' + osm.length + '): expand to edit or remove')}</summary><div className="rows">${osm}</div></details>` : null}`;
       })()}
-    </div>` : null}
+    </div>` : null;
+  var showAllS = useState(false), showAll = showAllS[0];
+  return html`<section className="stage">
+    <header className="stage-head"><p className="eyebrow">${eyebrow(2)}</p><h2>${L('Rynek i konkurencja', 'Market and competition')}</h2>
+      <p className="lede">${local ? L('Sprawdź, ile podobnych firm działa w pobliżu Twojego punktu.', 'Check how many similar businesses operate near your location.') : L('Zbierz listę firm, które sprzedają podobne rzeczy w internecie w Polsce.', 'Make a list of businesses that sell similar things online in Poland.')}</p></header>
+
+    ${!local ? html`<${Notice} tone="info" title=${L('Konkurencję online zbierasz sama', 'You collect online competitors yourself')}>
+      ${L('Sklepów internetowych nie ma na mapie. Sprawdź wyszukiwarkę i platformy sprzedażowe, a firmy wpisz w trybie ręcznym. Nie pokazujemy wymyślonych liczb jako prawdziwych wyników.',
+        'Online shops are not on the map. Check search engines and marketplaces, and enter businesses in manual mode. Made-up numbers are never shown as real results.')}
+    <//>` : null}
+
+
+    ${local ? html`<div className="card area-card"><${AreaPicker} market=${true} st=${st} onPick=${p.pickArea} onClear=${function () { set(['idea', 'area'], ''); }} />
+      <p className="small muted">${L('Od gminy lub dzielnicy zależą dane GUS w tym etapie: liczba mieszkańców, konkurencja i nasycenie rynku. Sama ulica jej nie zmienia, ale wyszukiwanie konkurencji niżej podpowie, jeśli adres leży w innej dzielnicy.', 'The municipality or district drives the GUS data in this step: residents, competition and market saturation. The street alone does not change it, but the competitor search below will tell you if the address lies in another district.')}</p></div>` : null}
+    ${local ? html`<${OsmFinder} st=${st} apply=${p.apply} pickArea=${p.pickArea} auto=${!m.osm}>${listBlock}<//>` : null}
+    
+    ${demo ? html`<div className="fakebar" role="note"><${Fake} /><span>${L('Wszystkie nazwy, adresy i odległości poniżej są wymyślone. Nie opisują żadnego prawdziwego miejsca.', 'All names, addresses and distances below are made up. They do not describe any real place.')}</span></div>` : null}
+
+    <div>
+    ${local ? html`<div className="card">
+      <div className="card-h"><h3>${L('Konkurenci w promieniu od ', 'Competitors within a radius of ')}${st.idea.address ? st.idea.address : L('Twojego punktu', 'your location')}</h3></div>
+      <div className="radii">
+        ${stats.radii.map(function (r) {
+          return html`<div key=${r.r} className="radius"><span className="radius-n">${r.count}</span><span className="radius-l">${L('do ', 'within ')}${r.r >= 1000 ? num(r.r / 1000, 1) + ' km' : r.r + ' m'}</span></div>`;
+        })}
+      </div>
+      <p className="hint">${L('Promienie zawierają się w sobie: firma 300 m od Ciebie liczy się w każdym z nich. Nie dodawaj tych liczb do siebie. Odległość liczymy w linii prostej, nie trasą dojazdu.', 'The radii are nested: a business 300 m away counts in every one of them. Do not add these numbers up. Distance is measured in a straight line, not along a route.')}</p>
+      <p className="small muted">${extras.join(' · ')}</p>
+      <p className="small muted">${L('Lista może być niepełna: część firm nie ma wizytówek w internecie, inne już nie działają. Traktuj wynik jako przybliżenie.', 'The list may be incomplete: some businesses are not listed online, others have closed. Treat the result as an approximation.')}</p>
+    </div>` : null}</div>
+
+    ${!local ? listBlock : null}
 
     <div className="card">
       <div className="card-h"><h3>${demo ? L('Lista przykładowa (wymyślone firmy)', 'Sample list (made-up businesses)') : L('Wyniki po usunięciu duplikatów', 'Results after removing duplicates')}</h3>${demo ? html`<${Fake} />` : null}</div>
       ${stats.list.length === 0 ? html`<p className="empty">${L('Brak firm na liście.', 'No businesses on the list.')}</p>` : html`<div className="tblwrap"><table className="tbl">
         <thead><tr><th>${L('Nazwa', 'Name')}</th>${local ? html`<th>${L('Adres', 'Address')}</th><th className="r">${L('Odległość', 'Distance')}</th>` : html`<th>${L('Strona / platforma', 'Website / marketplace')}</th><th>${L('Uwagi', 'Notes')}</th>`}</tr></thead>
-        <tbody>${stats.list.map(function (x, j) {
+        <tbody>${(showAll ? stats.list : stats.list.slice(0, 10)).map(function (x, j) {
           return html`<tr key=${x.id || j}><td>${x.name}</td>${local ? html`<td>${x.address || '—'}</td><td className="r num">${x.d == null ? L('brak danych', 'no data') : distText(x.d)}${x.calcd ? html`<span className="small muted">${L(' (wyliczona)', ' (calculated)')}</span>` : null}</td>` : html`<td>${x.web || '—'}</td><td>${x.note || '—'}</td>`}</tr>`;
-        })}</tbody></table></div>`}
+        })}</tbody></table></div>${stats.list.length > 10 ? html`<button type="button" className="btn btn-ghost more-btn" onClick=${function () { showAllS[1](!showAll); }}>${showAll ? L('Pokaż mniej', 'Show less') : L('Pokaż wszystkie (' + stats.list.length + ')', 'Show all (' + stats.list.length + ')')}</button>` : null}`}
       ${!local ? html`<p className="hint">${L('Liczba wyników w wyszukiwarce to nie liczba firm na rynku. Jedna firma może mieć wiele stron, a wiele stron to katalogi albo artykuły. Licz tylko firmy, które naprawdę sprawdziłeś.', 'The number of search results is not the number of businesses on the market. One business can have many pages, and many pages are directories or articles. Count only businesses you have actually checked.')}</p>` : null}
     </div>
 

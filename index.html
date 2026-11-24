@@ -320,7 +320,7 @@ button.ex .ex-tag { font: 500 11px var(--f-body); text-transform: none; letter-s
 svg .ax { fill: var(--muted); font: 500 12px var(--f-body); }
 svg .ax-t { fill: var(--ink); font: 600 13px var(--f-body); }
 svg .mk { font: 700 12px var(--f-body); }
-svg .mk.good { fill: var(--good); } svg .mk.warn { fill: var(--warn); } svg .mk.plan { fill: var(--muted); } svg .mk.val { fill: var(--ink); }
+svg .mk.good { fill: var(--good); } svg .mk.warn { fill: var(--warn); } svg .mk.plan { fill: var(--muted); paint-order: stroke; stroke: var(--surface); stroke-width: 4px; stroke-linejoin: round; } svg .mk.val { fill: var(--ink); }
 .cs-cols { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
 .cs-h { font-weight: 700; font-size: 14px; display: flex; justify-content: space-between; gap: 8px; border-bottom: 1px solid var(--line); padding-bottom: 6px; margin-bottom: 6px; }
 .cs-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 5px; font-size: 14px; }
@@ -1103,6 +1103,20 @@ button.ex.active, button.ex[aria-pressed="true"] { box-shadow: 0 0 0 2px var(--a
 .osm-manual { border-top: 1px solid var(--line); margin-top: 18px; padding-top: 16px; }
 .osm-manual .card-h h3 { font-size: 16px; }
 .more-btn { margin-top: 10px; }
+/* v44: odstęp między współrzędnymi a dopisanymi firmami */
+details.adv .grid2 { margin-bottom: 14px; }
+.osm-manual details.adv { margin-bottom: 12px; }
+.osm-manual .row-edit:first-of-type { margin-top: 6px; }
+@media (max-width: 760px) {
+  .row-edit:has(.inwrap) { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) minmax(0, 1fr) auto; }
+  .row-edit:has(.inwrap) > input:nth-of-type(1) { grid-column: 1 / 4; grid-row: 1; }
+  .row-edit:has(.inwrap) > .btn-x { grid-column: 4; grid-row: 1; }
+  .row-edit:has(.inwrap) > input:nth-of-type(2) { grid-column: 1 / 5; grid-row: 2; }
+  .row-edit:has(.inwrap) > .inwrap { grid-column: 1 / 5; grid-row: 3; }
+  .row-edit:has(.inwrap) > input:nth-of-type(3) { grid-column: 1 / 3; grid-row: 4; }
+  .row-edit:has(.inwrap) > input:nth-of-type(4) { grid-column: 3 / 5; grid-row: 4; }
+  .row-edit:has(.inwrap) > .row-err { grid-column: 1 / 5; }
+}
 
 
 /* v20: kolor kwoty zależny od wyniku (zielony / żółty / czerwony) */
@@ -1160,7 +1174,7 @@ button.ex.active, button.ex[aria-pressed="true"] { box-shadow: 0 0 0 2px var(--a
 </main></div>
 <script>
 /* Motyw jasny / ciemny: ustawiany przed startem aplikacji, żeby strona nie mrugała */
-(function () { try { var t = localStorage.getItem('moj-pierwszy-biznes-theme'); if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t); } catch (e) {} })();
+(function () { try { var t = localStorage.getItem('moj-pierwszy-biznes-theme'); if (t !== 'auto') document.documentElement.setAttribute('data-theme', t === 'dark' ? 'dark' : 'light'); } catch (e) {} })();
 </script>
 <script>
 /* Licznik odwiedzin GoatCounter: anonimowy, bez ciasteczek. Działa tylko na opublikowanej stronie (github.io albo własna domena),
@@ -2856,6 +2870,20 @@ function suggestArea(cur, pt) {
   GMINY.forEach(function (a) { if (!hit && a[2] === 8 && norm(a[1]) === nd && (!pre || a[0].slice(0, 4) === pre)) hit = a; });
   return hit && hit[0] !== cur ? hit : null;
 }
+var OVERPASS_URLS = ['https://overpass-api.de/api/interpreter', 'https://overpass.private.coffee/api/interpreter', 'https://overpass.kumi.systems/api/interpreter', 'https://maps.mail.ru/osm/tools/overpass/api/interpreter'];
+/* Pyta kolejne serwery Overpass, aż któryś odpowie; każdy dostaje 20 s */
+function overpassFetch(query) {
+  var busy = false;
+  function attempt(i) {
+    if (i >= OVERPASS_URLS.length) return Promise.reject(new Error(busy ? 'busy' : 'osm'));
+    var ctl = typeof AbortController !== 'undefined' ? new AbortController() : null;
+    var tm = ctl ? setTimeout(function () { ctl.abort(); }, 20000) : null;
+    return fetch(OVERPASS_URLS[i], { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: 'data=' + encodeURIComponent(query), signal: ctl ? ctl.signal : undefined })
+      .then(function (r) { if (tm) clearTimeout(tm); if (!r.ok) { if (r.status === 429 || r.status >= 500) busy = true; throw new Error('next'); } return r.json(); })
+      .catch(function () { if (tm) clearTimeout(tm); return attempt(i + 1); });
+  }
+  return attempt(0);
+}
 function OsmFinder(p) {
   var st = p.st, m = st.market;
   var guessed = guessOsmCat(st.idea.type);
@@ -2906,8 +2934,8 @@ function OsmFinder(p) {
     var pt;
     geocode().then(function (g) {
       pt = g;
-      return fetch('https://overpass-api.de/api/interpreter', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: 'data=' + encodeURIComponent(osmQuery(cat, g.lat, g.lon)) });
-    }).then(function (r) { if (!r.ok) throw new Error(r.status === 429 ? 'busy' : 'osm'); return r.json(); })
+      return overpassFetch(osmQuery(cat, g.lat, g.lon));
+    })
       .then(function (j) {
         var res = osmToItems(j, pt.lat, pt.lon), today = new Date().toISOString().slice(0, 10);
         p.apply(function (s) {
@@ -3034,9 +3062,9 @@ function StageMarket(p) {
       <div className="card-h"><h3>${demo ? L('Lista przykładowa (wymyślone firmy)', 'Sample list (made-up businesses)') : L('Wyniki po usunięciu duplikatów', 'Results after removing duplicates')}</h3>${demo ? html`<${Fake} />` : null}</div>
       ${stats.list.length === 0 ? html`<p className="empty">${L('Brak firm na liście.', 'No businesses on the list.')}</p>` : html`<div className="tblwrap"><table className="tbl">
         <thead><tr><th>${L('Nazwa', 'Name')}</th>${local ? html`<th>${L('Adres', 'Address')}</th><th className="r">${L('Odległość', 'Distance')}</th>` : html`<th>${L('Strona / platforma', 'Website / marketplace')}</th><th>${L('Uwagi', 'Notes')}</th>`}</tr></thead>
-        <tbody>${(showAll ? stats.list : stats.list.slice(0, 10)).map(function (x, j) {
+        <tbody>${(showAll ? stats.list : stats.list.slice(0, 5)).map(function (x, j) {
           return html`<tr key=${x.id || j}><td>${x.name}</td>${local ? html`<td>${x.address || '—'}</td><td className="r num">${x.d == null ? L('brak danych', 'no data') : distText(x.d)}${x.calcd ? html`<span className="small muted">${L(' (wyliczona)', ' (calculated)')}</span>` : null}</td>` : html`<td>${x.web || '—'}</td><td>${x.note || '—'}</td>`}</tr>`;
-        })}</tbody></table></div>${stats.list.length > 10 ? html`<button type="button" className="btn btn-ghost more-btn" onClick=${function () { showAllS[1](!showAll); }}>${showAll ? L('Pokaż mniej', 'Show less') : L('Pokaż wszystkie (' + stats.list.length + ')', 'Show all (' + stats.list.length + ')')}</button>` : null}`}
+        })}</tbody></table></div>${stats.list.length > 5 ? html`<button type="button" className="btn btn-ghost more-btn" onClick=${function () { showAllS[1](!showAll); }}>${showAll ? L('Pokaż mniej', 'Show less') : L('Pokaż wszystkie (' + stats.list.length + ')', 'Show all (' + stats.list.length + ')')}</button>` : null}`}
       ${!local ? html`<p className="hint">${L('Liczba wyników w wyszukiwarce to nie liczba firm na rynku. Jedna firma może mieć wiele stron, a wiele stron to katalogi albo artykuły. Licz tylko firmy, które naprawdę sprawdziłeś.', 'The number of search results is not the number of businesses on the market. One business can have many pages, and many pages are directories or articles. Count only businesses you have actually checked.')}</p>` : null}
     </div>
 
@@ -3346,7 +3374,7 @@ function BreakEvenChart(p) {
         <line x1=${x(c.units)} x2=${x(c.units)} y1=${y(Math.max(c.revenue, costAt(c.units)))} y2=${H - m.b} stroke="var(--muted)" strokeWidth="1" strokeDasharray="2 3" />
         <circle cx=${x(c.units)} cy=${y(c.revenue)} r="5" fill="var(--accent)" stroke="var(--surface)" strokeWidth="2" />
         <circle cx=${x(c.units)} cy=${y(costAt(c.units))} r="5" fill="var(--ink)" stroke="var(--surface)" strokeWidth="2" />
-        <text x=${x(c.units) > W - 120 ? x(c.units) - 6 : x(c.units)} y=${H - m.b - 8} textAnchor=${x(c.units) > W - 120 ? 'end' : 'middle'} className="mk plan">${L('Twój plan', 'Your plan')}</text>
+        <text x=${x(c.units) > W - 120 ? x(c.units) - 6 : x(c.units)} y=${Math.abs(H - m.b - 8 - y(c.fixedTotal)) < 16 ? Math.min(H - m.b - 8, y(c.fixedTotal) - 8) : H - m.b - 8} textAnchor=${x(c.units) > W - 120 ? 'end' : 'middle'} className="mk plan">${L('Twój plan', 'Your plan')}</text>
       </g>` : null}
     </svg></div>
     ${c.capacity != null && !capIn ? html`<figcaption className="small muted">${L('Limit obsługi (', 'Capacity (') + num(c.capacity) + ' ' + uLabel(c, c.capacity) + L(') jest daleko poza zakresem wykresu.', ') is far beyond the range of the chart.')}</figcaption>` : null}
@@ -4482,12 +4510,12 @@ function stepFromHash() { try { var h = (location.hash || '').slice(1); var i = 
 
 function App() {
   var langS = useState(loadLang), lang = langS[0], setLangS = langS[1];
-  var themeS = useState(function () { try { var t = localStorage.getItem('moj-pierwszy-biznes-theme'); return t === 'light' || t === 'dark' ? t : 'auto'; } catch (e) { return 'auto'; } }), theme = themeS[0], setTheme = themeS[1];
+  var themeS = useState(function () { try { var t = localStorage.getItem('moj-pierwszy-biznes-theme'); return t === 'auto' || t === 'dark' ? t : 'light'; } catch (e) { return 'light'; } }), theme = themeS[0], setTheme = themeS[1];
   useEffect(function () {
-    try { if (theme === 'auto') { document.documentElement.removeAttribute('data-theme'); localStorage.removeItem('moj-pierwszy-biznes-theme'); }
+    try { if (theme === 'auto') { document.documentElement.removeAttribute('data-theme'); localStorage.setItem('moj-pierwszy-biznes-theme', 'auto'); }
       else { document.documentElement.setAttribute('data-theme', theme); localStorage.setItem('moj-pierwszy-biznes-theme', theme); } } catch (e) {}
   }, [theme]);
-  var nextTheme = { auto: 'light', light: 'dark', dark: 'auto' }[theme];
+  var nextTheme = { light: 'dark', dark: 'auto', auto: 'light' }[theme];
   var viewS = useState('app'), view = viewS[0], setView = viewS[1];
   var xmS = useState(null), xlsxMsg = xmS[0], setXlsxMsg = xmS[1];
   var themeName = { auto: L('jak w systemie', 'system'), light: L('jasny', 'light'), dark: L('ciemny', 'dark') };

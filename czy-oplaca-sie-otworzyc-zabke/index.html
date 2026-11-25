@@ -50,6 +50,19 @@ tr.sum td{font-weight:700;border-bottom:none}
 footer{color:var(--muted);font-size:14px;padding-top:30px;padding-bottom:40px;border-top:1px solid var(--line);margin-top:50px}
 @media (max-width:600px){h1{font-size:28px}.kpis{grid-template-columns:1fr}}
 </style>
+<script>
+/* Licznik odwiedzin GoatCounter: anonimowy, bez ciasteczek */
+(function () {
+  var GC = 'mkosmowska';
+  try {
+    if (location.protocol !== 'https:' || /(^|\.)(localhost|127\.0\.0\.1)$|claude|usercontent/.test(location.hostname)) return;
+    var sc = document.createElement('script');
+    sc.async = true; sc.src = 'https://gc.zgo.at/count.js';
+    sc.setAttribute('data-goatcounter', 'https://' + GC + '.goatcounter.com/count');
+    document.head.appendChild(sc);
+  } catch (e) {}
+})();
+</script>
 </head>
 <body>
 <header>
@@ -78,7 +91,7 @@ footer{color:var(--muted);font-size:14px;padding-top:30px;padding-bottom:40px;bo
 <h2>Ile Żabek jest już obok Ciebie?</h2><p>W kroku 2 kalkulatora Coasely wybierz kategorię „Żabka (sklepy sieci)”, a pokażemy sklepy sieci w promieniu do 5 km od podanego adresu, z danych OpenStreetMap. Sieć sama wybiera lokalizacje, ale warto wiedzieć, ile Żabek będzie walczyć o tych samych klientów.</p>
 <div class="cta">
   <p>Policz swój wariant: inne wynagrodzenie od sieci, 2 albo 4 pracowników, ZUS preferencyjny zamiast pełnego. Coasely porówna też skalę, podatek liniowy i ryczałt.</p>
-  <a class="btn" href="/pl/?ref=zabka">Policz swoją Żabkę w kalkulatorze</a>
+  <a class="btn" href="/pl/?przyklad=zabka&amp;ref=czy-oplaca-sie-otworzyc-zabke">Otwórz przykład Żabki w kalkulatorze</a>
 </div>
 <h2>Najczęstsze błędy przy otwieraniu Żabki</h2>
 <h3>1. Mylenie wynagrodzenia z zarobkiem</h3><p>35 tys. zł miesięcznie z ogłoszenia to przychód franczyzobiorcy. Z tej kwoty płacisz pensje, ZUS, część mediów, księgowość i podatki.</p><h3>2. Za mało pracowników w planie</h3><p>Sklep otwarty kilkanaście godzin dziennie przez 7 dni wymaga kilku etatów. Plan z jednym pracownikiem oznacza, że resztę zmian bierzesz Ty.</p><h3>3. Pominięte straty towaru</h3><p>Braki wykryte przy inwentaryzacji pokrywa franczyzobiorca. Warto zarezerwować na nie stałą kwotę co miesiąc.</p><h3>4. Liczenie na najwyższą stawkę</h3><p>Kwota 35 tys. zł dotyczy Warszawy. Zapytaj w rekrutacji, ile wynosi stawka dla Twojej lokalizacji, i policz wynik dla niższej kwoty.</p>
